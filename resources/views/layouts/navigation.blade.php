@@ -5,16 +5,28 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
+                    @if(Auth::user()->hasRole('admin'))
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
+                    @else(Auth::user()->hasRole('reseller'))
+                    <a href="{{ route('dashboard-reseller') }}">
+                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                    </a>
+                    @endif
                 </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    @if(Auth::user()->hasRole('admin'))
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @else(Auth::user()->hasRole('reseller'))
+                    <x-nav-link :href="route('dashboard-reseller')" :active="request()->routeIs('dashboard-reseller')">
+                        {{ __('Dashboard') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
