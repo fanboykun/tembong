@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Admin\AddProduct;
+use App\Http\Livewire\Admin\IndexProduct;
+use App\Http\Livewire\Admin\UpdateProduct;
 use App\Http\Livewire\Guest\Catalog;
 use App\Http\Livewire\Guest\Checkout;
 use App\Http\Livewire\Guest\Product as GuestProduct;
-use App\Models\User;
-use Illuminate\Http\Client\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
+        Route::get('/products', IndexProduct::class)->name('products.index');
+        Route::get('/create-product', AddProduct::class)->name('products.create');
+        Route::get('/edit-product/{product:id}', UpdateProduct::class)->name('products.edit');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
         Route::get('/dashboard-reseller', function () {

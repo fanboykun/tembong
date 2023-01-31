@@ -39,7 +39,7 @@ class Checkout extends Component
             $prefilled .= $item['name']. " : " .$item['quantity']. "%0A";
         }
 
-        return redirect()->away('https://wa.me/+6281262447687?text='.$prefilled.'');
+        return redirect()->away('https://wa.me/+6281262650288?text='.$prefilled.'');
     }
     public function render()
     {
