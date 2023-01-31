@@ -29,6 +29,9 @@
                     <x-nav-link :href="route('dashboard-reseller')" :active="request()->routeIs('dashboard-reseller')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('referral')" :active="request()->routeIs('referral')">
+                        {{ __('Referral') }}
+                    </x-nav-link>
                     @endif
                 </div>
             </div>

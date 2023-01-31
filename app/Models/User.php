@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'address',
+        'referral_code',
         'password',
     ];
 
@@ -34,6 +35,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
+        'referral_code',
         'remember_token',
     ];
 
@@ -45,4 +47,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function Referral()
+    {
+        return $this->hasOne(Referral::class);
+    }
 }

@@ -7,6 +7,7 @@ use App\Http\Livewire\Admin\UpdateProduct;
 use App\Http\Livewire\Guest\Catalog;
 use App\Http\Livewire\Guest\Checkout;
 use App\Http\Livewire\Guest\Product as GuestProduct;
+use App\Http\Livewire\Reseller\Referral;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,7 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/dashboard-reseller', function () {
             return view('dashboard');
         })->name('dashboard-reseller');
+        Route::get('/referral', Referral::class)->name('referral');
     });
 });
 
