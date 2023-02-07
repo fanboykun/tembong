@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('referrals', function (Blueprint $table) {
             $table->id();
             $table->string('code')->unique();
-            $table->foreignId('user_id')->onDelete('cascade');
+            // $table->foreignId('user_id')->onDelete('cascade');
+            $table->integer('user_id')->required();
             $table->timestamps();
         });
     }

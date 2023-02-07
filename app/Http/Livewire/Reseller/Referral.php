@@ -14,16 +14,23 @@ class Referral extends Component
     public $message_code;
     public $referral_information;
     public $referral_users;
+    public $code_owner;
+
+    protected $listeners = ['codeStored' => '$refresh'];
 
     public function mount()
     {
         $this->own_referral_code = auth()->user()->referral_code;
-        $this->referral_information = ReferralModel::where('user_id',auth()->id())->first();
-        $this->current_code = $this->referral_information->code ?? '';
     }
 
     public function render()
     {
+        $this->referral_information = ReferralModel::where('user_id',auth()->id())->first();
+        if($this->referral_information != null){
+            $this->code_owner = User::where('referral_code',$this->referral_information->code)->first();
+            $this->current_code = $this->referral_information->code;
+
+        }
         $this->referral_users = ReferralModel::where('code',$this->own_referral_code)->get();
         return view('livewire.reseller.referral');
     }
@@ -39,7 +46,9 @@ class Referral extends Component
             $referral->user_id = auth()->id();
             $referral->save();
 
-            // $this->inserted_referral_code = '';
+            $this->referral_information = $referral;
+            $this->inserted_referral_code = '';
+            $this->emitSelf('codeStored');
         }else{
             $this->message_code =  'You can not use your own referral code';
         }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -15,15 +16,22 @@ use Illuminate\View\View;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Str;
 
+use function PHPUnit\Framework\isEmpty;
 
 class RegisteredUserController extends Controller
 {
     /**
      * Display the registration view.
      */
-    public function create(): View
+    public function create(RegisterRequest $request)
     {
-        return view('auth.register');
+        if($request->except('referral') != null or ($request->input('referral') == null && $request->has('referral') == false)){
+            request()->query->remove($request->collect());
+            return redirect()->route('register');
+        }
+        // abort_if($request->missing('referral') && $request->has('referral') == false, 404);
+        abort_unless($request->validated(), 404);
+        return view('auth.register', ['referral' => $request->referral]);
     }
 
     /**
