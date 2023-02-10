@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\AddProduct;
 use App\Http\Livewire\Admin\IndexProduct;
+use App\Http\Livewire\Admin\IndexUser;
+use App\Http\Livewire\Admin\ShowUser;
 use App\Http\Livewire\Admin\UpdateProduct;
 use App\Http\Livewire\Guest\Catalog;
 use App\Http\Livewire\Guest\Checkout;
@@ -27,9 +29,11 @@ Route::get('/', function () {
 Route::get('/catalog', function(){
     return redirect('/');
 });
-Route::get('/catalog/{reseller}', Catalog::class)->name('catalog-channel');
-Route::get('/catalog/{reseller}/checkout', Checkout::class)->name('catalog-checkout');
-Route::get('/catalog/{reseller}/{product}', GuestProduct::class)->name('catalog-product');
+Route::group(['middleware' => 'validated'],function () {
+    Route::get('/catalog/{reseller}', Catalog::class)->name('catalog-channel');
+    Route::get('/catalog/{reseller}/checkout', Checkout::class)->name('catalog-checkout');
+    Route::get('/catalog/{reseller}/{product}', GuestProduct::class)->name('catalog-product');
+});
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
@@ -39,6 +43,9 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/products', IndexProduct::class)->name('products.index');
         Route::get('/create-product', AddProduct::class)->name('products.create');
         Route::get('/edit-product/{product:id}', UpdateProduct::class)->name('products.edit');
+
+        Route::get('/users', IndexUser::class)->name('users.index');
+        Route::get('/users/{user}', ShowUser::class)->name('users.show');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
         Route::get('/dashboard-reseller', function () {

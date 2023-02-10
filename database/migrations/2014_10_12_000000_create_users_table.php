@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('referral_code')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->timestamp('validated_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

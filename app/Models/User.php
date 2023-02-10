@@ -26,6 +26,7 @@ class User extends Authenticatable
         'address',
         'referral_code',
         'password',
+        'validated_at',
     ];
 
     /**
@@ -46,6 +47,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'validated_at' => 'datetime',
     ];
 
     public function Referral()

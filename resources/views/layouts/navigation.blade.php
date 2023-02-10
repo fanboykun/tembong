@@ -25,7 +25,10 @@
                     <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.*')">
                         {{ __('Products') }}
                     </x-nav-link>
-                    @else(Auth::user()->hasRole('reseller'))
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        {{ __('Users') }}
+                    </x-nav-link>
+                    @elseif(Auth::user()->hasRole('reseller'))
                     <x-nav-link :href="route('dashboard-reseller')" :active="request()->routeIs('dashboard-reseller')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
