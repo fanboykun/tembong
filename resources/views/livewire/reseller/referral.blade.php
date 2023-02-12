@@ -107,7 +107,10 @@
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("This shows which user using your referral code") }}
+                           Total Fee :
+                        </p>
+                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                           Total User :
                         </p>
                     </header>
 

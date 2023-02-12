@@ -18,7 +18,7 @@ Route::middleware('guest')->group(function () {
         return view('auth.register');
     })->name('register');
 
-    Route::get('register-referral',[App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register-referral');
+    // Route::get('register-referral',[App\Http\Controllers\Auth\RegisteredUserController::class, 'create'])->name('register-referral');
 
     Route::post('register', [RegisteredUserController::class, 'store']);
 

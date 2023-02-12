@@ -27,8 +27,11 @@
                             <th class="py-3 px-6 text-left">Email</th>
                             <th class="py-3 px-6 text-left">Phone Number</th>
                             <th class="py-3 px-6 text-left">Registered At</th>
-                            <th class="py-3 px-6 text-center">Status</th>
-                            <th class="py-3 px-6 text-center">Action</th>
+                            <th class="py-3 px-6 text-left">Validated At</th>
+                            {{-- <th class="py-3 px-6 text-center">Status</th> --}}
+                            <th class="py-3 px-6 text-center">Dropship Info</th>
+                            <th class="py-3 px-6 text-center">Account Info</th>
+                            <th class="py-3 px-6 text-center">Referral Info</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
@@ -56,11 +59,17 @@
                             <td class="py-3 px-6 text-left">
                                 <span>{{ $user->created_at }}</span>
                             </td>
-                            <td class="py-3 px-6 text-center">
-                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Valid</span>
+                            <td class="py-3 px-6 text-left">
+                                <span>{{ $user->validated_at ?? 'Unvalidated' }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <a href="{{ route('users.show', ['user' => $user]) }}" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">View</a>
+                                <a href="{{ route('users.dropship', ['user' => $user]) }}" class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">View Dropship</a>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <a href="{{ route('users.show', ['user' => $user]) }}" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">View Info</a>
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <a href="{{ route('users.referral', ['user' => $user]) }}" class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">View Referral</a>
                             </td>
                             @empty
                                 <td>
