@@ -14,7 +14,7 @@ class AddProduct extends Component
     public $description;
     public $price;
     public $stock;
-    // public $image = "example.png";
+    public $type;
     public $image;
     public $category_id;
 
@@ -23,14 +23,21 @@ class AddProduct extends Component
         $this->categories = Category::all();
         return view('livewire.admin.add-product');
     }
+    public function updatedType()
+    {
+        $this->validate([
+            'type' => 'required|in:best_seller,top_seller',
+        ]);
+        $this->price = $this->type == 'best_seller' ? 65000 : 150000;
+    }
     public function store()
     {
         $validated_data = $this->validate([
             'name' => 'required',
             'description' => 'required',
-            'price' => 'required',
             'stock' => 'required',
-            // 'image' => 'required|image',
+            'type' => 'required|in:best_seller,top_seller',
+            'price' => 'required',
             'category_id' => 'required',
         ]);
 

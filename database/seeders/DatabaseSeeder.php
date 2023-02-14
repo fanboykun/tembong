@@ -11,6 +11,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 
 class DatabaseSeeder extends Seeder
 {
@@ -69,9 +70,13 @@ class DatabaseSeeder extends Seeder
             'name' => 'Woman ',
             'description' => 'Woman`s Product',
         ]);
+        $categories[] = Category::create([
+            'name' => 'All Gender ',
+            'description' => 'All Gender`s Product',
+        ]);
 
         foreach($categories as $category) {
-            $category->products()->saveMany(Product::factory()->count(10)->create());
+            $category->products()->saveMany(Product::factory()->count(10)->suspended()->create());
         }
     }
 }

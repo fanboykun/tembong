@@ -3,7 +3,7 @@
         <div class="flex">
             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    Back New Product
+                    Back To List Products
                 </a>
             </h2>
         </div>
@@ -38,8 +38,21 @@
                         </div>
 
                         <div>
+                            <x-input-label for="type" :value="__('Type')" />
+                            <select wire:model="type" name="type" id="type">
+                                {{-- <option value="">Select Type</option> --}}
+                                @foreach ($types as $key => $list_type )
+                                {{-- @if ($type != $key)
+                                <option selected value="{{ $key }}">{{ $list_type }}</option>
+                                @endif --}}
+                                    <option {{ $type == $key ? 'selected' : '' }} value="{{ $key }}">{{ $list_type }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
                             <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
+                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
                         </div>
 
                         <div>
@@ -74,7 +87,7 @@
                             @else
                             <img src="{{ $product->getFirstMediaUrl('image') }}" alt="">
                             @endif
-                            
+
                         </div>
 
                         <div class="flex items-center gap-4">

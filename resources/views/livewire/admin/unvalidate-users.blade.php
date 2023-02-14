@@ -4,17 +4,17 @@
             {{-- {{ $header }} --}}
             <div class="flex">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {{ __('List of All Users') }}
+                    {{ __('List of Unvalidate Users') }}
                 </h2>
             </div>
         </div>
     </header>
     <div class="flex">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        {{-- <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
             <a href="{{ route('users.unvalidate') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                 {{ __('View Unvalidated Users') }}
             </a>
-        </h2>
+        </h2> --}}
         <x-text-input wire:model="search" type="search" class="ml-2 py-0" placeholder="seacrh here"></x-text-input>
     </div>
     <div class="overflow-x-auto">
@@ -27,11 +27,7 @@
                             <th class="py-3 px-6 text-left">Email</th>
                             <th class="py-3 px-6 text-left">Phone Number</th>
                             <th class="py-3 px-6 text-left">Registered At</th>
-                            <th class="py-3 px-6 text-left">Validated At</th>
-                            {{-- <th class="py-3 px-6 text-center">Status</th> --}}
-                            <th class="py-3 px-6 text-center">Dropship Info</th>
-                            <th class="py-3 px-6 text-center">Account Info</th>
-                            <th class="py-3 px-6 text-center">Referral Info</th>
+                            <th class="py-3 px-6 text-center">Status</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
@@ -60,16 +56,7 @@
                                 <span>{{ $user->created_at }}</span>
                             </td>
                             <td class="py-3 px-6 text-left">
-                                <span>{{ $user->validated_at ?? 'Unvalidated' }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <a href="{{ route('users.dropship', ['user' => $user]) }}" class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">View Dropship</a>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <a href="{{ route('users.show', ['user' => $user]) }}" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">View Info</a>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <a href="{{ route('users.referral', ['user' => $user]) }}" class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">View Referral</a>
+                                <a href="{{ route('users.show', ['user' => $user]) }}" class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Unvalidated</a>
                             </td>
                             @empty
                                 <td>

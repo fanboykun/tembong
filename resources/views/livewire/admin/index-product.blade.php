@@ -19,6 +19,7 @@
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ $product->name }}</h5>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $product->description }}</p>
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ $product->category->name }}</p>
+                    <p class="mb-3 font-bold text-black dark:text-gray-400">{{ $product->type }}</p>
                     <p class="mb-3 font-bold text-black dark:text-gray-400">Rp. {{ $product->price }}</p>
                     <div class="flex mt-4 space-x-3 md:mt-6">
                         <a style="none;" href="{{ route('products.edit',['product' => $product->id]) }}">

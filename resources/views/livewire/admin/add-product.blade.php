@@ -34,8 +34,17 @@
                         </div>
 
                         <div>
+                            <x-input-label for="type" :value="__('Type')" />
+                            <select wire:model="type" name="type" id="type">
+                                <option value="">Select Type</option>
+                                    <option value="best_seller">Best Seller</option>
+                                    <option value="top_seller">Top Seller</option>
+                            </select>
+                        </div>
+                        <div>
                             <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
+                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
+
                         </div>
 
                         <div>

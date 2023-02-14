@@ -52,6 +52,22 @@ class User extends Authenticatable
 
     public function Referral()
     {
-        return $this->hasOne(Referral::class);
+        return $this->hasOne(Referral::class, 'user_id', 'id');
+    }
+    public function Referrals()
+    {
+        return $this->hasMany(Referral::class);
+    }
+    public function Orders()
+    {
+        return $this->hasMany(Order::class, 'id', 'user_id');
+    }
+    public function Dropshippings()
+    {
+        return $this->hasMany(Order::class, 'id', 'reseller_id');
+    }
+    public function Banks()
+    {
+        return $this->hasMany(Bank::class);
     }
 }

@@ -28,6 +28,9 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
+                        {{ __('Orders') }}
+                    </x-nav-link>
                     @elseif(Auth::user()->hasRole('reseller'))
                     <x-nav-link :href="route('dashboard-reseller')" :active="request()->routeIs('dashboard-reseller')">
                         {{ __('Dashboard') }}

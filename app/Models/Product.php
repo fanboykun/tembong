@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class Product extends Model implements HasMedia
 {
@@ -13,9 +14,9 @@ class Product extends Model implements HasMedia
     protected $fillable = [
         'name',
         'description',
+        'type',
         'price',
         'stock',
-        'image',
         'category_id',
     ];
 
@@ -31,9 +32,23 @@ class Product extends Model implements HasMedia
         //     ->acceptsMimeTypes(['image/jpg', 'image/jpeg', 'image/png', 'image/gif']);
     }
 
+    protected function type(): Attribute
+    {
+        return Attribute::make(
+            get: function ($value) {
+                return $value == 'best_seller' ? 'Best Seller' : 'Top Seller';
+            },
+        );
+    }
+
     public function Category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function Orders()
+    {
+        return $this->belongsToMany(Order::class)->withPivot('quantity', 'amount_price');
     }
 
 }

@@ -31,7 +31,8 @@ class Referral extends Component
             $this->current_code = $this->referral_information->code;
 
         }
-        $this->referral_users = ReferralModel::where('code',$this->own_referral_code)->get();
+        $this->referral_users = ReferralModel::where('code',$this->own_referral_code)->with('user')->get();
+        // dd($this->referral_users);
         return view('livewire.reseller.referral');
     }
 

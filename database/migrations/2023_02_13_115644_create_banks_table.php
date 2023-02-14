@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('banks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->enum('type', ['best_seller', 'top_seller'])->required();
-            $table->integer('price')->required();
-            $table->integer('stock')->nullable();
-            $table->foreignId('category_id')->nullable();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade')->required();
+            $table->enum('type', ['bri', 'bca', 'mandiri', 'sumut', 'danamon'])->required();
+            $table->string('account_number')->required();
+            $table->string('account_name')->required();
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('banks');
     }
 };

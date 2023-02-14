@@ -17,6 +17,8 @@ class UpdateProduct extends Component
 
     public $name;
     public $description;
+    public $type;
+    public $types = ['best_seller' => 'BEST SELLER', 'top_seller' => 'TOP SELLER'];
     public $price;
     public $stock;
     public $image;
@@ -33,6 +35,7 @@ class UpdateProduct extends Component
         $this->categories = Category::all();
         $this->name = $this->product->name;
         $this->description = $this->product->description;
+        $this->type = $this->product->getRawOriginal('type');
         $this->price = $this->product->price;
         $this->stock = $this->product->stock;
         $this->image = $this->product->getFirstMediaUrl('image');
@@ -55,6 +58,14 @@ class UpdateProduct extends Component
     {
         return view('livewire.admin.update-product');
 
+    }
+
+    public function updatedType()
+    {
+        $this->validate([
+            'type' => 'required|in:best_seller,top_seller',
+        ]);
+        $this->price = $this->type == 'best_seller' ? 65000 : 150000;
     }
 
     public function update()
