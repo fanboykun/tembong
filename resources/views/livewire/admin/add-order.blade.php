@@ -67,6 +67,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex">
+                    <x-primary-button class="m-auto" wire:click="$set('content_state', 'list_all_product')">All Products</x-primary-button>
+                    <x-primary-button class="m-auto" wire:click="$set('content_state', 'in_cart_product')">In Cart Product</x-primary-button>
+                    <x-primary-button class="m-auto" wire:click="$set('content_state', 'buyer_info')">Buyer Info</x-primary-button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if ($content_state == 'list_all_product')
+    <div class="py-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="flex">
                     <x-text-input wire:model="search_product" type="search" class="ml-2 py-0" placeholder="seacrh product"></x-text-input>
                     <select wire:model="filter_product_category" name="filter_product_category" id="filter_product_category">
                         <option value="">All Category</option>
@@ -134,4 +146,54 @@
             </div>
         </div>
     </div>
+    @elseif ($content_state == 'in_cart_product')
+    <div class="py-4">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+                {{-- @if ($products != null && $search_product != null) --}}
+                <div class="overflow-x-auto">
+                    <div class="overflow-hidden">
+                        <div class="bg-white shadow-md rounded my-6">
+                            <table class="min-w-max w-full table-auto">
+                                <thead>
+                                    <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                                        <th class="py-3 px-6 text-left">Name</th>
+                                        <th class="py-3 px-6 text-left">Price</th>
+                                        <th class="py-3 px-6 text-left">Quantity</th>
+                                        <th class="py-3 px-6 text-left"></th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-gray-600 text-sm font-light">
+                                    @forelse ($products as $product)
+                                    <tr class="border-b border-gray-200 hover:bg-gray-100">
+                                        <td class="py-3 px-6 text-left">
+                                            <span>{{ $product->name }}</span>
+                                        </td>
+                                        <td class="py-3 px-6 text-left">
+                                            <span>{{ $product->price }}</span>
+                                        </td>
+                                        <td class="py-3 px-6 text-left">
+                                            <button type="button" wire:click="addProduct({{ $product->id }})" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">+</button>
+                                            <input type="number" min="1" disabled name="quantity" id="quantity">
+                                            <button type="button" wire:click="addProduct({{ $product->id }})" class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">-</button>
+                                        </td>
+                                        <td class="py-3 px-6 text-left">
+                                            <button type="button" wire:click="addProduct({{ $product->id }})" class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Remove From Cart</button>
+                                        </td>
+                                        @empty
+                                            <td>
+                                                No Data!
+                                            </td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{-- @endif --}}
+            </div>
+        </div>
+    </div>
+    @endif
 </div>

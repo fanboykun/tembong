@@ -26,6 +26,8 @@ class AddOrder extends Component
 
     public $reseller;
 
+    public $content_state = 'list_all_product';
+
     public function mount()
     {
         // $this->categories = Product::select('category')->distinct()->get();
@@ -66,6 +68,6 @@ class AddOrder extends Component
 
     public function addToCart($product)
     {
-        
+
     }
 }

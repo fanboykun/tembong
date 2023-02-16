@@ -23,9 +23,6 @@ return new class extends Migration
             $table->double('total_price')->required();
             $table->double('shipping_cost')->required();
             $table->boolean('is_completed')->default(TRUE);
-            $table->string('buyer_name')->required();
-            $table->string('buyer_address')->required();
-            $table->string('buyer_phone')->required();
             $table->timestamps();
         });
     }

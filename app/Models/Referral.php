@@ -11,12 +11,12 @@ class Referral extends Model
 
     protected $guarded = [];
 
-    public function Owner()
+    public function owner()
     {
         // return $this->belongsTo(User::class, 'code', 'id');
         return $this->belongsTo(User::class, 'code', 'referral_code');
     }
-    public function User()
+    public function user()
     {
         // return $this->belongsTo(User::class, 'code', 'id');
         // return $this->belongsTo(User::class, 'code', 'referral_code');

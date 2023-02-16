@@ -7,7 +7,7 @@ use Illuminate\Session\SessionManager;
 
 class CartService {
     const MINIMUM_QUANTITY = 1;
-    const DEFAULT_INSTANCE = 'catalog-cart';
+    const DEFAULT_INSTANCE = 'admin-cart';
 
     protected $session;
     protected $instance;

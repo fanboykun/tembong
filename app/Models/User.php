@@ -50,23 +50,23 @@ class User extends Authenticatable
         'validated_at' => 'datetime',
     ];
 
-    public function Referral()
+    public function referral()
     {
         return $this->hasOne(Referral::class, 'user_id', 'id');
     }
-    public function Referrals()
+    public function referrals()
     {
         return $this->hasMany(Referral::class);
     }
-    public function Orders()
+    public function orders()
     {
         return $this->hasMany(Order::class, 'id', 'user_id');
     }
-    public function Dropshippings()
+    public function dropshippings()
     {
         return $this->hasMany(Order::class, 'id', 'reseller_id');
     }
-    public function Banks()
+    public function banks()
     {
         return $this->hasMany(Bank::class);
     }

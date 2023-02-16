@@ -213,5 +213,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
     'Cart' => App\Facades\Cart::class,
+    'AdminCart' => App\Facades\AdminCart::class,
 
 ];

@@ -41,12 +41,12 @@ class Product extends Model implements HasMedia
         );
     }
 
-    public function Category()
+    public function category()
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function Orders()
+    public function orders()
     {
         return $this->belongsToMany(Order::class)->withPivot('quantity', 'amount_price');
     }
