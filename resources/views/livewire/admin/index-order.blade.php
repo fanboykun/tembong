@@ -13,6 +13,9 @@
             <a href="{{ route('orders.create') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
                 {{ __('Create New Order') }}
             </a>
+            <button type="submit" wire:click="ddVal()" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
+                {{ __('Dump Item') }}
+            </button>
         </h2>
         <x-text-input wire:model="search" type="search" class="ml-2 py-0" placeholder="seacrh here"></x-text-input>
     </div>
@@ -25,9 +28,9 @@
                             <th class="py-3 px-6 text-left">Order ID</th>
                             <th class="py-3 px-6 text-left">Reseller ID</th>
                             <th class="py-3 px-6 text-left">Product Info</th>
+                            <th class="py-3 px-6 text-center">Buyer Info</th>
                             <th class="py-3 px-6 text-left">Created At</th>
-                            <th class="py-3 px-6 text-center">Total Quantity</th>
-                            <th class="py-3 px-6 text-center">Discount Type</th>
+                            <th class="py-3 px-6 text-center">Discount</th>
                             <th class="py-3 px-6 text-center">Ongkir</th>
                             <th class="py-3 px-6 text-center">Total Price</th>
                             <th class="py-3 px-6 text-center">Order Status</th>
@@ -44,16 +47,16 @@
                                 <span>{{ $order->reseller_id }}</span>
                             </td>
                             <td class="py-3 px-6 text-left">
-                                <a href="{{ route('orders.product', ['order' => $order]) }}" class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">View Products</a>
+                                <a href="{{ route('orders.product', ['order' => $order]) }}" class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">View Products</a>
+                            </td>
+                            <td class="py-3 px-6 text-left">
+                                <a href="" class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">View Buyer</a>
                             </td>
                             <td class="py-3 px-6 text-left">
                                 <span>{{ $order->created_at }}</span>
                             </td>
-                            <td class="py-3 px-6 text-left">
-                                <span>{{ $order->total_item }}</span>
-                            </td>
                             <td class="py-3 px-6 text-center">
-                                {{-- <span>{{ $order->discount_type }}</span> --}}
+                                <span>{{ $order->discount_type ?? 0 }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
                                 <span>{{ $order->shipping_cost }}</span>
@@ -62,10 +65,10 @@
                                 <span>{{ $order->total_price }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <span class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $order->is_completed == TRUE ? 'Completed' : 'Uncompleted' }}</span>
+                                <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $order->status}}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <a href="" class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">View</a>
+                                <a href="" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">View</a>
                             </td>
                             @empty
                                 <td>

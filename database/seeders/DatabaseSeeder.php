@@ -12,6 +12,7 @@ use Spatie\Permission\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Sequence;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -56,10 +57,10 @@ class DatabaseSeeder extends Seeder
         ]);
         $reseller2->assignRole($resellerRole);
 
-        Referral::create([
-            'code' => $reseller->referral_code,
-            'user_id' => $reseller2->id,
-        ]);
+        // Referral::create([
+        //     'code' => $reseller->referral_code,
+        //     'user_id' => $reseller2->id,
+        // ]);
 
         $categories = [];
         $categories[] = Category::create([
@@ -78,5 +79,7 @@ class DatabaseSeeder extends Seeder
         foreach($categories as $category) {
             $category->products()->saveMany(Product::factory()->count(10)->suspended()->create());
         }
+
+        Artisan::call('laravolt:indonesia:seed');
     }
 }

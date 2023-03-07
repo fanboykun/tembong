@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Reseller;
 
+use App\Models\Balance;
 use Livewire\Component;
 use App\Models\User;
 Use App\Models\Referral as ReferralModel;
@@ -46,6 +47,8 @@ class Referral extends Component
             $referral->code = $this->inserted_referral_code;
             $referral->user_id = auth()->id();
             $referral->save();
+            $this->saveOwnerBalance($referral, $check);
+            $this->saveCodeUserBalance($referral);
 
             $this->referral_information = $referral;
             $this->inserted_referral_code = '';
@@ -53,5 +56,23 @@ class Referral extends Component
         }else{
             $this->message_code =  'You can not use your own referral code';
         }
+    }
+
+    protected function saveOwnerBalance($referral, $reseller)
+    {
+        $balance = new Balance();
+        $balance->user_id = $reseller->id;
+        $balance->amount = 10000;
+
+        $referral->balance()->save($balance);
+    }
+
+    public function saveCodeUserBalance($referral)
+    {
+        $balance = new Balance();
+        $balance->user_id = auth()->id();
+        $balance->amount = 5000;
+
+        $referral->balance()->save($balance);
     }
 }

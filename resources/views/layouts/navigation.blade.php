@@ -31,12 +31,24 @@
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                         {{ __('Orders') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('balances.index')" :active="request()->routeIs('balances.*')">
+                        {{ __('User`s Balance') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
+                        {{ __('Payment Request') }}
+                    </x-nav-link>
                     @elseif(Auth::user()->hasRole('reseller'))
                     <x-nav-link :href="route('dashboard-reseller')" :active="request()->routeIs('dashboard-reseller')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('referral')" :active="request()->routeIs('referral')">
                         {{ __('Referral') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('sales')" :active="request()->routeIs('sales')">
+                        {{ __('Sales') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('balance.index')" :active="request()->routeIs('balance.*')">
+                        {{ __('Balance') }}
                     </x-nav-link>
                     @endif
                 </div>

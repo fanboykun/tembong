@@ -17,12 +17,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->foreignId('reseller_id');
-            $table->integer('total_item');
-            $table->integer('best_seller_item')->nullable();
-            $table->integer('top_seller_item')->nullable();
-            $table->double('total_price')->required();
+            $table->string('discount_type')->nullable();
+            $table->double('total_discount')->nullable();
             $table->double('shipping_cost')->required();
-            $table->boolean('is_completed')->default(TRUE);
+            $table->double('total_price')->required();
+            $table->enum('status', ['placed','shipped'])->nullable();
             $table->timestamps();
         });
     }

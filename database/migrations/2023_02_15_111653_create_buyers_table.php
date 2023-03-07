@@ -17,8 +17,12 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
             $table->string('buyer_name')->required();
-            $table->string('buyer_address')->required();
             $table->string('buyer_phone')->required();
+            $table->integer('province_id')->required();
+            $table->integer('city_id')->required();
+            $table->integer('district_id')->nullable();
+            $table->integer('village_id')->nullable();
+            $table->string('buyer_address_description')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@
                 <div class="max-w-auto">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('List Of User That Used Your Referral Code') }}
+                            {{ __('User`s Dropship Info') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">

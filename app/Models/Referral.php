@@ -16,10 +16,16 @@ class Referral extends Model
         // return $this->belongsTo(User::class, 'code', 'id');
         return $this->belongsTo(User::class, 'code', 'referral_code');
     }
+
     public function user()
     {
         // return $this->belongsTo(User::class, 'code', 'id');
         // return $this->belongsTo(User::class, 'code', 'referral_code');
         return $this->belongsTo(User::class);
+    }
+
+    public function balance()
+    {
+        return $this->morphMany(Balance::class, 'balanceable');
     }
 }

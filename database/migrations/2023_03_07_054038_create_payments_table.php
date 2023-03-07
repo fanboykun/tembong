@@ -13,12 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('banks', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade')->required();
-            $table->enum('type', ['bri', 'bca', 'mandiri', 'sumut', 'danamon'])->required();
-            $table->string('account_number')->required();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('bank_info')->required();
             $table->string('account_name')->required();
+            $table->string('account_number')->required();
+            $table->double('amount')->required();
+            $table->boolean('is_payed')->default(false);
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('banks');
+        Schema::dropIfExists('payments');
     }
 };

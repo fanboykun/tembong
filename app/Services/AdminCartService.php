@@ -5,7 +5,7 @@ namespace App\Services;
 use Illuminate\Support\Collection;
 use Illuminate\Session\SessionManager;
 
-class CartService {
+class AdminCartService {
     const MINIMUM_QUANTITY = 1;
     const DEFAULT_INSTANCE = 'admin-cart';
 
@@ -32,9 +32,9 @@ class CartService {
      * @param array $options
      * @return void
      */
-    public function add($id, $name, $price, $quantity, $options = []): void
+    public function add($id, $name, $type, $price, $quantity, $options = []): void
     {
-        $cartItem = $this->createCartItem($name, $price, $quantity, $options);
+        $cartItem = $this->createCartItem($name, $type, $price, $quantity, $options);
 
         $content = $this->getContent();
 
@@ -47,34 +47,50 @@ class CartService {
         $this->session->put(self::DEFAULT_INSTANCE, $content);
     }
 
-    /**
-     * Updates the quantity of a cart item.
-     *
-     * @param string $id
-     * @param string $action
-     * @return void
-     */
-    public function update(string $id, string $action): void
+    public function decrement(string $id): void
     {
         $content = $this->getContent();
 
         if ($content->has($id)) {
             $cartItem = $content->get($id);
 
-            switch ($action) {
-                case 'plus':
-                    $cartItem->put('quantity', $content->get($id)->get('quantity') + 1);
-                    break;
-                case 'minus':
-                    $updatedQuantity = $content->get($id)->get('quantity') - 1;
+            $updatedQuantity = $content->get($id)->get('quantity') - 1;
 
                     if ($updatedQuantity < self::MINIMUM_QUANTITY) {
                         $updatedQuantity = self::MINIMUM_QUANTITY;
                     }
 
                     $cartItem->put('quantity', $updatedQuantity);
-                    break;
-            }
+
+            $content->put($id, $cartItem);
+
+            $this->session->put(self::DEFAULT_INSTANCE, $content);
+        }
+    }
+
+    public function increment(string $id): void
+    {
+        $content = $this->getContent();
+
+        if ($content->has($id)) {
+            $cartItem = $content->get($id);
+
+            $cartItem->put('quantity', $content->get($id)->get('quantity') + 1);
+
+            $content->put($id, $cartItem);
+
+            $this->session->put(self::DEFAULT_INSTANCE, $content);
+        }
+    }
+
+    public function updateQty($id, $qty)
+    {
+        $content = $this->getContent();
+
+        if ($content->has($id)) {
+            $cartItem = $content->get($id);
+
+            $cartItem->put('quantity', $qty);
 
             $content->put($id, $cartItem);
 
@@ -122,7 +138,7 @@ class CartService {
      *
      * @return string
      */
-    public function total(): string
+    public function total()
     {
         $content = $this->getContent();
 
@@ -130,7 +146,42 @@ class CartService {
             return $total += $item->get('price') * $item->get('quantity');
         });
 
-        return number_format($total, 2);
+        return $total;
+    }
+
+    public function totalQuantity()
+    {
+        $content = $this->getContent();
+
+        $total = $content->reduce(function ($total, $item) {
+            return $total += $item->get('quantity');
+        });
+
+        return $total;
+    }
+
+    public function countBestSellerItem()
+    {
+        $content = $this->getContent();
+        $total = 0;
+
+        $total = $content->reduce(function ($total, $item) {
+           return $item->get('type') == "Top Seller" ? $total += $item->get('quantity') : $total += 0;
+        });
+
+        return $total;
+    }
+
+    public function countTopSellerItem()
+    {
+        $content = $this->getContent();
+        $total = 0;
+
+        $total = $content->reduce(function ($total, $item) {
+           return $item->get('type') == "Best Seller" ? $total += $item->get('quantity') : $total += 0;
+        });
+
+        return $total;
     }
 
     /**
@@ -152,7 +203,7 @@ class CartService {
      * @param array $options
      * @return Illuminate\Support\Collection
      */
-    protected function createCartItem(string $name, string $price, string $quantity, array $options): Collection
+    protected function createCartItem(string $name, string $type, string $price, string $quantity, array $options): Collection
     {
         $price = floatval($price);
         $quantity = intval($quantity);
@@ -163,6 +214,7 @@ class CartService {
 
         return collect([
             'name' => $name,
+            'type' => $type,
             'price' => $price,
             'quantity' => $quantity,
             'options' => $options,

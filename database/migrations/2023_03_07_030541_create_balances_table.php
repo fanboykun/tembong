@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('order_product', function (Blueprint $table) {
-            $table->foreignId('order_id')->cascadeOnDelete()->constrained();
-            $table->foreignId('product_id')->cascadeOnDelete()->constrained();
-            $table->integer('quantity')->required();
-            $table->primary(['order_id', 'product_id']);
+        Schema::create('balances', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->required()->constrained()->cascadeOnDelete();
+            $table->morphs('balanceable');
+            $table->double('amount');
+            $table->timestamps();
         });
     }
 
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_product');
+        Schema::dropIfExists('balances');
     }
 };

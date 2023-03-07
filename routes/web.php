@@ -6,15 +6,21 @@ use App\Http\Livewire\Admin\AddProduct;
 use App\Http\Livewire\Admin\IndexOrder;
 use App\Http\Livewire\Admin\IndexProduct;
 use App\Http\Livewire\Admin\IndexUser;
+use App\Http\Livewire\Admin\PaymentRequest;
+use App\Http\Livewire\Admin\ShowOrderProduct;
+use App\Http\Livewire\Admin\ShowPaymentRequest;
 use App\Http\Livewire\Admin\ShowUser;
 use App\Http\Livewire\Admin\ShowUserDropship;
 use App\Http\Livewire\Admin\ShowUserReferral;
 use App\Http\Livewire\Admin\UnvalidateUsers;
 use App\Http\Livewire\Admin\UpdateProduct;
+use App\Http\Livewire\Admin\UserBalance;
 use App\Http\Livewire\Guest\Catalog;
 use App\Http\Livewire\Guest\Checkout;
 use App\Http\Livewire\Guest\Product as GuestProduct;
+use App\Http\Livewire\Reseller\Balance;
 use App\Http\Livewire\Reseller\Referral;
+use App\Http\Livewire\Reseller\Sales;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,12 +63,20 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::get('/orders', IndexOrder::class)->name('orders.index');
         Route::get('/create-order', AddOrder::class)->name('orders.create');
+        Route::get('/orders/{order}/product', ShowOrderProduct::class)->name('orders.product');
+
+        Route::get('/balances', UserBalance::class)->name('balances.index');
+
+        Route::get('/payments', PaymentRequest::class)->name('payments.index');
+        Route::get('/payments/show', ShowPaymentRequest::class)->name('payments.show');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
         Route::get('/dashboard-reseller', function () {
             return view('dashboard');
         })->name('dashboard-reseller');
         Route::get('/referral', Referral::class)->name('referral');
+        Route::get('/sales', Sales::class)->name('sales');
+        Route::get('/balance', Balance::class)->name('balance.index');
     });
 });
 
