@@ -32,7 +32,7 @@
                         </div>
                         <div>
                             <x-input-label for="withdrawable" :value="__('Withdrawable Balance')" />
-                            <x-text-input wire:model="withdrawable_balance" name="withdrawable" disabled type="number" class="mt-1 block w-full"/>
+                            <x-text-input wire:model="withdrawabe_balance" name="withdrawable" disabled type="number" class="mt-1 block w-full"/>
                         </div>
                     </div>
                 </div>

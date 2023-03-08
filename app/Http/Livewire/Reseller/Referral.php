@@ -17,6 +17,9 @@ class Referral extends Component
     public $referral_users;
     public $code_owner;
 
+    public $total_referral_fee;
+    public $total_referral_user;
+
     protected $listeners = ['codeStored' => '$refresh'];
 
     public function mount()
@@ -32,8 +35,10 @@ class Referral extends Component
             $this->current_code = $this->referral_information->code;
 
         }
-        $this->referral_users = ReferralModel::where('code',$this->own_referral_code)->with('user')->get();
-        // dd($this->referral_users);
+        $this->referral_users = ReferralModel::where('code',$this->own_referral_code)
+        ->with('user')->with('balance')->get();
+        $this->total_referral_fee = auth()->user()->referral_fee;
+        $this->total_referral_user = $this->referral_users->count();
         return view('livewire.reseller.referral');
     }
 

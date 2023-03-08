@@ -21,7 +21,7 @@ class Referral extends Model
     {
         // return $this->belongsTo(User::class, 'code', 'id');
         // return $this->belongsTo(User::class, 'code', 'referral_code');
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
     public function balance()

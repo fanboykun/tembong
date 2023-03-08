@@ -37,7 +37,7 @@ class WithdrawRequest extends Component
             'account_number' => 'required',
         ]);
 
-        if ($this->amount > $this->balance) {
+        if ($this->amount > auth()->user()->withdrawable) {
             $this->addError('amount', 'Withdraw amount cannot be greater than your withdrawable balance');
             return;
         }

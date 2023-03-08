@@ -53,10 +53,14 @@
                                 <span>{{ $payment->account_number }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_payed ? 'Payed' : 'Pending' }}</span>
+                                <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_payed ? 'Paid' : 'Pending' }}</span>
                             </td>
                             <td class="py-3 px-6 text-center">
-                                <a href="{{ route('payments.show') }}" class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">View</a>
+                                @if ($payment->is_payed)
+                                    <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Paid at {{ $payment->updated_at }}</span>
+                                @else
+                                <button type="submit" wire:click="proceedPayment({{ $payment }})" class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Proceed Payment</button>
+                                @endif
                             </td>
                         </tr>
                         @empty

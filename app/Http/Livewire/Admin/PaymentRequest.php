@@ -14,4 +14,12 @@ class PaymentRequest extends Component
         $this->payments = Payment::with('user')->latest()->get();
         return view('livewire.admin.payment-request');
     }
+
+    public function proceedPayment(Payment $payment)
+    {
+        $payment->update([
+            'is_payed' => TRUE
+        ]);
+        // $this->emit('paymentUpdated');
+    }
 }

@@ -50,7 +50,7 @@ class User extends Authenticatable
         'validated_at' => 'datetime',
     ];
 
-    protected $appends = ['sales_fee', 'referral_fee', 'total_fee', 'withdrawable'];
+    protected $appends = ['sales_fee', 'referral_fee', 'total_fee', 'withdrawable', 'paid_profit'];
 
     public function referral()
     {
@@ -97,9 +97,14 @@ class User extends Authenticatable
         return $this->balance()->sum('amount');
     }
 
+    public function getPaidProfitAttribute()
+    {
+        return $this->payments()->sum('amount');
+    }
+
     public function getWithdrawableAttribute()
     {
-        return $this->balance()->sum('amount');
+        return $this->total_fee - $this->paid_profit;
     }
 
 }

@@ -16,7 +16,7 @@ class Balance extends Component
     public $sales_balance;
     public $referral_balance;
     public $total_balance;
-    public $withdrawable_balance;
+    public $withdrawabe_balance;
 
     public $listeners = ['paymentCreated' => '$refresh'];
 
@@ -26,7 +26,7 @@ class Balance extends Component
         $this->sales_balance = $this->reseller->sales_fee;
         $this->referral_balance = $this->reseller->referral_fee;
         $this->total_balance = $this->reseller->total_fee;
-        $this->withdrawable_balance = $this->reseller->withdrawable;
+        $this->withdrawabe_balance = $this->reseller->withdrawable;
     }
 
     public function render()

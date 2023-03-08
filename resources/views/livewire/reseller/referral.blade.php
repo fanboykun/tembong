@@ -107,10 +107,10 @@
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                           Total Fee :
+                           Total Fee : {{ $total_referral_fee }}
                         </p>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                           Total User :
+                           Total User : {{ $total_referral_user }}
                         </p>
                     </header>
 
@@ -145,7 +145,7 @@
                                                 <span>{{ $referral->created_at }}</span>
                                             </td>
                                             <td class="py-3 px-6 text-center">
-                                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Active</span>
+                                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $referral->balance->first()->amount }}</span>
                                             </td>
                                             @empty
                                                 <td>

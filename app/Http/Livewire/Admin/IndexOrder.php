@@ -18,9 +18,4 @@ class IndexOrder extends Component
         return view('livewire.admin.index-order');
     }
 
-    public function ddVal()
-    {
-        dd([$this->orders->first()->best_seller_item, $this->orders->first()->top_seller_item]);
-
-    }
 }
