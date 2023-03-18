@@ -18,13 +18,9 @@ class WithdrawRequest extends Component
     public $account_number;
 
 
-    public function mount()
-    {
-        $this->balance = auth()->user()->withdrawable;
-    }
-
     public function render()
     {
+        $this->balance = auth()->user()->withdrawable;
         return view('livewire.reseller.withdraw-request');
     }
 
@@ -52,7 +48,7 @@ class WithdrawRequest extends Component
                 'account_name' => $this->account_name,
                 'account_number' => $this->account_number,
                 'amount' => $this->amount,
-                'is_payed' => false,
+                // 'is_paid' => false,
             ]);
             $this->reset(['bank_info', 'amount', 'account_name', 'account_number']);
             $this->emit('paymentCreated');

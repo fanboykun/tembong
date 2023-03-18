@@ -17,6 +17,7 @@ class Product extends Component
         if($reseller == null){
             return redirect('/');
         }
+        $c->visit()->withIp();
         $this->channel = $c->name;
         $this->product = ProductModel::find($product);
     }

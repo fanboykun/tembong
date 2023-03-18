@@ -10,6 +10,11 @@
     </header>
     <div class="flex">
         <x-text-input wire:model="search" type="search" class="ml-2 py-0" placeholder="seacrh here"></x-text-input>
+        <select name="filter" id="filter" wire:model="filter">
+            <option value="">Select Filter</option>
+            <option value="name">Name</option>
+            <option value="id">ID</option>
+        </select>
     </div>
     <div class="overflow-x-auto">
         <div class="overflow-hidden">
@@ -23,7 +28,6 @@
                             <th class="py-3 px-6 text-left">Total Sales Fee</th>
                             <th class="py-3 px-6 text-left">Total Gained Profit</th>
                             <th class="py-3 px-6 text-left">Withdrawable Fee</th>
-                            <th class="py-3 px-6 text-left">Action</th>
                         </tr>
                     </thead>
                     <tbody class="text-gray-600 text-sm font-light">
@@ -46,9 +50,6 @@
                             </td>
                             <td class="py-3 px-6 text-left">
                                 <span>{{ $reseller->withdrawable }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                <a href="" class="bg-blue-200 text-green-600 py-1 px-3 rounded-full text-xs">View</a>
                             </td>
                         </tr>
                         @empty

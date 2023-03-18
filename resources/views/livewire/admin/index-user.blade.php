@@ -16,6 +16,13 @@
             </a>
         </h2>
         <x-text-input wire:model="search" type="search" class="ml-2 py-0" placeholder="seacrh here"></x-text-input>
+        <select name="filter" id="filter" wire:model="filter">
+            <option value="">Select Filter</option>
+            <option value="name">Name</option>
+            <option value="id">ID</option>
+            <option value="email">Email</option>
+            <option value="phone">Phone</option>
+        </select>
     </div>
     <div class="overflow-x-auto">
         <div class="overflow-hidden">

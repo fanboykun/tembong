@@ -12,10 +12,21 @@ class UnvalidateUsers extends Component
     protected $queryString = [
         'search' => ['except' => '']
     ];
-    
+    public $filter;
+
     public function render()
     {
-        $this->users = User::role('reseller')->where('validated_at', null)->get();
+        $this->users = User::role('reseller')->where('validated_at', null)->where(function ($query)
+        {
+            if($this->filter != '')
+            {
+                $query->where($this->filter, 'like', '%'.$this->search.'%');
+            }
+            elseif($this->filter == '')
+            {
+                $query->where('name', 'like', '%'.$this->search.'%');
+            }
+        })->get();
         return view('livewire.admin.unvalidate-users');
     }
 }

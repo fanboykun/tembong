@@ -74,7 +74,7 @@
                                                 <span>{{ $payment->created_at }}</span>
                                             </td>
                                             <td class="py-3 px-6 text-center">
-                                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_payed ? 'Payed' : 'Pending' }}</span>
+                                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_paid ? 'Paid' : 'Pending' }}</span>
                                             </td>
                                         </tr>
                                         @empty

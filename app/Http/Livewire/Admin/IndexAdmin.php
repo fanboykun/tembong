@@ -5,22 +5,20 @@ namespace App\Http\Livewire\Admin;
 use Livewire\Component;
 use App\Models\User;
 
-class IndexUser extends Component
+class IndexAdmin extends Component
 {
+    public $admins;
+
     public $search;
     public $filter;
-
-    public $users;
-
 
     protected $queryString = [
         'search' => ['except' => '']
     ];
-
     public function render()
     {
         $key = ['name', 'id', 'email', 'phone'];
-        $this->users = User::role('reseller')->where(function ($query) use($key)
+        $this->admins = User::role('admin')->where(function ($query) use($key)
         {
             if($this->filter != '' && in_array($this->filter, $key))
             {
@@ -31,6 +29,6 @@ class IndexUser extends Component
                 $query->where('name', 'like', '%'.$this->search.'%');
             }
         })->get();
-        return view('livewire.admin.index-user');
+        return view('livewire.admin.index-admin');
     }
 }

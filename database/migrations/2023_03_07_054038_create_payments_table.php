@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('account_name')->required();
             $table->string('account_number')->required();
             $table->double('amount')->required();
-            $table->boolean('is_payed')->default(false);
+            $table->enum('is_paid', ['paid', 'pending'])->default('pending');
             $table->timestamps();
         });
     }

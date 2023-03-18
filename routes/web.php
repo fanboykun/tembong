@@ -1,13 +1,15 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Admin\AddAdmin;
 use App\Http\Livewire\Admin\AddOrder;
 use App\Http\Livewire\Admin\AddProduct;
+use App\Http\Livewire\Admin\IndexAdmin;
 use App\Http\Livewire\Admin\IndexOrder;
 use App\Http\Livewire\Admin\IndexProduct;
 use App\Http\Livewire\Admin\IndexUser;
+use App\Http\Livewire\Admin\OrderSummary;
 use App\Http\Livewire\Admin\PaymentRequest;
-use App\Http\Livewire\Admin\ShowOrderProduct;
 use App\Http\Livewire\Admin\ShowPaymentRequest;
 use App\Http\Livewire\Admin\ShowUser;
 use App\Http\Livewire\Admin\ShowUserDropship;
@@ -61,14 +63,17 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/users/{user}/dropship', ShowUserDropship::class)->name('users.dropship');
         Route::get('/users/{user}/referral', ShowUserReferral::class)->name('users.referral');
 
+        Route::get('/admin', IndexAdmin::class)->name('admin.index');
+        Route::get('/admin/create', AddAdmin::class)->name('admin.create');
+
         Route::get('/orders', IndexOrder::class)->name('orders.index');
         Route::get('/create-order', AddOrder::class)->name('orders.create');
-        Route::get('/orders/{order}/product', ShowOrderProduct::class)->name('orders.product');
+        Route::get('/orders/{order}/summary', OrderSummary::class)->name('orders.summary');
 
         Route::get('/balances', UserBalance::class)->name('balances.index');
 
         Route::get('/payments', PaymentRequest::class)->name('payments.index');
-        Route::get('/payments/show', ShowPaymentRequest::class)->name('payments.show');
+        Route::get('/payments/{payment:id}', ShowPaymentRequest::class)->name('payments.show');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
         Route::get('/dashboard-reseller', function () {

@@ -28,11 +28,14 @@
                     <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
                         {{ __('Users') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.*')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('orders.index')" :active="request()->routeIs('orders.*')">
                         {{ __('Orders') }}
                     </x-nav-link>
                     <x-nav-link :href="route('balances.index')" :active="request()->routeIs('balances.*')">
-                        {{ __('User`s Balance') }}
+                        {{ __('Users Balance') }}
                     </x-nav-link>
                     <x-nav-link :href="route('payments.index')" :active="request()->routeIs('payments.*')">
                         {{ __('Payment Request') }}

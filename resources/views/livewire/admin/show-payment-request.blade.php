@@ -21,15 +21,15 @@
                     <div class="mt-6 space-y-6">
                         <div>
                             <x-input-label for="id" :value="__('Reseller ID')" />
-                            <x-text-input disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input disabled type="text" value="{{ $payment->user->id }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="name" :value="__('Reseller Name')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->user->name }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="phone" :value="__('Reseller Phone')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->user->phone }}" class="mt-1 block w-full" />
                         </div>
                     </div>
                 </div>
@@ -48,34 +48,42 @@
                     </header>
                     <div class="mt-6 space-y-6">
                         <div>
+                            <x-input-label for="payment_id" :value="__('Payment ID')" />
+                            <x-text-input disabled type="text" value="{{ $payment->id }}" class="mt-1 block w-full" />
+                        </div>
+                        <div>
                             <x-input-label for="requested_at" :value="__('Requested At')" />
-                            <x-text-input disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input disabled type="text" value="{{ $payment->created_at }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="amount" :value="__('Withdrawl Amount')" />
-                            <x-text-input disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input disabled type="text" value="{{ $payment->amount }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="bank" :value="__('Bank Name')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->bank_info }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="account_name" :value="__('Account Name')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->account_name }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="account_number" :value="__('Account Number')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->account_number }}" class="mt-1 block w-full" />
                         </div>
                         <div>
                             <x-input-label for="status" :value="__('Payment Status')" />
-                            <x-text-input  disabled type="text" class="mt-1 block w-full" />
+                            <x-text-input  disabled type="text" value="{{ $payment->is_paid ? 'Paid' : 'Pending' }}" class="mt-1 block w-full" />
                         </div>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                         If you want to finish the withdrawl status, make sure you have already transfer the money to the user.
                         </p>
                         <div class="flex items-center gap-4 mt-2">
-                            <x-primary-button wire:click="updateStatus()">{{ __('Finish Withdrawl Request') }}</x-primary-button>
+                            @if($payment->is_paid == 'paid')
+                            <x-danger-button wire:click="updateStatus()">{{ __('Cancel Paid') }}</x-danger-button>
+                            @else
+                            <x-primary-button wire:click="updateStatus()">{{ __('Update Status To Paid') }}</x-primary-button>
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,15 @@
     </header>
     <div class="flex">
         <x-text-input wire:model="search" type="search" class="ml-2 py-0" placeholder="seacrh here"></x-text-input>
+        <select name="search_filter" id="search_filter" wire:model="search_filter">
+            <option value="reseller_id">Reseller ID</option>
+            <option value="payment_id">Payment ID</option>
+        </select>
+        <select name="status_filter" id="status_filter" wire:model="status_filter">
+            <option value="">Select Status</option>
+            <option value="paid">Paid</option>
+            <option value="pending">Pending</option>
+        </select>
     </div>
     <div class="overflow-x-auto">
         <div class="overflow-hidden">
@@ -18,12 +27,10 @@
                     <thead>
                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                             <th class="py-3 px-6 text-left">Reseller ID</th>
+                            <th class="py-3 px-6 text-left">Payment ID</th>
                             <th class="py-3 px-6 text-left">Reseller Name</th>
                             <th class="py-3 px-6 text-left">Withdraw Amount</th>
                             <th class="py-3 px-6 text-center">Requested At</th>
-                            <th class="py-3 px-6 text-center">Bank Info</th>
-                            <th class="py-3 px-6 text-center">Account Name</th>
-                            <th class="py-3 px-6 text-center">Account Number</th>
                             <th class="py-3 px-6 text-center">Status</th>
                             <th class="py-3 px-6 text-center">Action</th>
                         </tr>
@@ -35,6 +42,9 @@
                                 <span>{{ $payment->user->id }}</span>
                             </td>
                             <td class="py-3 px-6 text-left">
+                                <span>{{ $payment->id }}</span>
+                            </td>
+                            <td class="py-3 px-6 text-left">
                                 <span>{{ $payment->user->name }}</span>
                             </td>
                             <td class="py-3 px-6 text-left">
@@ -43,24 +53,15 @@
                             <td class="py-3 px-6 text-left">
                                 <span>{{ $payment->created_at }}</span>
                             </td>
-                            <td class="py-3 px-6 text-left">
-                                <span>{{ $payment->bank_info }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <span>{{ $payment->account_name }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-left">
-                                <span>{{ $payment->account_number }}</span>
-                            </td>
                             <td class="py-3 px-6 text-center">
-                                <span class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_payed ? 'Paid' : 'Pending' }}</span>
-                            </td>
-                            <td class="py-3 px-6 text-center">
-                                @if ($payment->is_payed)
-                                    <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Paid at {{ $payment->updated_at }}</span>
+                                @if ($payment->is_paid == 'paid')
+                                <span class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_paid }}</span>
                                 @else
-                                <button type="submit" wire:click="proceedPayment({{ $payment }})" class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">Proceed Payment</button>
+                                <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">{{ $payment->is_paid }}</span>
                                 @endif
+                            </td>
+                            <td class="py-3 px-6 text-center">
+                                <a href="{{ route('payments.show', $payment) }}" class="bg-blue-200 text-blue-600 py-1 px-3 rounded-full text-xs">View Detail</a>
                             </td>
                         </tr>
                         @empty

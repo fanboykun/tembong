@@ -8,11 +8,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-
-class User extends Authenticatable
+use Coderflex\Laravisit\Concerns\CanVisit;
+use Coderflex\Laravisit\Concerns\HasVisits;
+class User extends Authenticatable implements CanVisit
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
+    use HasVisits;
 
     /**
      * The attributes that are mass assignable.
@@ -64,12 +66,12 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany(Order::class, 'id', 'user_id');
+        return $this->hasMany(Order::class, 'user_id', 'id');
     }
 
     public function dropshippings()
     {
-        return $this->hasMany(Order::class, 'id', 'reseller_id');
+        return $this->hasMany(Order::class, 'reseller_id', 'id');
     }
 
     public function balance()

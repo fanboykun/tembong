@@ -29,6 +29,7 @@ class Catalog extends Component
         if($c == null){
             return redirect('/');
         }
+        $c->visit()->withIp();
         $this->updateCart();
         $this->quantity = 1;
 
