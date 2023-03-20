@@ -12,9 +12,13 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                // sans: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
         },
     },
 
-    plugins: [require('@tailwindcss/forms')],
+    plugins: [
+        require('@tailwindcss/forms'),
+        require('@tailwindcss/line-clamp'),
+    ],
 };

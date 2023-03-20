@@ -1,27 +1,32 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('This is a secure area of the application. Please confirm your password before continuing.') }}
-    </div>
-
-    <form method="POST" action="{{ route('password.confirm') }}">
-        @csrf
-
-        <!-- Password -->
+@extends('layouts.main')
+@section('content')
+<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
         <div>
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <p class="mt-2 text-center text-sm text-gray-600">
+            This is a secure area of the application. Please confirm your password before continuing.
+        </p>
         </div>
 
-        <div class="flex justify-end mt-4">
-            <x-primary-button>
-                {{ __('Confirm') }}
-            </x-primary-button>
-        </div>
-    </form>
-</x-guest-layout>
+        <form method="POST" action="{{ route('password.confirm') }}">
+            @csrf
+
+            <div class="sm:col-span-2 mt-4">
+                <label for="password" class="block text-sm font-semibold leading-6 text-gray-900">Password</label>
+                <div class="mt-2.5">
+                    <input type="password" name="password" id="password" required autocomplete="current-password" class="block w-full rounded-md border-0 py-2 px-3.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <x-primary-button>
+                    {{ __('Confirm') }}
+                </x-primary-button>
+            </div>
+        </form>
+    </div>
+</div>
+
+@endsection
