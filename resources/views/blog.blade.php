@@ -30,7 +30,7 @@
                 </a>
                 <div class="flex items-center gap-x-4 text-xs mb-2">
                     <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#" class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100">Admin</a>
+                    <a href="#" class="relative rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100">Admin</a>
                 </div>
                 <div class="group relative px-4 py-2">
                     <h3 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
@@ -43,49 +43,6 @@
                 </div>
             </div>
 
-            <div class="mx-auto flex items-center gap-x-4 text-xs max-w-xs flex-col gap-y-4 shadow-lg rounded">
-                <a href="#!">
-                    <img
-                    class="rounded-t-lg"
-                    src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                    alt="" />
-                </a>
-                <div class="flex items-center gap-x-4 text-xs mb-2">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#" class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100">Admin</a>
-                </div>
-                <div class="group relative px-4 py-2">
-                    <h3 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href="#">
-                        <span class="absolute inset-0"></span>
-                        Boost your conversion rate
-                    </a>
-                    </h3>
-                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-            </div>
-
-            <div class="mx-auto flex items-center gap-x-4 text-xs max-w-xs flex-col gap-y-4 shadow-lg rounded">
-                <a href="#!">
-                    <img
-                    class="rounded-t-lg"
-                    src="https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg"
-                    alt="" />
-                </a>
-                <div class="flex items-center gap-x-4 text-xs mb-2">
-                    <time datetime="2020-03-16" class="text-gray-500">Mar 16, 2020</time>
-                    <a href="#" class="relative z-10 rounded-full bg-gray-50 py-1.5 px-3 font-medium text-gray-600 hover:bg-gray-100">Admin</a>
-                </div>
-                <div class="group relative px-4 py-2">
-                    <h3 class="text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
-                    <a href="#">
-                        <span class="absolute inset-0"></span>
-                        Boost your conversion rate
-                    </a>
-                    </h3>
-                    <p class="mt-5 text-sm leading-6 text-gray-600 line-clamp-3">Illo sint voluptas. Error voluptates culpa eligendi. Hic vel totam vitae illo. Non aliquid explicabo necessitatibus unde. Sed exercitationem placeat consectetur nulla deserunt vel. Iusto corrupti dicta.</p>
-                </div>
-            </div>
           </dl>
         </div>
     </div>

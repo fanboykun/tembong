@@ -20,6 +20,8 @@ class Product extends Model implements HasMedia
         'category_id',
     ];
 
+    protected $appends = ['image'];
+
     public function registerMediaCollections(): void
     {
         // single file support
@@ -49,6 +51,11 @@ class Product extends Model implements HasMedia
     public function orders()
     {
         return $this->belongsToMany(Order::class)->withPivot('quantity');
+    }
+
+    public function getImageAttribute()
+    {
+        return empty($this->getFirstMediaUrl('image')) ? "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg" : $this->getFirstMediaUrl('image');
     }
 
 }

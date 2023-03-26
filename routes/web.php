@@ -36,10 +36,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Route::get('/', function () {
     return view('home');
 });
@@ -55,16 +51,11 @@ Route::get('/product', function () {
 Route::get('/join-reseller', function () {
     return view('join-reseller');
 });
+
 Route::get('/about-us', function () {
     return view('about-us');
 });
 
-// Route::get('/login-page', function () {
-//     return view('login');
-// });
-Route::get('/cart', function () {
-    return view('cart');
-});
 
 Route::get('/catalog', function(){
     return redirect('/');

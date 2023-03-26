@@ -6,6 +6,8 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\User;
 use App\Facades\Cart;
+use App\Models\Category;
+use Illuminate\Support\Facades\Validator;
 
 class Catalog extends Component
 {
@@ -18,9 +20,21 @@ class Catalog extends Component
     public $product_selected;
     public $quantity;
 
-    public $products;
+    public $categories;
+    // public $products;
     public $channel;
     public $cart;
+    public $perPage = 10;
+    public $type_filter;
+    public $category_filter;
+    public $search;
+    public $isSearching = false;
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'type_filter' => ['except' => ''],
+        'category_filter' => ['except' => ''],
+    ];
 
     public function mount($reseller)
     {
@@ -34,12 +48,63 @@ class Catalog extends Component
         $this->quantity = 1;
 
         $this->channel = $c;
-        $this->products = Product::all();
+        $this->categories = Category::all();
+
     }
     public function render()
     {
-        return view('livewire.guest.catalog')->layout('layouts.visitor-layout');
+        if($this->search != '' || $this->type_filter != '' || $this->category_filter != ''){
+            $this->isSearching = true;
+        }else{
+            $this->isSearching = false;
+        }
+
+        $products = Product::where('name', 'like', '%'.$this->search.'%')
+        ->where('type', 'like', '%'.$this->type_filter.'%')
+        ->whereHas('category', function($query){
+            $query->where('name', 'like', '%'.$this->category_filter.'%');
+        })
+        ->paginate($this->perPage);
+        // dd($products[0]->getFirstMediaUrl('image'));
+        return view('livewire.guest.catalog', ['products' => $products])->layout('layouts.guest');
     }
+
+    public function resetSearch()
+    {
+        $this->reset(['search', 'type_filter', 'category_filter']);
+        // $this->isSearching = false;
+        $this->render();
+    }
+
+    public function filterType(string $type = null)
+    {
+        $this->type_filter = $type;
+        // if($type != null){
+        //     $this->isSearching = true;
+        // }
+    }
+
+    public function filterCategory(string $type = null)
+    {
+        $this->category_filter = $type;
+        // if($type != null){
+        //     $this->isSearching = true;
+        // }
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
+    }
+
+    public function viewProduct($product)
+    {
+        $this->product_selected = collect($product);
+        // $this->emit('viewProduct');
+        $this->dispatchBrowserEvent('view-product');
+        dd($this->product_selected);
+    }
+
 
     // cart component function (class)
 
@@ -86,10 +151,26 @@ class Catalog extends Component
 
     // product component function (class)
 
-    public function addToCart(Product $product): void
+    public function addToCart(Product $product, string $qty): void
     {
-        $this->product_selected = $product;
-        Cart::add($this->product_selected->id, $this->product_selected->name, $this->product_selected->price, $this->quantity);
+        $validator = Validator::make([
+            'qty' => $qty,
+        ], [
+            'qty' => 'required|numeric|min:1',
+        ]);
+
+        if ($validator->fails()) {
+            // $this->emit('error', $validator->errors()->first());
+            return;
+        }
+        $data = $validator->validated();
+        $selected_product = $product->load('category');
+        $options = [
+            'image' => $selected_product->image,
+            'category' => $selected_product->category->name,
+            'type' => $selected_product->type,
+        ];
+        Cart::add($selected_product->id, $selected_product->name, $selected_product->price, $data['qty'], $options);
         $this->emit('productAddedToCart');
     }
 }

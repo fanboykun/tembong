@@ -4,7 +4,19 @@
     @include('layouts.navbar')
     {{-- End Navbar --}}
 
-    {{-- Header --}}
+     {{-- Header --}}
+     <div class="bg-white mb-4 py-2 sm:py-16 sm:mt-8">
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:text-center">
+            <h2 class="text-base font-semibold leading-7 text-indigo-600">Tentang</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Kenal Lebih Dalam Secara Personal Dengan Kami</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.</p>
+        </div>
+        </div>
+    </div>
+    {{-- End Header --}}
+
+    {{-- Header 1 --}}
     <div class="relative overflow-hidden bg-white">
         <div class="pt-16 pb-80 sm:pt-24 sm:pb-40 lg:pt-40 lg:pb-48">
           <div class="relative mx-auto max-w-7xl px-4 sm:static sm:px-6 lg:px-8">
@@ -55,7 +67,7 @@
           </div>
         </div>
     </div>
-    {{-- End Header --}}
+    {{-- End Header 1 --}}
 
     {{-- Teams --}}
 
