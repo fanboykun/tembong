@@ -26,10 +26,13 @@ class AddOrder extends Component
     public $products_mounted;
     public $categories;
     public $types = [
-        'best_seller' => 'BEST SELLER',
-        'top_seller' => 'TOP SELLER',
+        'best_seller' => 'Best Seller',
+        'top_seller' => 'Top Seller',
     ];
-    public $content_state = 'select_reseller';
+    public $content_state = 'product';
+    public $selected_cat;
+    public $selected_type;
+
 
     public $total_price;
     public $total_qty;
@@ -45,17 +48,8 @@ class AddOrder extends Component
     public $buyer_name;
     public $buyer_phone;
     public $ongkir;
-    public $buyer_province;
-    public $buyer_city;
-    public $buyer_district;
-    public $buyer_village;
-    public $address_description;
     public $full_address;
-
-    public $provincies;
-    public $cities;
-    public $districts;
-    public $villages;
+    public $status;
 
     protected $listeners = [
         'productAddedToCart' => 'updateCart',
@@ -85,6 +79,19 @@ class AddOrder extends Component
         return view('livewire.admin.add-order');
     }
 
+    public function updateCategory($catId = null, $catName = null)
+    {
+        $this->selected_cat = $catName;
+        $this->filter_product_category = $catId;
+    }
+
+    public function updateType($type = null, $typeName = null)
+    {
+        $this->selected_type = $typeName;
+        $this->filter_product_type = $type;
+    }
+
+
     public function selectReseller(User $reseller)
     {
         $this->reseller = $reseller;
@@ -96,7 +103,7 @@ class AddOrder extends Component
     {
         if($this->filter_user != null){
             if($this->filter_user != 'id' or $this->filter_user != 'name' or $this->filter_user != 'email' or $this->filter_user != 'phone'){
-                $this->users = User::role('reseller')->where($this->filter_user, 'like', '%'.$this->search_user.'%')->latest()->get();
+                $this->users = User::role('reseller')->where($this->filter_user, 'like', '%'.$this->search_user.'%')->whereNotNull('validated_at')->get();
             }
         }
     }
@@ -124,6 +131,7 @@ class AddOrder extends Component
     {
         AdminCart::increment($id);
         $this->updateCart();
+        $this->getSummaryContent();
         $this->quantity[$id] = $this->content[$id]['quantity'];
     }
 
@@ -131,6 +139,7 @@ class AddOrder extends Component
     {
         AdminCart::decrement($id);
         $this->updateCart();
+        $this->getSummaryContent();
         $this->quantity[$id] = $this->content[$id]['quantity'];
     }
 
@@ -158,61 +167,15 @@ class AddOrder extends Component
 
     public function updatedContentState()
     {
-        if($this->content_state == 'buyer_info')
-        {
-            $this->provincies = \Indonesia::allProvinces();
-        }
-        elseif($this->content_state == 'summary')
+        if($this->content_state == 'cart')
         {
             $this->getSummaryContent();
         }
     }
 
-    public function updatedBuyerProvince()
-    {
-        $this->cities = \Indonesia::findProvince($this->buyer_province, ['cities'])->cities;
-        $this->fullAddress("province");
-    }
-
-    public function updatedBuyerCity()
-    {
-        $this->districts = \Indonesia::findCity($this->buyer_city, ['districts'])->districts;
-        $this->fullAddress("city");
-    }
-
-    public function updatedBuyerDistrict()
-    {
-        $this->villages = \Indonesia::findDistrict($this->buyer_district, ['villages'])->villages;
-        $this->fullAddress("district");
-    }
-    public function updatedBuyerVillage()
-    {
-        $this->fullAddress("village");
-    }
-
-    public function fullAddress(string $type)
-    {
-        if($type == "province")
-        {
-            $this->full_address = \Indonesia::findProvince($this->buyer_province)->name;
-        }
-        elseif($type == "city")
-        {
-            $this->full_address = $this->full_address.', '.\Indonesia::findCity($this->buyer_city)->name;
-        }
-        elseif($type == "district")
-        {
-            $this->full_address = $this->full_address.', '.\Indonesia::findDistrict($this->buyer_district)->name;
-        }
-        elseif($type == "village")
-        {
-            $this->full_address = $this->full_address.', '.\Indonesia::findVillage($this->buyer_village)->name;
-        }
-    }
-
     public function getSummaryContent()
     {
-        // dd($this->content);
+        $this->total_discount = 0;
         $this->total_price = AdminCart::total();
         $this->total_qty = AdminCart::totalQuantity();
         $this->price_after_discount = $this->total_price - $this->total_discount;
@@ -240,10 +203,8 @@ class AddOrder extends Component
         $order->user_id = auth()->id();
         $order->reseller_id = $this->reseller->id;
         $order->discount_type = $this->discount_type;
-        $order->total_discount = $this->total_discount;
         $order->shipping_cost = $this->ongkir;
-        $order->total_price = $this->total_price_with_ongkir;
-        $order->status = 'placed';
+        $order->status = $this->status == null ? 'placed' : $this->status;
 
         $order->save();
     }
@@ -266,11 +227,7 @@ class AddOrder extends Component
         $buyer->order_id = $order->id;
         $buyer->buyer_name = $this->buyer_name;
         $buyer->buyer_phone = $this->buyer_phone;
-        $buyer->province_id = $this->buyer_province;
-        $buyer->city_id = $this->buyer_city;
-        $buyer->district_id = $this->buyer_district;
-        $buyer->village_id = $this->buyer_village;
-        $buyer->buyer_address_description = $this->address_description;
+        $buyer->full_address = $this->full_address;
         $buyer->save();
     }
 
@@ -280,8 +237,6 @@ class AddOrder extends Component
         $balance->user_id = $this->reseller->id;
         $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
         $order->balance()->save($balance);
-
-
     }
 
 }

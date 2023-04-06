@@ -7,16 +7,17 @@ use App\Models\User;
 
 class UnvalidateUsers extends Component
 {
-    public $users;
+    // public $users;
     public $search;
     protected $queryString = [
         'search' => ['except' => '']
     ];
     public $filter;
+    public $perPage = 10;
 
     public function render()
     {
-        $this->users = User::role('reseller')->where('validated_at', null)->where(function ($query)
+        $users = User::role('reseller')->where('validated_at', null)->where(function ($query)
         {
             if($this->filter != '')
             {
@@ -26,7 +27,18 @@ class UnvalidateUsers extends Component
             {
                 $query->where('name', 'like', '%'.$this->search.'%');
             }
-        })->get();
-        return view('livewire.admin.unvalidate-users');
+        })->latest()
+        ->paginate($this->perPage);
+        return view('livewire.admin.unvalidate-users', compact('users'));
+    }
+
+    public function updatedFilter()
+    {
+        $this->reset('search');
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

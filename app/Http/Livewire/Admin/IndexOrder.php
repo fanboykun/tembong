@@ -10,7 +10,7 @@ use App\Models\Order;
 class IndexOrder extends Component
 {
     public $search;
-    public $orders;
+    // public $orders;
     public $order_mounted;
     public $search_filter;
     public $status_filter;
@@ -20,6 +20,7 @@ class IndexOrder extends Component
         'search' => ['except' => ''],
         'status_filter' => ['except' => '']
     ];
+    public $perPage = 10;
 
     public function mount()
     {
@@ -29,7 +30,7 @@ class IndexOrder extends Component
     public function render()
     {
         if($this->order_mounted->count() >= 1){
-            $this->orders = $this->order_mounted->toQuery()
+            $orders = $this->order_mounted->toQuery()
             ->where(function($query){
                 $query->when($this->search_filter == 'order_id' | $this->search_filter == '' , function($q){
                     $q->where('id', 'like', '%'.$this->search.'%');
@@ -41,14 +42,21 @@ class IndexOrder extends Component
                 })->where('status', 'like', '%'.$this->status_filter.'%');
             })
             ->latest()
-            ->get();
+            ->paginate($this->perPage);
         }else{
-            $this->orders = [];
+            $orders = [];
         }
-        return view('livewire.admin.index-order');
+        return view('livewire.admin.index-order', [
+            'orders' => $orders
+        ]);
     }
     public function updatedSearchFilter()
     {
         $this->reset('status_filter', 'search');
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

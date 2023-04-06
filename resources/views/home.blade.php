@@ -6,7 +6,7 @@
         <div class="flex lg:flex-1">
             <a href="{{ url('/') }}" class="-m-1.5 p-1.5">
             <span class="sr-only">Your Company</span>
-            <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+            <img class="h-8 w-auto" src="{{ asset('logo.png') }}" alt="">
             </a>
         </div>
 
@@ -66,26 +66,16 @@
                                         <nav class="divide-y divide-slate-900/10 text-base leading-7 text-slate-900">
                                             <div class="px-8 mb-8">
                                                 <a class="block w-9 overflow-hidden" href="/">
-                                                    <span class="sr-only">Tailwind UI</span>
-                                                    <svg class="h-6 w-auto" aria-hidden="true" viewBox="0 0 160 24"
-                                                        fill="none">
-                                                        <path
-                                                            d="M18.724 1.714c-4.538 0-7.376 2.286-8.51 6.857 1.702-2.285 3.687-3.143 5.957-2.57 1.296.325 2.22 1.271 3.245 2.318 1.668 1.706 3.6 3.681 7.819 3.681 4.539 0 7.376-2.286 8.51-6.857-1.701 2.286-3.687 3.143-5.957 2.571-1.294-.325-2.22-1.272-3.245-2.32-1.668-1.705-3.6-3.68-7.819-3.68zM10.214 12c-4.539 0-7.376 2.286-8.51 6.857 1.701-2.286 3.687-3.143 5.957-2.571 1.294.325 2.22 1.272 3.245 2.32 1.668 1.705 3.6 3.68 7.818 3.68 4.54 0 7.377-2.286 8.511-6.857-1.702 2.286-3.688 3.143-5.957 2.571-1.295-.326-2.22-1.272-3.245-2.32-1.669-1.705-3.6-3.68-7.82-3.68z"
-                                                            class="fill-sky-400">
-                                                        </path>
-                                                        <path
-                                                            d="M51.285 9.531V6.857h-3.166v-3.6l-2.758.823v2.777h-2.348v2.674h2.348v6.172c0 3.343 1.686 4.526 5.924 4.011V17.22c-2.094.103-3.166.129-3.166-1.517V9.53h3.166zm12.087-2.674v1.826c-.97-1.337-2.476-2.16-4.468-2.16-3.472 0-6.357 2.931-6.357 6.763 0 3.805 2.885 6.763 6.357 6.763 1.992 0 3.498-.823 4.468-2.186v1.851h2.758V6.857h-2.758zM59.338 17.4c-2.297 0-4.034-1.723-4.034-4.114 0-2.392 1.736-4.115 4.034-4.115s4.034 1.723 4.034 4.115c0 2.391-1.736 4.114-4.034 4.114zM70.723 4.929c.97 0 1.762-.823 1.762-1.775 0-.977-.792-1.774-1.762-1.774s-1.762.797-1.762 1.774c0 .952.792 1.775 1.762 1.775zm-1.379 14.785h2.758V6.857h-2.758v12.857zm5.96 0h2.757V.943h-2.758v18.771zM95.969 6.857l-2.502 8.872-2.655-8.872h-2.63L85.5 15.73l-2.477-8.872h-2.91l4.008 12.857h2.707l2.68-8.665 2.656 8.665h2.706L98.88 6.857h-2.911zm6.32-1.928c.97 0 1.762-.823 1.762-1.775 0-.977-.792-1.774-1.762-1.774s-1.762.797-1.762 1.774c0 .952.792 1.775 1.762 1.775zm-1.379 14.785h2.758V6.857h-2.758v12.857zm12.674-13.191c-1.736 0-3.115.643-3.957 1.98V6.857h-2.758v12.857h2.758v-6.891c0-2.623 1.43-3.703 3.242-3.703 1.737 0 2.86 1.029 2.86 2.983v7.611h2.757V11.82c0-3.343-2.042-5.297-4.902-5.297zm17.982-4.809v6.969c-.971-1.337-2.477-2.16-4.468-2.16-3.473 0-6.358 2.931-6.358 6.763 0 3.805 2.885 6.763 6.358 6.763 1.991 0 3.497-.823 4.468-2.186v1.851h2.757v-18h-2.757zM127.532 17.4c-2.298 0-4.034-1.723-4.034-4.114 0-2.392 1.736-4.115 4.034-4.115 2.297 0 4.034 1.723 4.034 4.115 0 2.391-1.737 4.114-4.034 4.114z"
-                                                            fill="currentColor">
-                                                        </path>
-                                                        <path fill-rule="evenodd" clip-rule="evenodd"
-                                                            d="M145.532 3.429h8.511c.902 0 1.768.36 2.407 1.004.638.643.997 1.515.997 2.424v8.572c0 .909-.359 1.781-.997 2.424a3.394 3.394 0 01-2.407 1.004h-8.511a3.39 3.39 0 01-2.407-1.004 3.438 3.438 0 01-.997-2.424V6.857c0-.91.358-1.781.997-2.424a3.39 3.39 0 012.407-1.004zm-5.106 3.428c0-1.364.538-2.672 1.495-3.636a5.09 5.09 0 013.611-1.507h8.511c1.354 0 2.653.542 3.61 1.507a5.16 5.16 0 011.496 3.636v8.572a5.16 5.16 0 01-1.496 3.636 5.086 5.086 0 01-3.61 1.506h-8.511a5.09 5.09 0 01-3.611-1.506 5.164 5.164 0 01-1.495-3.636V6.857zm10.907 6.251c0 1.812-1.359 2.916-3.193 2.916-1.823 0-3.182-1.104-3.182-2.916v-5.65h1.633v5.52c0 .815.429 1.427 1.549 1.427 1.12 0 1.549-.612 1.549-1.428v-5.52h1.644v5.652zm1.72 2.748V7.457h1.644v8.4h-1.644z"
-                                                            fill="currentColor">
-                                                        </path>
-                                                    </svg>
+                                                    <span class="sr-only">Mama Parfum</span>
+                                                    <img class="h-8 w-auto bg-gray-900 rounded-full" src="{{ asset('logo.png') }}" alt="logo">
                                                 </a>
                                             </div>
                                             <div class="py-6 px-8">
                                                 <div class="-my-2 items-start space-y-2">
+                                                    <a
+                                                        class="block w-full py-2 font-semibold"
+                                                        href="{{ url('/') }}">Home
+                                                    </a>
                                                     <a
                                                         class="block w-full py-2 font-semibold"
                                                         href="{{ url('/product') }}">Produk
@@ -115,7 +105,7 @@
                                                                 </a>
                                                             @elseif (Auth::user()->hasRole('reseller'))
                                                                 <a class="inline-flex justify-center rounded-lg text-sm font-semibold py-3 px-4 bg-slate-900 text-white hover:bg-slate-700 w-full"
-                                                                    href="{{ route('reseller-dashboard') }}">
+                                                                    href="{{ route('dashboard-reseller') }}">
                                                                     <span>Dashboard
                                                                         <span aria-hidden="true">→</span>
                                                                     </span>
@@ -181,7 +171,7 @@
 
     {{-- Header --}}
     <div class="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
-        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center">
+        {{-- <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center"> --}}
         <svg viewBox="0 0 1097 845" aria-hidden="true" class="hidden transform-gpu blur-3xl sm:absolute sm:-top-10 sm:right-1/2 sm:-z-10 sm:mr-10 sm:block sm:w-[68.5625rem]">
             <path fill="url(#10724532-9d81-43d2-bb94-866e98dd6e42)" fill-opacity=".2" d="M301.174 646.641 193.541 844.786 0 546.172l301.174 100.469 193.845-356.855c1.241 164.891 42.802 431.935 199.124 180.978 195.402-313.696 143.295-588.18 284.729-419.266 113.148 135.13 124.068 367.989 115.378 467.527L811.753 372.553l20.102 451.119-530.681-177.031Z" />
             <defs>
@@ -203,37 +193,27 @@
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
             <h2 class="text-4xl font-bold tracking-tight text-white sm:text-6xl">Mama Parfum</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-300">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+            <p class="mt-6 text-lg leading-8 text-gray-300">Aromanya Selembut Kasih Sayang Mama.</p>
             </div>
             <div class="mx-auto mt-10 max-w-2xl lg:mx-0 lg:max-w-none">
             <div class="grid grid-cols-1 gap-y-6 gap-x-8 text-base font-semibold leading-7 text-white sm:grid-cols-2 md:flex lg:gap-x-10">
-                <a href="#">Open roles <span aria-hidden="true">&rarr;</span></a>
+                <a href="#about">Tentang Mama Parfum<span aria-hidden="true">&rarr;</span></a>
 
-                <a href="#">Internship program <span aria-hidden="true">&rarr;</span></a>
+                <a href="#business">Bisnis <span aria-hidden="true">&rarr;</span></a>
 
-                <a href="#">Our values <span aria-hidden="true">&rarr;</span></a>
+                <a href="#us">Siapa Kami <span aria-hidden="true">&rarr;</span></a>
 
-                <a href="#">Meet our leadership <span aria-hidden="true">&rarr;</span></a>
+                <a href="#faq">Faq <span aria-hidden="true">&rarr;</span></a>
             </div>
             <dl class="mt-16 grid grid-cols-1 gap-8 sm:mt-20 sm:grid-cols-2 lg:grid-cols-4">
                 <div class="flex flex-col-reverse">
-                <dt class="text-base leading-7 text-gray-300">Offices worldwide</dt>
-                <dd class="text-2xl font-bold leading-9 tracking-tight text-white">12</dd>
+                <dt class="text-base leading-7 text-gray-300">Halal, Non Alkohol</dt>
+                <dd class="text-2xl font-bold leading-9 tracking-tight text-white">100%</dd>
                 </div>
 
                 <div class="flex flex-col-reverse">
-                <dt class="text-base leading-7 text-gray-300">Full-time colleagues</dt>
+                <dt class="text-base leading-7 text-gray-300">Pilihan Aroma</dt>
                 <dd class="text-2xl font-bold leading-9 tracking-tight text-white">300+</dd>
-                </div>
-
-                <div class="flex flex-col-reverse">
-                <dt class="text-base leading-7 text-gray-300">Hours per week</dt>
-                <dd class="text-2xl font-bold leading-9 tracking-tight text-white">40</dd>
-                </div>
-
-                <div class="flex flex-col-reverse">
-                <dt class="text-base leading-7 text-gray-300">Paid time off</dt>
-                <dd class="text-2xl font-bold leading-9 tracking-tight text-white">Unlimited</dd>
                 </div>
             </dl>
             </div>
@@ -242,72 +222,96 @@
     {{-- End Header --}}
 
     {{-- Feature --}}
-    <div class="overflow-hidden bg-white py-12 sm:py-12 drop-shadow-lg hover:drop-shadow-xl">
+    <div class="overflow-hidden bg-white py-12 sm:py-12" id="about">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
             <div class="lg:pr-8 lg:pt-4">
               <div class="lg:max-w-lg">
                 <h2 class="text-base font-semibold leading-7 text-indigo-600">Sekilas Tentang</h2>
                 <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Mama Parfum</p>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</p>
+                <p class="mt-6 text-lg leading-8 text-gray-600">Eau De Parfum yang di produksi oleh CV. Keluarga Cemara Sukses, berpusat di Lubuk Pakam, Deli Serdang Sumatera Utara. Mama Parfum berdiri pada 22 Desember 2019 tepat pada hari ibu, memiliki historis panjang dilambang dengan Merek, logo, maskot, Slogan, Jingle, tampilan visual.</p>
                 <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
                   <div class="relative pl-9">
                     <dt class="inline font-semibold text-gray-900">
-                      <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.5 17a4.5 4.5 0 01-1.44-8.765 4.5 4.5 0 018.302-3.046 3.5 3.5 0 014.504 4.272A4 4 0 0115 17H5.5zm3.75-2.75a.75.75 0 001.5 0V9.66l1.95 2.1a.75.75 0 101.1-1.02l-3.25-3.5a.75.75 0 00-1.1 0l-3.25 3.5a.75.75 0 101.1 1.02l1.95-2.1v4.59z" clip-rule="evenodd" />
-                      </svg>
-                      Push to deploy.
+                        <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+                        </svg>
+                      Kualitas Menjadi Prioritas.
                     </dt>
-                    <dd class="inline">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</dd>
+                    <dd class="inline">
+                        Dibuat dengan konsentrat import asli Eropa dan Alkohol Khusus Parfum.
+                        Wanginya soft, sangat enak dan tidak menyengat.
+                        Tahan lama. Tidak mengandung zat-zat berbahaya.
+                        Tidak berbekas noda di baju.
+                        Tidak lengket, tidak panas di kulit, tidak gatal, tidak bikin kulit iritasi.
+                        Harga terjangkau.
+
+                    </dd>
                   </div>
 
                   <div class="relative pl-9">
                     <dt class="inline font-semibold text-gray-900">
-                      <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z" clip-rule="evenodd" />
-                      </svg>
-                      SSL certificates.
+                        <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path fill-rule="evenodd" d="M10.5 3.798v5.02a3 3 0 01-.879 2.121l-2.377 2.377a9.845 9.845 0 015.091 1.013 8.315 8.315 0 005.713.636l.285-.071-3.954-3.955a3 3 0 01-.879-2.121v-5.02a23.614 23.614 0 00-3 0zm4.5.138a.75.75 0 00.093-1.495A24.837 24.837 0 0012 2.25a25.048 25.048 0 00-3.093.191A.75.75 0 009 3.936v4.882a1.5 1.5 0 01-.44 1.06l-6.293 6.294c-1.62 1.621-.903 4.475 1.471 4.88 2.686.46 5.447.698 8.262.698 2.816 0 5.576-.239 8.262-.697 2.373-.406 3.092-3.26 1.47-4.881L15.44 9.879A1.5 1.5 0 0115 8.818V3.936z" clip-rule="evenodd" />
+                        </svg>
+                      Aroma Selembut Kasih Sayang Mama.
                     </dt>
-                    <dd class="inline">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</dd>
+                    <dd class="inline">terinspirasi oleh kasih sayang, kehangatan, serta kepedulian ibu atau biasa disebutMama memiliki ciri khas serta membekas disetiap kita, setiap orang pasti punya cerita yang berbeda dan rasa rindu luar biasa terhadap ibu.</dd>
                   </div>
 
                   <div class="relative pl-9">
                     <dt class="inline font-semibold text-gray-900">
-                      <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path d="M4.632 3.533A2 2 0 016.577 2h6.846a2 2 0 011.945 1.533l1.976 8.234A3.489 3.489 0 0016 11.5H4c-.476 0-.93.095-1.344.267l1.976-8.234z" />
-                        <path fill-rule="evenodd" d="M4 13a2 2 0 100 4h12a2 2 0 100-4H4zm11.24 2a.75.75 0 01.75-.75H16a.75.75 0 01.75.75v.01a.75.75 0 01-.75.75h-.01a.75.75 0 01-.75-.75V15zm-2.25-.75a.75.75 0 00-.75.75v.01c0 .414.336.75.75.75H13a.75.75 0 00.75-.75V15a.75.75 0 00-.75-.75h-.01z" clip-rule="evenodd" />
-                      </svg>
-                      Database backups.
+                        <svg class="absolute top-1 left-1 h-5 w-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                            <path d="M7.493 18.75c-.425 0-.82-.236-.975-.632A7.48 7.48 0 016 15.375c0-1.75.599-3.358 1.602-4.634.151-.192.373-.309.6-.397.473-.183.89-.514 1.212-.924a9.042 9.042 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75 2.25 2.25 0 012.25 2.25c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H14.23c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23h-.777zM2.331 10.977a11.969 11.969 0 00-.831 4.398 12 12 0 00.52 3.507c.26.85 1.084 1.368 1.973 1.368H4.9c.445 0 .72-.498.523-.898a8.963 8.963 0 01-.924-3.977c0-1.708.476-3.305 1.302-4.666.245-.403-.028-.959-.5-.959H4.25c-.832 0-1.612.453-1.918 1.227z" />
+                        </svg>
+                      Sukses Jaya Amin
                     </dt>
-                    <dd class="inline">Ac tincidunt sapien vehicula erat auctor pellentesque rhoncus. Et magna sit morbi lobortis.</dd>
+                    <dd class="inline">adalah harapan dan doa setiap ibu ke anaknya, tidak lupa bermanfaat bagi keluarga, masyarakat, negara, serta agama.</dd>
                   </div>
                 </dl>
               </div>
             </div>
-            <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+            <img src="{{ asset('parfum.jpg') }}" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+            {{-- <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442"> --}}
           </div>
         </div>
     </div>
     {{-- End Feature --}}
 
     {{-- Partner --}}
-    <div class="bg-white py-16 sm:py-16 drop-shadow-lg">
+      <div class="bg-white py-16 mb-8 drop-shadow-sm">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 class="text-center text-lg font-semibold leading-8 text-gray-900">Mama Parfum Telah Terafiliasi Dengan</h2>
-          <div class="mx-auto mt-10 grid max-w-lg grid-cols-4 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-6 sm:gap-x-10 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-            <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/transistor-logo-gray-900.svg" alt="Transistor" width="158" height="48">
-            <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/reform-logo-gray-900.svg" alt="Reform" width="158" height="48">
-            <img class="col-span-2 max-h-12 w-full object-contain lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/tuple-logo-gray-900.svg" alt="Tuple" width="158" height="48">
-            <img class="col-span-2 max-h-12 w-full object-contain sm:col-start-2 lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/savvycal-logo-gray-900.svg" alt="SavvyCal" width="158" height="48">
-            <img class="col-span-2 col-start-2 max-h-12 w-full object-contain sm:col-start-auto lg:col-span-1" src="https://tailwindui.com/img/logos/158x48/statamic-logo-gray-900.svg" alt="Statamic" width="158" height="48">
-          </div>
+          <h2 class="text-center text-xl font-semibold leading-8 text-gray-900">Mama Parfum Telah Mendapat Izin Lengkap</h2>
+          <dl class="grid grid-cols-2 gap-x-8 gap-y-8 text-center mt-8 lg:grid-cols-5">
+
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4 shadow-lg p-4 rounded-lg hover:shadow-xl">
+              <dt class="text-base leading-7 text-indigo-600">NA18220601449</dt>
+              <dd class="order-first tracking-tight font-light f-f-l sm:text-lg">BPOM</dd>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4 shadow-lg p-4 rounded-lg hover:shadow-xl">
+              <dt class="text-base leading-7 text-indigo-600">0285010002724</dt>
+              <dd class="order-first tracking-tight font-light f-f-l sm:text-lg">NOMOR INDUK BERUSAHA</dd>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4 shadow-lg p-4 rounded-lg hover:shadow-xl">
+              {{-- <dt class="text-base leading-7 text-gray-600"></dt> --}}
+              <dd class="tracking-tight font-light f-f-l py-4 sm:text-lg">SURAT IZIN USAHA PERDAGANGAN</dd>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4 shadow-lg p-4 rounded-lg hover:shadow-xl">
+              {{-- <dt class="text-base leading-7 text-gray-600"></dt> --}}
+              <dd class="tracking-tight font-light f-f-l py-8 sm:text-lg">IZIN USAHA INDUSTRI</dd>
+            </div>
+            <div class="mx-auto flex max-w-xs flex-col gap-y-4 shadow-lg p-4 rounded-lg hover:shadow-xl">
+              {{-- <dt class="text-base leading-7 text-gray-600"></dt> --}}
+              <dd class="tracking-tight font-light f-f-l  py-8 sm:text-lg">PENDAFTARAN MEREK</dd>
+            </div>
+
+          </dl>
         </div>
       </div>
-
     {{-- Partner --}}
 
     {{-- Team --}}
-    <div class="bg-white py-16 sm:py-16 drop-shadow-sm">
+    <div class="bg-white py-16 sm:py-16 drop-shadow-sm" id="us">
         <div class="mx-auto grid max-w-7xl gap-y-20 gap-x-8 px-6 lg:px-8 xl:grid-cols-3">
           <div class="max-w-2xl">
             <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Orang - Orang Hebat Dibalik Mama Parfum Kami</h2>
@@ -376,7 +380,7 @@
     {{-- End Team --}}
 
     {{-- Business --}}
-    <div class="bg-white py-12 sm:py-12">
+    <div class="bg-white py-12 sm:py-12" id="business">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl lg:text-center">
             <h2 class="text-base font-semibold leading-7 text-indigo-600">Ayo Bergabung</h2>
@@ -393,8 +397,8 @@
                 <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Gabung Menjadi Reseller</h2>
                 <p class="mt-4 text-lg leading-8 text-gray-300">Nostrud amet eu ullamco nisi aute in ad minim nostrud adipisicing velit quis. Duis tempor incididunt dolore.</p>
                 <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-start">
-                    <a href="#" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Get started</a>
-                    <a href="#" class="text-sm font-semibold leading-6 text-white">Learn more <span aria-hidden="true">→</span></a>
+                    <a href="{{ route('register') }}" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-gray-900 shadow-sm hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Daftar Sekarang</a>
+                    <a href="{{ url('/join-reseller') }}" class="text-sm font-semibold leading-6 text-white">Lebih Lanjut <span aria-hidden="true">→</span></a>
                 </div>
                 </div>
                 <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
@@ -459,7 +463,7 @@
         <div class="mx-auto max-w-2xl lg:max-w-4xl">
           <figure class="mt-10">
             <blockquote class="text-center text-xl font-semibold leading-8 text-gray-900 sm:text-2xl sm:leading-9">
-              <p>“Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
+              <p>“Kata Kata Tentang Bisnis Reseller Mama Parfum Oleh Owner. Nemo expedita voluptas culpa sapiente alias molestiae. Numquam corrupti in laborum sed rerum et corporis.”</p>
             </blockquote>
             <figcaption class="mt-10">
               <img class="mx-auto h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
@@ -477,7 +481,7 @@
     {{-- End Testimonials --}}
 
     {{-- Faq --}}
-    <div class="2xl:container 2xl:mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4 border-t border-gray-100 shadow-lg mt-12">
+    <div class="2xl:container 2xl:mx-auto md:py-12 lg:px-20 md:px-6 py-9 px-4 border-t border-gray-100 shadow-lg mt-12" id="faq">
         <div class="flex md:flex-row flex-col md:space-x-8 md:mt-16 mt-8">
           <div class="md:w-5/12 lg:w-4/12 w-full">
             <h2 class="font-semibold lg:text-4xl text-3xl lg:leading-9 md:leading-7 leading-9 text-gray-800">
@@ -485,11 +489,8 @@
             </h2>
             <div class="mt-4 flex md:justify-between md:items-start md:flex-row flex-col justify-start items-start">
                 <div class="">
-                  <p
-                    class="font-normal text-base leading-6 text-gray-600 lg:w-8/12 md:w-9/12"
-                  >
-                    Here are few of the most frequently asked questions by our valueable
-                    customers
+                  <p class="font-normal text-base leading-6 text-gray-600 lg:w-8/12 md:w-9/12">
+                    Ini adalah beberapa pertanyaan yang sering diajukan oleh pelanggan kami
                   </p>
                 </div>
               </div>
@@ -500,7 +501,7 @@
                 <!-- Shipping Section -->
                 <div class="py-4">
                     <div class="flex justify-between items-center">
-                        <h3 class="font-semibold text-xl leading-5 text-gray-800"> Shipping </h3>
+                        <h3 class="font-semibold text-xl leading-5 text-gray-800"> Bagaimana cara membeli parfum dari mama parfum ? </h3>
                         <button
 
                         x-show="selected != 1"
@@ -539,7 +540,7 @@
 
                 <div class="py-4">
                     <div class="flex justify-between items-center">
-                        <h3 class="font-semibold text-xl leading-5 text-gray-800"> Shipping </h3>
+                        <h3 class="font-semibold text-xl leading-5 text-gray-800"> Bagaimana cara menjadi reseller mama parfum ? </h3>
                         <button
 
                         x-show="selected != 2"
@@ -577,7 +578,7 @@
 
                 <div class="py-4">
                 <div class="flex justify-between items-center">
-                    <h3 class="font-semibold text-xl leading-5 text-gray-800"> Shipping </h3>
+                    <h3 class="font-semibold text-xl leading-5 text-gray-800"> Apa yang dimaksud binis anti rugi mama parfum ? </h3>
                     <button
 
                     x-show="selected != 3"

@@ -34,6 +34,7 @@ class IndexProduct extends Component
         ->whereHas('category', function($query){
             $query->where('name', 'like', '%'.$this->category_filter.'%');
         })
+        ->latest()
         ->paginate($this->perPage);
 
         return view('livewire.admin.index-product', [

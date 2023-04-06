@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('reseller_id');
+            $table->foreignId('user_id')->nullOnDelete();
+            $table->foreignId('reseller_id')->required()->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->string('discount_type')->nullable();
-            $table->double('total_discount')->nullable();
+            // $table->double('total_discount')->nullable();
             $table->double('shipping_cost')->required();
-            $table->double('total_price')->required();
+            // $table->double('total_price')->required();
             $table->enum('status', ['placed','shipped'])->nullable();
             $table->timestamps();
         });

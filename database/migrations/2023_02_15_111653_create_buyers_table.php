@@ -15,14 +15,10 @@ return new class extends Migration
     {
         Schema::create('buyers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
+            $table->foreignId('order_id')->required()->constrained('orders')->onDelete('cascade')->onUpdate('cascade');
             $table->string('buyer_name')->required();
             $table->string('buyer_phone')->required();
-            $table->integer('province_id')->required();
-            $table->integer('city_id')->required();
-            $table->integer('district_id')->nullable();
-            $table->integer('village_id')->nullable();
-            $table->string('buyer_address_description')->nullable();
+            $table->longText('full_address')->required();
             $table->timestamps();
         });
     }

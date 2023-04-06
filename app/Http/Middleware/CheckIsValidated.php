@@ -4,9 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
-class ValidatedAccount
+class CheckIsValidated
 {
     /**
      * Handle an incoming request.
@@ -17,12 +17,8 @@ class ValidatedAccount
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = User::findOrFail($request->reseller);
-        if(empty($user)){
-            return redirect('/');
-        }
-        if($user->validated_at == ''){
-            return redirect('/');
+        if (Auth::user()->validated_at == ''){
+            return redirect()->route('dashboard-reseller');
         }
         return $next($request);
     }

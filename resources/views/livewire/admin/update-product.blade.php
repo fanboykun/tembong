@@ -1,44 +1,35 @@
 <div>
-    <x-slot name="header">
-        <div class="flex">
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                    Back To List Products
-                </a>
-            </h2>
-        </div>
-
-    </x-slot>
     @if ($product != null)
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
-                    {{-- @include('profile.partials.update-profile-information-form') --}}
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Create New Product') }}
+                            {{ __('Edit Data Produk') }}
                         </h2>
 
-                        {{-- <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("Update your account's profile information and email address.") }}
-                        </p> --}}
+                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                            {{ __("Lihat dan perbarui data produk") }}
+                        </p>
                     </header>
 
                     <form wire:submit.prevent="update" action="" class="mt-6 space-y-6">
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
+                            <x-input-label for="name" :value="__('name')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div>
-                            <x-input-label for="description" :value="__('Descripiton')" />
-                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model="description" required autofocus />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
+                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model="description" required />
                             </textarea>
+                            <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
 
                         <div>
-                            <x-input-label for="type" :value="__('Type')" />
+                            <x-input-label for="type" :value="__('tipe')" />
                             <select wire:model="type" name="type" id="type">
                                 {{-- <option value="">Select Type</option> --}}
                                 @foreach ($types as $key => $list_type )
@@ -48,16 +39,19 @@
                                     <option {{ $type == $key ? 'selected' : '' }} value="{{ $key }}">{{ $list_type }}</option>
                                 @endforeach
                             </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('type')" />
                         </div>
 
                         <div>
-                            <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
+                            <x-input-label for="price" :value="__('Harga (otomatis)')" />
+                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('price')" />
                         </div>
 
                         <div>
-                            <x-input-label for="stock" :value="__('Stock')" />
-                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model="stock" required autofocus />
+                            <x-input-label for="stock" :value="__('Stok')" />
+                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model="stock" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('stock')" />
                         </div>
 
                         <div>
@@ -68,6 +62,7 @@
                                     <option value="{{ $category->id }}" class="{{ $category->id == $category_id ? 'selected' : ''}}" >{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('category')" />
                         </div>
                         <x-input-label for="photo" :value="__('Photo')" />
 

@@ -15,7 +15,14 @@ class Order extends Model
         'created_at' => 'datetime:Y-m-d H:i:s',
         'updated_at' => 'datetime:Y-m-d H:i:s',
     ];
-    protected $appends = ['best_seller_item', 'top_seller_item'];
+    protected $appends = [
+        'best_seller_item',
+        'top_seller_item',
+        'total_price',
+        'total_discount',
+        'price_after_discount',
+        'price_with_discount_and_ongkir',
+    ];
 
     public function user()
     {
@@ -52,7 +59,31 @@ class Order extends Model
     public function topSellerItem(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->products()->where('type', 'top_seller')->sum('quantity'),
+            get: fn () => $this->products()->where('type', 'top_seller')->sum('quantity')
         );
     }
+
+    public function getTotalPriceAttribute()
+    {
+        return ($this->top_seller_item * 150000) + ($this->best_seller_item * 65000);
+    }
+
+    public function getTotalDiscountAttribute()
+    {
+        return is_null($this->discount_type) ? 0 : 0;
+    }
+
+    public function priceAfterDiscount(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->total_price - $this->total_discount,
+        );
+    }
+    public function priceWithDiscountAndOngkir(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->price_after_discount + $this->shipping_cost
+        );
+    }
+
 }

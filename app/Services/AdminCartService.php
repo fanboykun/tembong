@@ -146,7 +146,7 @@ class AdminCartService {
             return $total += $item->get('price') * $item->get('quantity');
         });
 
-        return number_format($total, 0, ",", ".");
+        return $total;
     }
 
     public function totalQuantity()

@@ -27,6 +27,7 @@ class Checkout extends Component
     public $villages;
 
     public $city_data, $district_data, $village_data;
+    public $isAgreed = false;
 
     public function mount($reseller)
     {
@@ -56,34 +57,37 @@ class Checkout extends Component
             'buyer_village' => 'nullable',
             'address_description' => 'nullable',
         ]);
-        $cart = Cart::content();
-        $total = Cart::total();
-        $url = url("/catalog/" . $this->channel->id);
-        $buyer_address = $this->buyer_village? $this->buyer_village .", " .$this->buyer_district .", " .$this->buyer_city .", " .$this->buyer_province : $this->buyer_district .", " .$this->buyer_city .", " .$this->buyer_province;
+        if($this->isAgreed){
+            $cart = Cart::content();
+            $total = Cart::total();
+            $url = url("/catalog/" . $this->channel->id);
+            $buyer_address = $this->buyer_village? $this->buyer_village .", " .$this->buyer_district .", " .$this->buyer_city .", " .$this->buyer_province : $this->buyer_district .", " .$this->buyer_city .", " .$this->buyer_province;
 
-        $prefilled =
-        "Hallo Mama Parfum :)" ."%0A"
-        ."Saya ingin memesan parfum, berikut detail nya" ."%0A"
-        ."%0A"
-        .$url. "%0A"
-        ."Name : ".$this->buyer_name. "%0A"
-        ."Nomor WhatsApp : ".$this->buyer_phone. "%0A"
-        ."Alamat Pengiriman : ".$buyer_address. "%0A"
-        ."Deskripsi Alamat Pengiriman : ".$this->address_description. "%0A"
-        ."%0A"
-        ."Sub Total : Rp. ".$total. "%0A"
-        ."Product :" ."%0A";
+            $prefilled =
+            "Hallo Mama Parfum :)" ."%0A"
+            ."Saya ingin memesan parfum, berikut detail nya" ."%0A"
+            ."%0A"
+            .$url. "%0A"
+            ."Nama : ".$this->buyer_name. "%0A"
+            ."Nomor WhatsApp : ".$this->buyer_phone. "%0A"
+            ."Alamat Pengiriman : ".$buyer_address. "%0A"
+            ."Deskripsi Alamat Pengiriman : ".$this->address_description. "%0A"
+            ."%0A"
+            ."Sub Total : Rp. ".$total. "%0A"
+            ."Product :" ."%0A";
 
-        foreach ($cart as $item) {
-            $prefilled .= $item['name']. " : " .$item['quantity']. "%0A";
+            foreach ($cart as $item) {
+                $prefilled .= $item['name']. " : " .$item['quantity']. "%0A";
+            }
+            dd($prefilled);
+            return redirect()->away('https://wa.me/+6281262650288?text='.$prefilled.'');
+        }else{
+            return;
         }
-
-        return redirect()->away('https://wa.me/+6281262650288?text='.$prefilled.'');
     }
     public function render()
     {
         return view('livewire.guest.checkout')->layout('layouts.visitor-layout');
-        // dd($this->provincies);
     }
 
     public function updateAddress(string $type, int $id, string $name)
@@ -123,7 +127,6 @@ class Checkout extends Component
             $this->buyer_village = $name;
 
             $this->dispatchBrowserEvent('close-modal');
-
         }
     }
 

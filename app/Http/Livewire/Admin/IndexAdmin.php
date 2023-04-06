@@ -7,10 +7,11 @@ use App\Models\User;
 
 class IndexAdmin extends Component
 {
-    public $admins;
+    // public $admins;
 
     public $search;
     public $filter;
+    public $perPage = 10;
 
     protected $queryString = [
         'search' => ['except' => '']
@@ -18,7 +19,7 @@ class IndexAdmin extends Component
     public function render()
     {
         $key = ['name', 'id', 'email', 'phone'];
-        $this->admins = User::role('admin')->where(function ($query) use($key)
+        $admins = User::role('admin')->where(function ($query) use($key)
         {
             if($this->filter != '' && in_array($this->filter, $key))
             {
@@ -28,7 +29,12 @@ class IndexAdmin extends Component
             {
                 $query->where('name', 'like', '%'.$this->search.'%');
             }
-        })->get();
-        return view('livewire.admin.index-admin');
+        })->paginate($this->perPage);
+        return view('livewire.admin.index-admin', compact('admins'));
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

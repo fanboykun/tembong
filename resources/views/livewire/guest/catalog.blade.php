@@ -6,18 +6,9 @@
                 <div class="flex lg:flex-1">
                     <a href="{{ url('/') }}" class="-m-1.5 p-1.5">
                     <span class="sr-only">Mama Parfum</span>
-                    <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+                    <img class="h-8 w-auto" src="{{ asset('logo.png') }}" alt="Logo">
                     </a>
                 </div>
-                <div class="flex lg:hidden">
-                    <a href="{{ url('/') }}" class="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-blue-700">
-                    <span class="sr-only">Home</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
-                    </svg>
-                    </a>
-                </div>
-
                 <div class="lg:flex lg:flex-1 lg:justify-end">
 
                         <div x-cloak
@@ -365,7 +356,7 @@
                                 <span class="relative rounded-full bg-gray-50 px-2 font-medium text-gray-600 hover:bg-gray-100">{{ $product->type }}</span>
                                 <span class="relative rounded-full bg-gray-50 px-2 font-medium text-gray-600 hover:bg-gray-100">{{ $product->category->name }}</span>
                             </div>
-                            <div class="flex ml-4 mt-2 items-start">
+                            {{-- <div class="flex ml-4 mt-2 items-start">
                                 <div class="text-base leading-7 text-gray-900 justify-start">
                                     <p>
                                         @if (Str::of($product->description)->length() > 50)
@@ -375,8 +366,8 @@
                                         @endif
                                     </p>
                                 </div>
-                            </div>
-                            <div class="flex justify-between mt-3 item-center">
+                            </div> --}}
+                            <div class="flex justify-between pt-8 item-center">
                                 <h1 class="text-xl ml-4 font-bold text-gray-700">
                                     {{ number_format($product->price) }}
                                 </h1>

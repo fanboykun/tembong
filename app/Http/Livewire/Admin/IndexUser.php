@@ -9,8 +9,9 @@ class IndexUser extends Component
 {
     public $search;
     public $filter;
+    public $perPage = 10;
 
-    public $users;
+    // public $users;
 
 
     protected $queryString = [
@@ -20,7 +21,7 @@ class IndexUser extends Component
     public function render()
     {
         $key = ['name', 'id', 'email', 'phone'];
-        $this->users = User::role('reseller')->where(function ($query) use($key)
+        $users = User::role('reseller')->where(function ($query) use($key)
         {
             if($this->filter != '' && in_array($this->filter, $key))
             {
@@ -30,7 +31,18 @@ class IndexUser extends Component
             {
                 $query->where('name', 'like', '%'.$this->search.'%');
             }
-        })->get();
-        return view('livewire.admin.index-user');
+        })->latest()
+        ->paginate($this->perPage);
+        return view('livewire.admin.index-user', compact('users'));
+    }
+
+    public function updatedFilter()
+    {
+        $this->reset('search');
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

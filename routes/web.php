@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\AddAdmin;
 use App\Http\Livewire\Admin\AddOrder;
 use App\Http\Livewire\Admin\AddProduct;
+use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Admin\IndexAdmin;
 use App\Http\Livewire\Admin\IndexOrder;
 use App\Http\Livewire\Admin\IndexProduct;
@@ -22,6 +23,7 @@ use App\Http\Livewire\Guest\Checkout;
 use App\Http\Livewire\Guest\Product as GuestProduct;
 use App\Http\Livewire\Reseller\Balance;
 use App\Http\Livewire\Reseller\Referral;
+use App\Http\Livewire\Reseller\ResellerDashboard;
 use App\Http\Livewire\Reseller\Sales;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +46,10 @@ Route::get('/blog', function () {
     return view('blog');
 });
 
+Route::get('/show-blog', function () {
+    return view('show-blog');
+});
+
 Route::get('/product', function () {
     return view('product');
 });
@@ -56,7 +62,6 @@ Route::get('/about-us', function () {
     return view('about-us');
 });
 
-
 Route::get('/catalog', function(){
     return redirect('/');
 });
@@ -68,9 +73,7 @@ Route::group(['middleware' => 'validated'],function () {
 
 Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::group(['middleware' => ['role:admin']], function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
+        Route::get('/dashboard', AdminDashboard::class)->name('dashboard');
         Route::get('/products', IndexProduct::class)->name('products.index');
         Route::get('/create-product', AddProduct::class)->name('products.create');
         Route::get('/edit-product/{product:id}', UpdateProduct::class)->name('products.edit');
@@ -94,12 +97,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
         Route::get('/payments/{payment:id}', ShowPaymentRequest::class)->name('payments.show');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
-        Route::get('/dashboard-reseller', function () {
-            return view('dashboard');
-        })->name('dashboard-reseller');
-        Route::get('/referral', Referral::class)->name('referral');
-        Route::get('/sales', Sales::class)->name('sales');
-        Route::get('/balance', Balance::class)->name('balance.index');
+        Route::get('/dashboard-reseller', ResellerDashboard::class)->name('dashboard-reseller');
+        Route::group(['middleware' => 'is_validated'], function () {
+            Route::get('/referral', Referral::class)->name('referral');
+            Route::get('/sales', Sales::class)->name('sales');
+            Route::get('/balance', Balance::class)->name('balance.index');
+        });
     });
 });
 

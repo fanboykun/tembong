@@ -1,75 +1,88 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Your Referral Information') }}
-        </h2>
-    </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-auto">
-                    <header>
-                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('User`s Dropship Info') }}
+    <div class="pt-6">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 ">
+            <header class="bg-white dark:bg-gray-800 shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="flex">
+                        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                            Detail Penjualan Reseller {{ $user->name }}
                         </h2>
-
-                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                           Total Order :
-                        </p>
-                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                           Total Fee :
-                        </p>
-                    </header>
-
+                    </div>
+                </div>
+            </header>
+            <div class="border-t border-gray-200 p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="flex">
+                    <svg class="relative h-6 w-6 text-blue-500 p-0.5 my-auto" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+                      </svg>
+                    <span class="text-base font-semibold leading-6 text-gray-900 mx-2">Informasi Penjualan</span>
+                </div>
+                <dl class="max-w-xl">
+                    <div class="bg-gray-50  py-5 sm:grid sm:grid-cols-3 sm:gap-4">
+                        <dt class="text-sm font-medium text-gray-500">Total Penjualan</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $user->dropshippings->count() }}</dd>
+                    </div>
+                    <div class="bg-white  py-5 sm:grid sm:grid-cols-3 sm:gap-4 ">
+                        <dt class="text-sm font-medium text-gray-500">Total Perolehan Saldo Dari Penjualan</dt>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rp {{ number_format($user->sales_fee, 0, ",", ".") }}</dd>
+                    </div>
                     <div class="overflow-x-auto">
                         <div class="overflow-hidden">
-                            <div class="bg-white shadow-md rounded my-6">
+                            <div class="bg-white shadow-md max-h-96 rounded my-6 relative overflow-x-auto">
                                 <table class="min-w-max w-full table-auto">
                                     <thead>
                                         <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
                                             <th class="py-3 px-6 text-left">Order Id</th>
-                                            <th class="py-3 px-6 text-left">Date Ordered</th>
-                                            <th class="py-3 px-6 text-center">Order Fee</th>
+                                            <th class="py-3 px-6 text-left">Waktu Order</th>
+                                            <th class="py-3 px-6 text-left">Saldo Didapat</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-gray-600 text-sm font-light">
-                                        {{-- @forelse ($referral_users as $referral) --}}
+                                        @forelse ($dropshippings as $dropshipping)
                                         <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                            {{-- <td class="py-3 px-6 text-left whitespace-nowrap">
-                                                <div class="flex items-center">
-                                                    <div class="mr-2">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-                                                             width="24" height="24"
-                                                             viewBox="0 0 48 48"
-                                                             style=" fill:#000000;">
-                                                            <path fill="#80deea" d="M24,34C11.1,34,1,29.6,1,24c0-5.6,10.1-10,23-10c12.9,0,23,4.4,23,10C47,29.6,36.9,34,24,34z M24,16	c-12.6,0-21,4.1-21,8c0,3.9,8.4,8,21,8s21-4.1,21-8C45,20.1,36.6,16,24,16z"></path><path fill="#80deea" d="M15.1,44.6c-1,0-1.8-0.2-2.6-0.7C7.6,41.1,8.9,30.2,15.3,19l0,0c3-5.2,6.7-9.6,10.3-12.4c3.9-3,7.4-3.9,9.8-2.5	c2.5,1.4,3.4,4.9,2.8,9.8c-0.6,4.6-2.6,10-5.6,15.2c-3,5.2-6.7,9.6-10.3,12.4C19.7,43.5,17.2,44.6,15.1,44.6z M32.9,5.4	c-1.6,0-3.7,0.9-6,2.7c-3.4,2.7-6.9,6.9-9.8,11.9l0,0c-6.3,10.9-6.9,20.3-3.6,22.2c1.7,1,4.5,0.1,7.6-2.3c3.4-2.7,6.9-6.9,9.8-11.9	c2.9-5,4.8-10.1,5.4-14.4c0.5-4-0.1-6.8-1.8-7.8C34,5.6,33.5,5.4,32.9,5.4z"></path><path fill="#80deea" d="M33,44.6c-5,0-12.2-6.1-17.6-15.6C8.9,17.8,7.6,6.9,12.5,4.1l0,0C17.4,1.3,26.2,7.8,32.7,19	c3,5.2,5,10.6,5.6,15.2c0.7,4.9-0.3,8.3-2.8,9.8C34.7,44.4,33.9,44.6,33,44.6z M13.5,5.8c-3.3,1.9-2.7,11.3,3.6,22.2	c6.3,10.9,14.1,16.1,17.4,14.2c1.7-1,2.3-3.8,1.8-7.8c-0.6-4.3-2.5-9.4-5.4-14.4C24.6,9.1,16.8,3.9,13.5,5.8L13.5,5.8z"></path><circle cx="24" cy="24" r="4" fill="#80deea"></circle>
-                                                        </svg>
-                                                    </div>
-                                                    <span class="font-medium"></span>
-                                                </div>
-                                            </td> --}}
                                             <td class="py-3 px-6 text-left">
-                                                <span></span>
+                                                <span>{{ $dropshipping->id }}</span>
                                             </td>
                                             <td class="py-3 px-6 text-left">
-                                                <span></span>
+                                                <span>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $dropshipping->created_at)->format('d M Y') }}</span>
                                             </td>
                                             <td class="py-3 px-6 text-center">
-                                                <span class="bg-purple-200 text-purple-600 py-1 px-3 rounded-full text-xs">Active</span>
+                                                <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-green-400 border border-green-400">
+                                                    Rp {{ number_format($dropshipping->balance->amount, 0, ",", ".") }}
+                                                </span>
                                             </td>
-                                            {{-- @empty --}}
-                                                {{-- <td>
-                                                    No Data!
-                                                </td> --}}
                                         </tr>
-                                        {{-- @endforelse --}}
+                                        @empty
+                                        <td colspan="3" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <div class="flex justify-center">
+                                                <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-red-400 border border-red-400">
+                                                    Belum Ada Data
+                                                </span>
+                                            </div>
+                                        </td>
+                                        @endforelse
                                     </tbody>
+                                    @if($dropshippings->hasMorePages())
+                                    <tfoot class="border-t-2">
+                                        <tr>
+                                            <td scope="row" class=" py-4 font-medium text-gray-900 whitespace-nowrap">
+                                                <div class="flex justify-start px-2">
+                                                    <button type="button" wire:click="loadMore()">
+                                                        <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full border border-blue-400">
+                                                            Muat Lebih
+                                                        </span>
+                                                    </button>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                    @endif
                                 </table>
                             </div>
                         </div>
                     </div>
-                </div>
+                </dl>
             </div>
         </div>
     </div>

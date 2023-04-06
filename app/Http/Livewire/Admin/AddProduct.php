@@ -47,7 +47,9 @@ class AddProduct extends Component
         // dd($validated_data);
         $product = Product::create($validated_data);
         // SINGLE FILE
-        $product->addMedia($this->image->getRealPath())->toMediaCollection('image');
+        if($this->image){
+            $product->addMedia($this->image->getRealPath())->toMediaCollection('image');
+        }
         // MULTIPLE FILES
 
         // collect($this->images)->each(fn($image) =>

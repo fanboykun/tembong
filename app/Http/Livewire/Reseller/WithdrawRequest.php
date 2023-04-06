@@ -28,7 +28,7 @@ class WithdrawRequest extends Component
     {
         $this->validate([
             'bank_info' => 'required',
-            'amount' => 'required',
+            'amount' => 'required|numeric',
             'account_name' => 'required',
             'account_number' => 'required',
         ]);

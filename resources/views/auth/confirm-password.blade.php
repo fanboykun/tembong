@@ -3,9 +3,9 @@
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8">
         <div>
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <img class="mx-auto h-12 w-auto bg-slate-900 rounded-full" src="{{ asset('logo.png') }}" alt="Your Company">
         <p class="mt-2 text-center text-sm text-gray-600">
-            This is a secure area of the application. Please confirm your password before continuing.
+            Ini adalah area aman dari aplikasi. Mohon untuk konfirmasi password anda terlebih dahulu.
         </p>
         </div>
 
@@ -22,7 +22,7 @@
 
             <div class="flex justify-end mt-4">
                 <x-primary-button>
-                    {{ __('Confirm') }}
+                    {{ __('Konfirmasi') }}
                 </x-primary-button>
             </div>
         </form>

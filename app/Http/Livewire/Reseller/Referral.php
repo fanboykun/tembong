@@ -14,13 +14,14 @@ class Referral extends Component
     public $current_code;
     public $message_code;
     public $referral_information;
-    public $referral_users;
+    // public $referral_users;
     public $code_owner;
 
     public $total_referral_fee;
     public $total_referral_user;
 
     protected $listeners = ['codeStored' => '$refresh'];
+    public $perPage = 10;
 
     public function mount()
     {
@@ -35,31 +36,37 @@ class Referral extends Component
             $this->current_code = $this->referral_information->code;
 
         }
-        $this->referral_users = ReferralModel::where('code',$this->own_referral_code)
-        ->with('user')->with('balance')->get();
+        $referral_users = ReferralModel::where('code',$this->own_referral_code)
+        ->with('user')->with('balance')->paginate($this->perPage);
         $this->total_referral_fee = auth()->user()->referral_fee;
-        $this->total_referral_user = $this->referral_users->count();
-        return view('livewire.reseller.referral');
+        $this->total_referral_user = $referral_users->count();
+        // dd($referral_users);
+        return view('livewire.reseller.referral', compact('referral_users'));
     }
 
     public function storeReferralCode()
     {
         $check = User::where('referral_code',$this->inserted_referral_code)->first();
-        // dd($check->id);
+        $valid = ReferralModel::where('user_id',auth()->id())->first();
+        if(empty($valid)){
+            if($check != null){
+                if($check->id != auth()->id()){
+                    $referral = new ReferralModel;
+                    $referral->code = $this->inserted_referral_code;
+                    $referral->user_id = auth()->id();
+                    $referral->save();
+                    $this->saveOwnerBalance($referral, $check);
+                    $this->saveCodeUserBalance($referral);
 
-        if($check->id != auth()->id()){
-            $referral = new ReferralModel;
-            $referral->code = $this->inserted_referral_code;
-            $referral->user_id = auth()->id();
-            $referral->save();
-            $this->saveOwnerBalance($referral, $check);
-            $this->saveCodeUserBalance($referral);
-
-            $this->referral_information = $referral;
-            $this->inserted_referral_code = '';
-            $this->emitSelf('codeStored');
-        }else{
-            $this->message_code =  'You can not use your own referral code';
+                    $this->referral_information = $referral;
+                    $this->inserted_referral_code = '';
+                    $this->emitSelf('codeStored');
+                }else{
+                    $this->message_code =  'Anda tidak bisa memasukkan kode referral anda sendiri';
+                }
+            }else{
+                $this->message_code =  'Kode referral tidak ditemukan';
+            }
         }
     }
 
@@ -79,5 +86,10 @@ class Referral extends Component
         $balance->amount = 5000;
 
         $referral->balance()->save($balance);
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

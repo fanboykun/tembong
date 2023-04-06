@@ -1,61 +1,58 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <a href="{{ route('products.index') }}" class="inline-flex items-center px-4 py-2 bg-gray-800 dark:bg-gray-200 border border-transparent rounded-md font-semibold text-xs text-white dark:text-gray-800 uppercase tracking-widest hover:bg-gray-700 dark:hover:bg-white focus:bg-gray-700 dark:focus:bg-white active:bg-gray-900 dark:active:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition ease-in-out duration-150">
-                Back To Products
-            </a>
-        </h2>
-    </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Create New Product') }}
+                            {{ __('Tambah Produk') }}
                         </h2>
                     </header>
 
                     <form wire:submit.prevent="store" action="" class="mt-6 space-y-6">
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
+                            <x-input-label for="name" :value="__('Nama')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required autofocus />
+                            <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div>
-                            <x-input-label for="description" :value="__('Descripiton')" />
-                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model="description" required autofocus />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
+                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model="description" required />
                             </textarea>
+                            <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
 
                         <div>
-                            <x-input-label for="type" :value="__('Type')" />
+                            <x-input-label for="type" :value="__('Tipe')" />
                             <select wire:model="type" name="type" id="type">
-                                <option value="">Select Type</option>
+                                <option value="">Pilih Satu Tipe</option>
                                     <option value="best_seller">Best Seller</option>
                                     <option value="top_seller">Top Seller</option>
                             </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('type')" />
                         </div>
                         <div>
-                            <x-input-label for="price" :value="__('Price')" />
-                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" wire:model="price" required autofocus />
-
-                        </div>
-
-                        <div>
-                            <x-input-label for="stock" :value="__('Stock')" />
-                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model="stock" required autofocus />
+                            <x-input-label for="price" :value="__('Harga (otomatis)')" />
+                            <x-text-input disabled id="price" class="block mt-1 w-full" type="number" name="price" value="{{ $price }}" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('price')" />
                         </div>
 
                         <div>
-                            <x-input-label for="category" :value="__('Category')" />
+                            <x-input-label for="stock" :value="__('Stok')" />
+                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model="stock" required />
+                            <x-input-error class="mt-2" :messages="$errors->get('stock')" />
+                        </div>
+
+                        <div>
+                            <x-input-label for="category" :value="__('Kategori')" />
                             <select wire:model="category_id" name="category_id" id="category_id">
-                                <option value="">Select Category</option>
+                                <option value="">Pilih Satu Kategori</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                                 @endforeach
                             </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('category')" />
                         </div>
                         <x-input-label for="photo" :value="__('Photo')" />
 
@@ -75,7 +72,7 @@
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>
-                                {{ __('Save') }}
+                                {{ __('Simpan') }}
                             </x-primary-button>
                         </div>
 

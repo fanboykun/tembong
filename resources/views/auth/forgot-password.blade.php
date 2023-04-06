@@ -6,9 +6,9 @@
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="w-full max-w-md space-y-8">
         <div>
-        <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+        <img class="mx-auto h-12 w-auto bg-slate-900 rounded-full" src="{{ asset('logo.png') }}" alt="Your Company">
         <p class="mt-2 text-center text-sm text-gray-600">
-            Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one
+            Lupa password anda? tidak masalah. Beritahu kami alamat email anda dan kami akan mengirimkan email berupa link untuk untuk mereset password anda
         </p>
         </div>
         <form method="POST" action="{{ route('password.email') }}">

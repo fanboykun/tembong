@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('balances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->required()->constrained()->cascadeOnDelete();
+            $table->foreignId('user_id')->required()->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->morphs('balanceable');
-            $table->double('amount');
+            $table->double('amount')->nullable();
             $table->timestamps();
         });
     }
