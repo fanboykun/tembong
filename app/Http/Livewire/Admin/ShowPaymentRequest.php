@@ -20,14 +20,16 @@ class ShowPaymentRequest extends Component
 
     public function updateStatus()
     {
-        if($this->payment->is_payed == 'paid'){
+        if($this->payment->is_paid == 'paid'){
             $this->payment->update([
                 'is_paid' => 'pending'
             ]);
-        }elseif($this->payment->is_payed == 'pending'){
+        }elseif($this->payment->is_paid == 'pending'){
             $this->payment->update([
                 'is_paid' => 'paid'
             ]);
         }
+        return redirect()->route('payments.index');
+        $this->reset();
     }
 }

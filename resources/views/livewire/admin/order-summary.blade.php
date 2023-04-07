@@ -22,24 +22,40 @@
                     <dt class="text-sm font-medium text-gray-500">Order Id</dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $order->id }}</dd>
                 </div>
-                <div x-data="{ open: false }" @info-updated.window="open = false" class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <div x-data="{ open: false, dropdown : @entangle('showDropdown') }" @info-updated.window="open = false" class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                     <dt class="text-sm font-medium text-gray-500">Reseller Id</dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                        <div class="flex w-full justify-between">
-                            <span :class="open ? 'hidden' : ''">
+                        <div x-show="open == false" class="flex w-full justify-between">
+                            <span>
                                 {{ $order->reseller_id }}
                             </span>
-                            <div :class="open ? 'hidden' : ''" class="flex">
+                            <div class="flex">
                                 <button x-on:click="open = ! open" type="button" class="px-4 font-medium text-indigo-600 hover:text-indigo-500">Edit</button>
                             </div>
                         </div>
-                        <div x-cloak x-show="open" class="flex w-full">
-                            <x-text-input wire:model="reseller_id" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
-                            <div class="ml-4 flex-shrink-0">
-                                <button x-cloak x-on:click="open = ! open"  type="button" class="flex font-medium text-red-600 hover:text-red-500">Batal</button>
-                                <button x-cloak wire:click="updateInfo('reseller_id')"  type="button" class="flex font-medium text-indigo-600 hover:text-indigo-500">Simpan</button>
+                        <div class="relative inline-block text-left w-full">
+                            <div x-cloak x-show="open" class="flex w-full">
+                                <x-text-input wire:model="reseller_id" x-on:click="dropdown = true" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
+                                <div class="ml-4 flex-shrink-0">
+                                    <button x-cloak x-on:click="open = ! open"  type="button" class="flex font-medium text-red-600 hover:text-red-500">Batal</button>
+                                    <button x-cloak wire:click="updateInfo('reseller_id')"  type="button" class="flex font-medium text-indigo-600 hover:text-indigo-500">Simpan</button>
+                                </div>
+                            </div>
+                            <div x-cloak x-show="dropdown" @click.outside="dropdown = false" class="absolute right-0 z-10 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-x-auto overflow-y-auto max-h-32" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                <div class="py-1" role="none">
+                                    @if(!empty($users))
+                                        @forelse ($users as $user)
+                                        <button type="button" wire:click="selectReseller({{ $user->id }})" class="font-medium text-slate-900 block px-4 py-2 text-md w-full text-left" role="menuitem" tabindex="-1" id="menu-item-1">
+                                            ({{ $user->id }}) <span class="text-gray-700">{{ $user->name }}</span>
+                                        </button>
+                                        @empty
+                                            <p class="text-gray-700 block px-4 py-2 text-sm w-full text-left">No Data!</p>
+                                        @endforelse
+                                    @endif
+                                </div>
                             </div>
                         </div>
+                        <x-input-error class="mt-2" :messages="$errors->get('reseller_id')" />
                     </dd>
                 </div>
                 <div x-data="{ open: false }" @info-updated.window="open = false" class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -54,12 +70,13 @@
                             </div>
                         </div>
                         <div x-cloak x-show="open" class="flex w-full">
-                            <x-text-input wire:model="buyer_name" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
+                            <x-text-input wire:model.defer="buyer_name" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
                             <div class="ml-4 flex-shrink-0">
                                 <button x-cloak x-on:click="open = ! open"  type="button" class="flex font-medium text-red-600 hover:text-red-500">Batal</button>
                                 <button x-cloak wire:click="updateInfo('buyer_name')"  type="button" class="flex font-medium text-indigo-600 hover:text-indigo-500">Simpan</button>
                             </div>
                         </div>
+                        <x-input-error class="mt-2" :messages="$errors->get('buyer_name')" />
                     </dd>
                 </div>
                 <div x-data="{ open: false }" @info-updated.window="open = false" class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -74,12 +91,13 @@
                             </div>
                         </div>
                         <div x-cloak x-show="open" class="flex w-full">
-                            <x-text-input wire:model="buyer_phone" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
+                            <x-text-input wire:model.defer="buyer_phone" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
                             <div class="ml-4 flex-shrink-0">
                                 <button x-cloak x-on:click="open = ! open"  type="button" class="flex font-medium text-red-600 hover:text-red-500">Batal</button>
                                 <button x-cloak wire:click="updateInfo('buyer_phone')"  type="button" class="flex font-medium text-indigo-600 hover:text-indigo-500">Simpan</button>
                             </div>
                         </div>
+                        <x-input-error class="mt-2" :messages="$errors->get('buyer_phone')" />
                     </dd>
                 </div>
                 <div x-data="{ open: false }" @info-updated.window="open = false" class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -94,12 +112,13 @@
                             </div>
                         </div>
                         <div x-cloak x-show="open" class="flex w-full">
-                            <x-text-input wire:model="buyer_address" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
+                            <x-text-input wire:model.defer="buyer_address" type="text" class="flex-1" placeholder="seacrh reseller here"></x-text-input>
                             <div class="ml-4 flex-shrink-0">
                                 <button x-cloak  x-on:click="open = ! open"  type="button" class="flex font-medium text-red-600 hover:text-red-500">Batal</button>
                                 <button x-cloak wire:click="updateInfo('buyer_address')" type="button" class="flex font-medium text-indigo-600 hover:text-indigo-500">Simpan</button>
                             </div>
                         </div>
+                        <x-input-error class="mt-2" :messages="$errors->get('buyer_address')" />
                     </dd>
                 </div>
                 <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\Balance;
 use App\Models\Order;
 use Livewire\Component;
 use App\Models\User;
@@ -14,6 +15,8 @@ class OrderSummary extends Component
     public $buyer_name;
     public $buyer_phone;
     public $buyer_address;
+    public $showDropdown = false;
+    public $users;
 
 
     public function mount(Order $order)
@@ -27,9 +30,22 @@ class OrderSummary extends Component
 
     public function render()
     {
+        $this->users = User::role('reseller')->where('id',$this->reseller_id)->whereNotNull('validated_at')->get();
         return view('livewire.admin.order-summary');
     }
 
+    public function updatedResellerId()
+    {
+        $this->showDropdown = true;
+    }
+
+    public function selectReseller($id)
+    {
+        $this->reseller_id = $id;
+        // $this->search_user = $id;
+        $this->showDropdown = false;
+        $this->reset('users');
+    }
 
     public function updateOrder()
     {
@@ -42,6 +58,7 @@ class OrderSummary extends Component
                 'status' => 'placed'
             ]);
         }
+        return redirect()->back();
     }
 
     public function deleteOrder()
@@ -64,11 +81,20 @@ class OrderSummary extends Component
             $user = User::role('reseller')->where('id', $this->reseller_id)->where('validated_at', '!=', null)->first();
             if(!empty($user))
             {
-                $this->order->update([
-                    'reseller_id' => $this->reseller_id
-                ]);
+                if($this->order->reseller_id != $this->reseller_id){
+                    DB::transaction(function () use ($user) {
+                        $this->order->balance->delete();
+                        $this->order->update([
+                            'reseller_id' => $this->reseller_id
+                        ]);
+                        $this->saveResellerBalance($this->order, $user);
+                    });
+                }
                 $this->dispatchBrowserEvent('info-updated');
-            }else{return ;}
+            }else{
+                $this->addError('reseller_id', 'Reseller Tidak Valid');
+                return ;
+            }
         }
         elseif($col == 'buyer_name'){
             $this->validate([
@@ -97,5 +123,13 @@ class OrderSummary extends Component
             ]);
             $this->dispatchBrowserEvent('info-updated');
         }
+    }
+
+    public function saveResellerBalance($order, $user)
+    {
+        $balance = new Balance();
+        $balance->user_id = $user->id;
+        $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
+        $order->balance()->save($balance);
     }
 }

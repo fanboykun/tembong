@@ -7,13 +7,14 @@ use App\Models\Payment;
 
 class PaymentRequest extends Component
 {
-    public $payments;
+    // public $payments;
     public $payment_mounted;
     public $search;
     public $search_filter;
     public $status_filter;
     public $rule;
     public $bool_status;
+    public $perPage = 10;
 
     protected $queryString = [
         'search' => ['except' => ''],
@@ -29,7 +30,7 @@ class PaymentRequest extends Component
     public function render()
     {
         if($this->payment_mounted->count() >= 1){
-            $this->payments = $this->payment_mounted->toQuery()
+            $payments = $this->payment_mounted->toQuery()
             ->where(function($query){
                 $query->when($this->search_filter == 'reseller_id' | $this->search_filter == '', function($q){
                     $q->whereHas('user', function ($query){
@@ -41,15 +42,20 @@ class PaymentRequest extends Component
                 })->where('is_paid', 'like', '%'.$this->status_filter.'%');
             })
             ->latest()
-            ->get();
+            ->paginate($this->perPage);
         }else{
-            $this->payments = [];
+            $payments = [];
         }
-        return view('livewire.admin.payment-request');
+        return view('livewire.admin.payment-request', compact('payments'));
     }
 
     public function updatedSearchFilter()
     {
         $this->reset('status_filter', 'search');
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 }

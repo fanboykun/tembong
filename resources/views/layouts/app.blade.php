@@ -57,9 +57,8 @@
                           </li>
                           <li class="justify-start">
                             <form method="POST" action="{{ route('logout') }}">
-                                {{-- @method('POST') --}}
                                 @csrf
-                                <button type="submit" class="block px-4 py-2 w-full text-sm justify-start text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</button>
+                                <button type="submit" class="block px-4 py-2 w-full text-sm text-start text-gray-700 hover:bg-gray-100" role="menuitem">Sign out</button>
                             </form>
                           </li>
                         </ul>

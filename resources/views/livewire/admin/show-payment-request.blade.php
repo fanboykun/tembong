@@ -1,21 +1,16 @@
 <div>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Withdrawl Request Detail
-        </h2>
-    </x-slot>
-    <div class="py-12">
+    <div class="pt-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
 
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Users Information') }}
+                            {{ __('Informasi Reseller ') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("This is the information of this user (reseller)") }}
+                            {{ __("berikut adalah informasi permintaan penarikan oleh reseller") }}
                         </p>
                     </header>
                     <div class="mt-6 space-y-6">
@@ -24,11 +19,11 @@
                             <x-text-input disabled type="text" value="{{ $payment->user->id }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="name" :value="__('Reseller Name')" />
+                            <x-input-label for="name" :value="__('Nama Reseller')" />
                             <x-text-input  disabled type="text" value="{{ $payment->user->name }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="phone" :value="__('Reseller Phone')" />
+                            <x-input-label for="phone" :value="__('Nomor Telpon Reseller')" />
                             <x-text-input  disabled type="text" value="{{ $payment->user->phone }}" class="mt-1 block w-full" />
                         </div>
                     </div>
@@ -39,11 +34,11 @@
                 <div class="max-w-xl">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Payment Information') }}
+                            {{ __('Informasi Permintaan Penarikan') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("This is the information of the payment and bank detail") }}
+                            {{ __("Berikut adalah informasi tentang jumlah permintaan penarikan dan bank tujuan pengitiman") }}
                         </p>
                     </header>
                     <div class="mt-6 space-y-6">
@@ -52,37 +47,37 @@
                             <x-text-input disabled type="text" value="{{ $payment->id }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="requested_at" :value="__('Requested At')" />
-                            <x-text-input disabled type="text" value="{{ $payment->created_at }}" class="mt-1 block w-full" />
+                            <x-input-label for="requested_at" :value="__('Diminta Pada')" />
+                            <x-text-input disabled type="text" value="{{ \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $payment->created_at)->format('d M Y') }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="amount" :value="__('Withdrawl Amount')" />
-                            <x-text-input disabled type="text" value="{{ $payment->amount }}" class="mt-1 block w-full" />
+                            <x-input-label for="amount" :value="__('Jumlah Permintaan')" />
+                            <x-text-input disabled type="text" value="{{ number_format($payment->amount, 0, ',', '.') }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="bank" :value="__('Bank Name')" />
+                            <x-input-label for="bank" :value="__('Nama Bank')" />
                             <x-text-input  disabled type="text" value="{{ $payment->bank_info }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="account_name" :value="__('Account Name')" />
+                            <x-input-label for="account_name" :value="__('Nama Akun')" />
                             <x-text-input  disabled type="text" value="{{ $payment->account_name }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="account_number" :value="__('Account Number')" />
+                            <x-input-label for="account_number" :value="__('Nomor Akun')" />
                             <x-text-input  disabled type="text" value="{{ $payment->account_number }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="status" :value="__('Payment Status')" />
-                            <x-text-input  disabled type="text" value="{{ $payment->is_paid ? 'Paid' : 'Pending' }}" class="mt-1 block w-full" />
+                            <x-input-label for="status" :value="__('Status')" />
+                            <x-text-input  disabled type="text" value="{{ $payment->is_paid == 'paid' ? 'Paid' : 'Pending' }}" class="mt-1 block w-full" />
                         </div>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        If you want to finish the withdrawl status, make sure you have already transfer the money to the user.
+                        Jika ingin mengupdate status pembayaran, pastikan admin telah mentransfer uang yang diminta dengan jumlah dan tujuan yang benar. Minta reseller memastikan apakah uang sudah diterima atau belum.
                         </p>
                         <div class="flex items-center gap-4 mt-2">
                             @if($payment->is_paid == 'paid')
-                            <x-danger-button wire:click="updateStatus()">{{ __('Cancel Paid') }}</x-danger-button>
+                            <x-danger-button wire:click="updateStatus()">{{ __('Batalkan Status Telah Dibayar') }}</x-danger-button>
                             @else
-                            <x-primary-button wire:click="updateStatus()">{{ __('Update Status To Paid') }}</x-primary-button>
+                            <x-primary-button wire:click="updateStatus()">{{ __('Perbarui Status Ke Telah Dibayar') }}</x-primary-button>
                             @endif
                         </div>
                     </div>

@@ -16,13 +16,12 @@ class AddOrder extends Component
 {
     public $search_user;
     public $search_product;
-    public $filter_user;
     public $filter_product_category;
     public $filter_product_type;
 
-    public $reseller;
+    public $reseller_id;
     public $users;
-    public $products;
+    // public $products;
     public $products_mounted;
     public $categories;
     public $types = [
@@ -32,7 +31,8 @@ class AddOrder extends Component
     public $content_state = 'product';
     public $selected_cat;
     public $selected_type;
-
+    public $showDropdown = false;
+    public $perPage = 10;
 
     public $total_price;
     public $total_qty;
@@ -70,13 +70,23 @@ class AddOrder extends Component
 
     public function render()
     {
-        $this->products = $this->products_mounted->toQuery()->where('name', 'like', '%'.$this->search_product.'%')
+        // $this->users = User::role('reseller')->where('id', 'like', '%'.$this->search_user.'%')->whereNotNull('validated_at')->get();
+        $this->users = User::role('reseller')->where('id',$this->search_user)->whereNotNull('validated_at')->get();
+        $products = $this->products_mounted->toQuery()->where('name', 'like', '%'.$this->search_product.'%')
         ->where('type', 'like', '%'.$this->filter_product_type.'%')
         ->whereHas('category', function($query){
             $query->where('id', 'like', '%'.$this->filter_product_category.'%');
         })
-        ->get();
-        return view('livewire.admin.add-order');
+        ->paginate($this->perPage);
+        return view('livewire.admin.add-order', [
+            // 'users' => $this->users,
+            'products' => $products,
+        ]);
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 10;
     }
 
     public function updateCategory($catId = null, $catName = null)
@@ -92,19 +102,20 @@ class AddOrder extends Component
     }
 
 
-    public function selectReseller(User $reseller)
+    public function selectReseller($id)
     {
-        $this->reseller = $reseller;
-        $this->search_user = $reseller->name;
+        $this->reseller_id = $id;
+        $this->search_user = $id;
+        $this->showDropdown = false;
         $this->reset('users');
     }
 
     public function updatedSearchUser()
     {
-        if($this->filter_user != null){
-            if($this->filter_user != 'id' or $this->filter_user != 'name' or $this->filter_user != 'email' or $this->filter_user != 'phone'){
-                $this->users = User::role('reseller')->where($this->filter_user, 'like', '%'.$this->search_user.'%')->whereNotNull('validated_at')->get();
-            }
+        if($this->search_user != null){
+            $this->showDropdown = true;
+        }else{
+            $this->showDropdown = false;
         }
     }
     public function updatedFilterUser()
@@ -130,7 +141,6 @@ class AddOrder extends Component
     public function incrementQty(string $id)
     {
         AdminCart::increment($id);
-        $this->updateCart();
         $this->getSummaryContent();
         $this->quantity[$id] = $this->content[$id]['quantity'];
     }
@@ -138,7 +148,6 @@ class AddOrder extends Component
     public function decrementQty(string $id)
     {
         AdminCart::decrement($id);
-        $this->updateCart();
         $this->getSummaryContent();
         $this->quantity[$id] = $this->content[$id]['quantity'];
     }
@@ -149,20 +158,20 @@ class AddOrder extends Component
             'quantity.'.$product['id'] => 'required|numeric|min:1',
         ]);
         AdminCart::updateQty($product['id'], $this->quantity[$product['id']]);
-        $this->updateCart();
+        $this->getSummaryContent();
     }
 
     public function removeFromCart(string $id): void
     {
         AdminCart::remove($id);
-        $this->updateCart();
+        $this->getSummaryContent();
     }
 
     public function clearCart(): void
     {
         AdminCart::clear();
         $this->reset('quantity');
-        $this->updateCart();
+        $this->getSummaryContent();
     }
 
     public function updatedContentState()
@@ -175,6 +184,7 @@ class AddOrder extends Component
 
     public function getSummaryContent()
     {
+        $this->content = AdminCart::content();
         $this->total_discount = 0;
         $this->total_price = AdminCart::total();
         $this->total_qty = AdminCart::totalQuantity();
@@ -186,22 +196,43 @@ class AddOrder extends Component
 
     public function saveOrder()
     {
-        $order = new Order();
-        DB::transaction(function () use ($order) {
-            $this->saveOrderDetail($order);
-            $this->saveOrderProduct($order);
-            $this->saveOrderAddress($order);
-            $this->saveResellerBalance($order);
-        });
-        $this->clearCart();
-        return redirect()->route('orders.index');
+        $this->validate([
+            'reseller_id' => 'required',
+            'buyer_name' => 'required',
+            'buyer_phone' => 'required',
+            'ongkir' => 'required',
+            'full_address' => 'required',
+        ]);
+        $r_id = User::role('reseller')->where('id',$this->search_user)->whereNotNull('validated_at')->first();
+        $this->content = AdminCart::content();
+        if(!empty($this->content->all())){
+            if(!empty($r_id)){
+                $this->reseller_id = $r_id->id;
+                $order = new Order();
+                DB::transaction(function () use ($order) {
+                    $this->saveOrderDetail($order);
+                    $this->saveOrderProduct($order);
+                    $this->saveOrderAddress($order);
+                    $this->saveResellerBalance($order);
+                });
+                $this->reset();
+                $this->clearCart();
+                return redirect()->route('orders.index');
+            }else{
+                $this->addError('reseller_id', 'Reseller Tidak Valid');
+            }
+        }else{
+
+            $this->addError('content', 'Keranjang Belanja Kosong');
+            $this->dispatchBrowserEvent('open-modal', 'empty-cart');
+        }
 
     }
 
     public function saveOrderDetail($order)
     {
         $order->user_id = auth()->id();
-        $order->reseller_id = $this->reseller->id;
+        $order->reseller_id = $this->reseller_id;
         $order->discount_type = $this->discount_type;
         $order->shipping_cost = $this->ongkir;
         $order->status = $this->status == null ? 'placed' : $this->status;
@@ -234,9 +265,14 @@ class AddOrder extends Component
     public function saveResellerBalance($order)
     {
         $balance = new Balance();
-        $balance->user_id = $this->reseller->id;
+        $balance->user_id = $this->reseller_id;
         $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
         $order->balance()->save($balance);
+    }
+
+    public function resetErrot()
+    {
+        $this->resetErrorBag('content');
     }
 
 }
