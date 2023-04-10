@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\BlogImageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\AddAdmin;
+use App\Http\Livewire\Admin\AddBlog;
 use App\Http\Livewire\Admin\AddOrder;
 use App\Http\Livewire\Admin\AddProduct;
 use App\Http\Livewire\Admin\AdminDashboard;
+use App\Http\Livewire\Admin\EditBlog;
 use App\Http\Livewire\Admin\IndexAdmin;
+use App\Http\Livewire\Admin\IndexBlog;
 use App\Http\Livewire\Admin\IndexOrder;
 use App\Http\Livewire\Admin\IndexProduct;
 use App\Http\Livewire\Admin\IndexUser;
@@ -20,7 +24,9 @@ use App\Http\Livewire\Admin\UpdateProduct;
 use App\Http\Livewire\Admin\UserBalance;
 use App\Http\Livewire\Guest\Catalog;
 use App\Http\Livewire\Guest\Checkout;
+use App\Http\Livewire\Guest\ListBlog;
 use App\Http\Livewire\Guest\Product as GuestProduct;
+use App\Http\Livewire\Guest\ReadBlog;
 use App\Http\Livewire\Reseller\Balance;
 use App\Http\Livewire\Reseller\Referral;
 use App\Http\Livewire\Reseller\ResellerDashboard;
@@ -42,13 +48,9 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('/blog', function () {
-    return view('blog');
-});
+Route::get('/list-blog', ListBlog::class)->name('list-blog');
 
-Route::get('/show-blog', function () {
-    return view('show-blog');
-});
+Route::get('/blog/{blog:slug}', ReadBlog::class)->name('read-blog');
 
 Route::get('/product', function () {
     return view('product');
@@ -95,6 +97,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
 
         Route::get('/payments', PaymentRequest::class)->name('payments.index');
         Route::get('/payments/{payment:id}', ShowPaymentRequest::class)->name('payments.show');
+
+        Route::get('/blogs', IndexBlog::class)->name('blogs.index');
+        Route::get('/create-blog', AddBlog::class)->name('blogs.create');
+        Route::get('/edit-blog/{blog:id}', EditBlog::class)->name('blogs.edit');
+        Route::post('/blog-image', [BlogImageController::class, 'storeImage'])->name('blogs.upload');
     });
     Route::group(['middleware' => ['role:reseller']], function () {
         Route::get('/dashboard-reseller', ResellerDashboard::class)->name('dashboard-reseller');

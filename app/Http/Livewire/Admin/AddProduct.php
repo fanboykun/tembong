@@ -15,7 +15,7 @@ class AddProduct extends Component
     public $price;
     public $stock;
     public $type;
-    public $image;
+    // public $image;
     public $category_id;
 
     public function render()
@@ -41,10 +41,12 @@ class AddProduct extends Component
             'category_id' => 'required',
         ]);
 
+        // unused before
+            // $validated_data['image'] = $this->image->storePublicly('image');
+            // $this->image->storePublicly('image');
+            // dd($validated_data);
+        // end unused before
 
-        // $validated_data['image'] = $this->image->storePublicly('image');
-        // $this->image->storePublicly('image');
-        // dd($validated_data);
         $product = Product::create($validated_data);
         // SINGLE FILE
         if($this->image){
@@ -56,7 +58,6 @@ class AddProduct extends Component
         //     $post->addMedia($image->getRealPath())->toMediaCollection('images')
         // );
 
-        // dd($validated_data);
         return redirect()->route('products.index');
     }
 }

@@ -88,7 +88,7 @@
                                                         href="{{ url('about-us') }}">About Us
                                                     </a>
                                                     <a class="block w-full py-2 font-semibold"
-                                                        href="{{ url('/blog') }}">Blog & Activity
+                                                        href="{{ route('list-blog') }}">Blog & Activity
                                                     </a>
                                                 </div>
                                             </div>
@@ -147,7 +147,7 @@
             <a href="{{ url('/product') }}" class="text-sm font-semibold leading-6 text-gray-200">Produk</a>
             <a href="{{ url('join-reseller') }}" class="text-sm font-semibold leading-6 text-gray-200">Reseller</a>
             <a href="{{ url('/about-us') }}" class="text-sm font-semibold leading-6 text-gray-200" >About Us</a>
-            <a href="{{ url('/blog') }}" class="text-sm font-semibold leading-6 text-gray-200">Blog & Activity</a>
+            <a href="{{ route('list-blog') }}" class="text-sm font-semibold leading-6 text-gray-200">Blog & Activity</a>
         </div>
         <div class="hidden lg:flex lg:flex-1 lg:justify-end">
             @if (Route::has('login'))

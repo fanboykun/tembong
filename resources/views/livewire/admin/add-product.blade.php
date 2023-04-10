@@ -54,12 +54,11 @@
                             </select>
                             <x-input-error class="mt-2" :messages="$errors->get('category')" />
                         </div>
-                        <x-input-label for="photo" :value="__('Photo')" />
 
+                        {{-- <x-input-label for="photo" :value="__('Photo')" />
                         <div>
                             <x-filepond
                             wire:model="image"
-                            {{-- multiple --}}
                             allowImagePreview
                             imagePreviewMaxHeight="200"
                             allowFileTypeValidation
@@ -68,7 +67,7 @@
                             maxFileSize="8mb"
                             />
                             @error('image') <p class="mt-2 text-sm text-red-800">{{ $message }}</p> @enderror
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>

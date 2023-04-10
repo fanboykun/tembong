@@ -25,9 +25,9 @@ class UpdateProduct extends Component
     public $new_image;
     public $category_id;
 
-    public bool $isEdit = false;
+    // public bool $isEdit = false;
 
-    public $exsisting_image;
+    // public $exsisting_image;
 
 
     public function mount()
@@ -38,20 +38,20 @@ class UpdateProduct extends Component
         $this->type = $this->product->getRawOriginal('type');
         $this->price = $this->product->price;
         $this->stock = $this->product->stock;
-        $this->image = $this->product->getFirstMediaUrl('image');
+        // $this->image = $this->product->getFirstMediaUrl('image');
         $this->category_id = $this->product->category_id;
 
-        $this->exsisting_image = [
-            'source' => $this->product->getFirstMediaUrl('image'),
-            'options' => [
-                'type' => 'local',
-                // 'file' => [
-                //     'name' => $this->product->getFirstMedia('image')->file_name,
-                    // 'size' => $image->file_size,
-                    // 'type' => $image->mime_type,
-                // ],
-            ],
-        ];
+        // $this->exsisting_image = [
+        //     'source' => $this->product->getFirstMediaUrl('image'),
+        //     'options' => [
+        //         'type' => 'local',
+        //         // 'file' => [
+        //         //     'name' => $this->product->getFirstMedia('image')->file_name,
+        //             // 'size' => $image->file_size,
+        //             // 'type' => $image->mime_type,
+        //         // ],
+        //     ],
+        // ];
 
     }
     public function render()
@@ -78,12 +78,11 @@ class UpdateProduct extends Component
             'new_image' => 'nullable',
             'category_id' => 'required',
         ]);
-        // dd($validated_data);
-        if($this->new_image)
-        {
-            $this->product->clearMediaCollection('image');
-            $this->product->addMedia($this->new_image->getRealPath())->toMediaCollection('image');
-        }
+        // if($this->new_image)
+        // {
+        //     $this->product->clearMediaCollection('image');
+        //     $this->product->addMedia($this->new_image->getRealPath())->toMediaCollection('image');
+        // }
         $this->product->update([
             'name' => $this->name,
             'description' => $this->description,
@@ -94,19 +93,19 @@ class UpdateProduct extends Component
         return redirect()->route('products.index');
     }
 
-    public function getExsistingImage()
-    {
-        return [
-            'source' => $this->image,
-            'options' => [
-                'type' => 'local',
-                'file' => [
-                    // 'name' => $this
-                    // 'size' => $image->file_size,
-                    // 'type' => $image->mime_type,
-                ],
-            ],
-        ];
+    // public function getExsistingImage()
+    // {
+    //     return [
+    //         'source' => $this->image,
+    //         'options' => [
+    //             'type' => 'local',
+    //             'file' => [
+    //                 // 'name' => $this
+    //                 // 'size' => $image->file_size,
+    //                 // 'type' => $image->mime_type,
+    //             ],
+    //         ],
+    //     ];
 
-    }
+    // }
 }

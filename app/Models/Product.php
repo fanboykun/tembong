@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Support\Str;
 
 class Product extends Model implements HasMedia
 {
@@ -55,7 +56,8 @@ class Product extends Model implements HasMedia
 
     public function getImageAttribute()
     {
-        return empty($this->getFirstMediaUrl('image')) ? "https://tecdn.b-cdn.net/img/new/standard/nature/184.jpg" : $this->getFirstMediaUrl('image');
+        return asset('parfum.jpg');
+        // return empty($this->getFirstMediaUrl('image')) ? asset('parfum.jpg') : $this->getFirstMediaUrl('image');
     }
 
 }

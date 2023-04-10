@@ -16,7 +16,7 @@
 
                     <form wire:submit.prevent="update" action="" class="mt-6 space-y-6">
                         <div>
-                            <x-input-label for="name" :value="__('name')" />
+                            <x-input-label for="name" :value="__('Nama')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
@@ -29,7 +29,7 @@
                         </div>
 
                         <div>
-                            <x-input-label for="type" :value="__('tipe')" />
+                            <x-input-label for="type" :value="__('Tipe')" />
                             <select wire:model="type" name="type" id="type">
                                 {{-- <option value="">Select Type</option> --}}
                                 @foreach ($types as $key => $list_type )
@@ -64,8 +64,7 @@
                             </select>
                             <x-input-error class="mt-2" :messages="$errors->get('category')" />
                         </div>
-                        <x-input-label for="photo" :value="__('Photo')" />
-
+                        {{-- <x-input-label for="photo" :value="__('Photo')" />
                         <div>
                             <x-secondary-button wire:click="$toggle('isEdit')" class="mb-2">{{ $isEdit  ? 'Cancel Change Photo' : 'Change Photo' }}</x-secondary-button>
                             @if ($isEdit)
@@ -83,7 +82,7 @@
                             <img src="{{ $product->getFirstMediaUrl('image') }}" alt="">
                             @endif
 
-                        </div>
+                        </div> --}}
 
                         <div class="flex items-center gap-4">
                             <x-primary-button>

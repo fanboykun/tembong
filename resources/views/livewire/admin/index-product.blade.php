@@ -8,6 +8,7 @@
                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                     {{ __('ketika data produk ini terhapus, semua data dan photo, serta data yang berkaitan juga akan terhapus') }}
                 </p>
+
                 <div class="mt-6 flex justify-end">
                     <x-secondary-button wire:click="$toggle('confirmingProductDeletion')" wire:loading.attr="disabled">
                         {{ __('Batal') }}
@@ -17,6 +18,7 @@
                         {{ __('Hapus Produk') }}
                     </x-danger-button>
                 </div>
+                
             </div>
     </x-confirm-modal>
 

@@ -152,9 +152,9 @@
                 <nav class="flex flex-col items-start justify-between p-4 space-y-3 md:flex-row md:items-center md:space-y-0" aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                         Menampilkan
-                        <span class="font-semibold text-gray-900 dark:text-white">{{ $payments->count() }}</span>
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $payments != [] ? $payments->count() : '0' }}</span>
                         dari
-                        <span class="font-semibold text-gray-900 dark:text-white">{{ $payments->total() }}</span>
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $payments != [] ? $payments->total() : '0' }}</span>
                     </span>
                     <button type="button" wire:click="loadMore()" class="text-sm font-normal text-indigo-600 ">
                         Muat Lebih ...
