@@ -12,7 +12,7 @@ class IndexBlog extends Component
 
     public function render()
     {
-        $blogs = Blog::where('title', 'like', '%'.$this->search.'%')->paginate($this->perPage);
+        $blogs = Blog::where('title', 'like', '%'.$this->search.'%')->latest()->paginate($this->perPage);
         return view('livewire.admin.index-blog', compact('blogs'));
     }
 

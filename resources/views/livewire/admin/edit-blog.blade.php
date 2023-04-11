@@ -43,7 +43,7 @@
                         </div>
 
                         <div class="flex items-center gap-4">
-                            <x-primary-button wire:loading.attr="disabled" wire:target="storeBlog" type="submit" wire:click.prevent="storeBlog">
+                            <x-primary-button wire:loading.attr="disabled" wire:target="updateBlog" type="submit" wire:click.prevent="updateBlog">
                                 {{ __('Simpan') }}
                             </x-primary-button>
                         </div>
@@ -56,10 +56,14 @@
     </div>
 @once
 @push('scripts')
-<script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+{{-- <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script> --}}
+<script src="https://cdn.jsdelivr.net/npm/ckeditor5-build-classic-with-image-resize@12.4.0/build/ckeditor.min.js"></script>
 <script>
+    // import Image from '@ckeditor/ckeditor5-image/src/image';
+    // import ImageResize from '@ckeditor/ckeditor5-image/src/imageresize';
      ClassicEditor
         .create( document.querySelector( '#paragraph' ),{
+            // plugins: [ Image, ImageResizeEditing, ImageResizeHandles, /* ... */ ],
             ckfinder: {
                 uploadUrl: '{{route('blogs.upload').'?_token='.csrf_token()}}',
             },

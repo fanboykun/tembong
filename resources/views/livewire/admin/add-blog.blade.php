@@ -52,7 +52,7 @@
 </div>
     @once
     @push('scripts')
-    <script src="https://cdn.ckeditor.com/ckeditor5/34.2.0/classic/ckeditor.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ckeditor5-build-classic-with-image-resize@12.4.0/build/ckeditor.min.js"></script>
     <script>
          ClassicEditor
             .create( document.querySelector( '#paragraph' ),{
@@ -69,21 +69,6 @@
             .catch( error => {
                 console.error( error );
             } );
-        // ClassicEditor
-        //     .create( document.querySelector( '#paragraph' ), {
-        //         ckfinder: {
-        //             uploadUrl: '{{route('blogs.upload').'?_token='.csrf_token()}}',
-        //         },
-        //     } )
-            // .then( editor => {
-            //     window.editor = editor;
-            //     editor.model.document.on( 'change:data', () => {
-            //         @this.set('content', editor.getData());
-            //     } );
-            // } )
-            // .catch( error => {
-            //     console.error( error );
-            // } );
     </script>
     @endpush
     @endonce

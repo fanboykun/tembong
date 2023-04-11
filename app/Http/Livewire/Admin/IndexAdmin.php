@@ -29,7 +29,9 @@ class IndexAdmin extends Component
             {
                 $query->where('name', 'like', '%'.$this->search.'%');
             }
-        })->paginate($this->perPage);
+        })
+        ->latest()
+        ->paginate($this->perPage);
         return view('livewire.admin.index-admin', compact('admins'));
     }
 

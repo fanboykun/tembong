@@ -105,6 +105,7 @@
                         </thead>
                         <tbody>
                             @forelse ($payments as $payment)
+                            @if($payment->amount < $payment->user->withdrawable)
                             <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                 <th scope="row" class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
                                     {{ $payment->id }}
@@ -143,6 +144,7 @@
                                     </div>
                                 </td>
                             </tr>
+                            @endif
                             @empty
                             @endforelse
                         </tbody>

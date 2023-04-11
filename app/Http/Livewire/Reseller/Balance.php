@@ -28,7 +28,7 @@ class Balance extends Component
         $this->referral_balance = $this->reseller->referral_fee;
         $this->total_balance = $this->reseller->total_fee;
         $this->withdrawabe_balance = $this->reseller->withdrawable;
-        $payments = Payment::where('user_id', auth()->user()->id)->paginate($this->perPage);
+        $payments = Payment::where('user_id', auth()->user()->id)->latest()->paginate($this->perPage);
         return view('livewire.reseller.balance', compact('payments'));
     }
 

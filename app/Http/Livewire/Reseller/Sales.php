@@ -21,7 +21,7 @@ class Sales extends Component
 
     public function render()
     {
-        $sales = Order::where('reseller_id',auth()->id())->with('balance')->paginate($this->perPage);
+        $sales = Order::where('reseller_id',auth()->id())->with('balance')->latest()->paginate($this->perPage);
         $this->total_sales_count = $sales->count();
         return view('livewire.reseller.sales', compact('sales'));
     }

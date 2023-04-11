@@ -23,9 +23,9 @@ class AddBlog extends Component
     public function storeBlog()
     {
         // dd($this->content);
-       $data =  $this->validate([
-            'title' => 'required',
-            'image' => 'required',
+       $this->validate([
+            'title' => 'required|unique:blogs|max:255',
+            'image' => 'required|image|max:8192|mimes:png,jpg,jpeg',
             'content' => 'required',
         ]);
 
@@ -40,7 +40,7 @@ class AddBlog extends Component
             $blog->addMedia($this->image->getRealPath())->toMediaCollection('cover');
         }
 
-        $this->reset();
         return redirect()->route('blogs.index');
+        $this->reset();
     }
 }

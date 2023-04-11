@@ -29,7 +29,7 @@
                     </div>
                 </div>
             </div>
-
+            @if($payment->amount < $payment->user->withdrawable)
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <header>
@@ -83,7 +83,25 @@
                     </div>
                 </div>
             </div>
+            @else
+            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+                <div class="max-w-xl">
+                    <header>
+                        <h2 class="text-lg font-medium text-red-700 dark:text-gray-100">
+                            {{ __('Terdapat Kejanggalan') }}
+                        </h2>
 
+                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                            {{ __("Ini mengindikasikan bahwa permintaan jumlah penarikan lebih besar dari pada saldo") }}
+                        </p>
+                        <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                           Jumlah Permintaan Penarikan : {{ number_format($payment->amount, 0, ',', '.') }}
+                           Saldo Reseller : {{ number_format($payment->user->withdrawable, 0, ',', '.') }}
+                        </p>
+                    </header>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

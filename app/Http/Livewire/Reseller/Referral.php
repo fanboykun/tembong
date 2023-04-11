@@ -37,7 +37,7 @@ class Referral extends Component
 
         }
         $referral_users = ReferralModel::where('code',$this->own_referral_code)
-        ->with('user')->with('balance')->paginate($this->perPage);
+        ->with('user')->with('balance')->latest()->paginate($this->perPage);
         $this->total_referral_fee = auth()->user()->referral_fee;
         $this->total_referral_user = $referral_users->count();
         // dd($referral_users);

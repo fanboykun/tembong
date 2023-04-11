@@ -64,6 +64,7 @@ class Catalog extends Component
         ->whereHas('category', function($query){
             $query->where('name', 'like', '%'.$this->category_filter.'%');
         })
+        ->latest()
         ->paginate($this->perPage);
         // dd($products[0]->getFirstMediaUrl('image'));
         return view('livewire.guest.catalog', ['products' => $products])->layout('layouts.guest');

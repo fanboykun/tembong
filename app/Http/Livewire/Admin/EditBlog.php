@@ -17,7 +17,6 @@ class EditBlog extends Component
     public $image;
     public $content;
 
-    public bool $isEdit;
     public $exsisting_image;
     public $new_image;
 
@@ -31,16 +30,15 @@ class EditBlog extends Component
 
     public function render()
     {
-        $this->isEdit = false;
         return view('livewire.admin.edit-blog');
     }
 
     public function updateBlog()
     {
         // dd($this->content);
-       $data =  $this->validate([
-            'title' => 'required',
-            'image' => 'required',
+        $this->validate([
+            'title' => 'required|unique:blogs|max:255',
+            'new_image' => 'nullable|image|max:8192|mimes:png,jpg,jpeg',
             'content' => 'required',
         ]);
 
@@ -58,7 +56,7 @@ class EditBlog extends Component
         ]);
 
 
-        $this->reset();
         return redirect()->route('blogs.index');
+        $this->reset();
     }
 }

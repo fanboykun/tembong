@@ -101,7 +101,7 @@
                     <form wire:submit.prevent="storeReferralCode()" method="post" action="" class="mt-6 space-y-6">
                         <div>
                             <x-input-label for="code" :value="__('Kode Referral')" />
-                            <x-text-input wire:model="inserted_referral_code" id="code" name="code" type="text" class="mt-1 block w-full" :value="old('code', $inserted_referral_code)" required autofocus autocomplete="code" />
+                            <x-text-input wire:model="inserted_referral_code" id="code" name="code" type="text" class="mt-1 block w-full" :value="old('code', $inserted_referral_code)" required autocomplete="code" />
                             <x-input-error class="mt-2" :messages="$message_code" />
                         </div>
                         <div class="flex items-center gap-4">
