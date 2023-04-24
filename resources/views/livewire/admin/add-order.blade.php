@@ -10,11 +10,11 @@
         <div class="border-t border-gray-200">
             <dl>
                 <div class="bg-green-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-                    <dt class="text-sm font-medium text-gray-500">Reseller Id</dt>
+                    <dt class="text-sm font-medium text-gray-500">Dropshipper Id</dt>
                     <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
                         <div x-data="{open : @entangle('showDropdown')}" class="relative inline-block text-left w-full">
                             <div class="flex w-full">
-                            <x-text-input wire:model.delay="search_user" x-on:click="open = true" type="number" class="flex-1 w-full" placeholder="cari reseller berdasarkan ID" required></x-text-input>
+                            <x-text-input wire:model.delay="search_user" x-on:click="open = true" type="number" class="flex-1 w-full" placeholder="cari Dropshipper berdasarkan ID" required></x-text-input>
                             </div>
                             <x-input-error class="mt-2" :messages="$errors->get('reseller_id')" />
                             <div x-cloak x-show="open" @click.outside="open = false" class="absolute right-0 z-10 mt-2 w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-x-auto overflow-y-auto max-h-32" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
@@ -329,7 +329,7 @@
                                     <td colspan="2" class="px-4 py-3">Total Quantity</td>
                                     <td class="px-4 py-3 text-right">{{ $total_qty }}</td>
                                 </tr>
-                                <tr class="font-semibold text-gray-900 border-y-2">
+                                {{-- <tr class="font-semibold text-gray-900 border-y-2">
                                     <th scope="row" class="px-6 py-3 text-base"></th>
                                     <td colspan="2" class="px-4 py-3">Tipe Diskon</td>
                                     <td class="px-4 py-3 text-right"></td>
@@ -343,7 +343,7 @@
                                     <th scope="row" class="px-6 py-3 text-base"></th>
                                     <td colspan="2" class="px-4 py-3">Harga Setelah Diskon</td>
                                     <td class="px-4 py-3 text-right ">{{ number_format($price_after_discount, 0, ',', '.') }}</td>
-                                </tr>
+                                </tr> --}}
                                 <tr class="font-semibold text-gray-900 border-y-2">
                                     <th scope="row" class="px-6 py-3 text-base"></th>
                                     <td colspan="2" class="col-start-2 px-4 py-3">Ongkir</td>
@@ -351,7 +351,7 @@
                                 </tr>
                                 <tr class="font-semibold text-gray-900 border-y-2">
                                     <th scope="row" class="px-6 py-3 text-base"></th>
-                                    <td colspan="2" class="px-4 py-3">Total Harga Dengan Diskon Dan Ongkir</td>
+                                    <td colspan="2" class="px-4 py-3">Total Harga Dengan Ongkir</td>
                                     <td class="px-4 py-3 text-right ">{{ number_format($total_price_with_ongkir, 0, ',', '.') }}</td>
                                 </tr>
                             </tfoot>

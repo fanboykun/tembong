@@ -1,7 +1,10 @@
 import './bootstrap';
 import 'flowbite';
+import Alpine from 'alpinejs'
+import Clipboard from "@ryangjchandler/alpine-clipboard"
 
-import Alpine from 'alpinejs';
+Alpine.plugin(Clipboard)
+// import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 

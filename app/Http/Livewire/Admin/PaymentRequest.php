@@ -32,7 +32,7 @@ class PaymentRequest extends Component
         if($this->payment_mounted->count() >= 1){
             $payments = $this->payment_mounted->toQuery()
             ->where(function($query){
-                $query->when($this->search_filter == 'reseller_id' | $this->search_filter == '', function($q){
+                $query->when($this->search_filter == 'dropshipper_id' | $this->search_filter == '', function($q){
                     $q->whereHas('user', function ($query){
                         $query->where('id', 'like', '%'.$this->search.'%');
                     });

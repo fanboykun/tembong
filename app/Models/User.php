@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -10,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Coderflex\Laravisit\Concerns\CanVisit;
 use Coderflex\Laravisit\Concerns\HasVisits;
-class User extends Authenticatable implements CanVisit
+class User extends Authenticatable implements MustVerifyEmail, CanVisit
 {
     use HasApiTokens, HasFactory, Notifiable;
     use HasRoles;
@@ -40,6 +40,12 @@ class User extends Authenticatable implements CanVisit
         'password',
         'referral_code',
         'remember_token',
+        'sales_fee',
+        'referral_fee',
+        'total_fee',
+        'withdrawable',
+        'paid_profit',
+        'visitor_count'
     ];
 
     /**
@@ -52,7 +58,14 @@ class User extends Authenticatable implements CanVisit
         'validated_at' => 'datetime',
     ];
 
-    protected $appends = ['sales_fee', 'referral_fee', 'total_fee', 'withdrawable', 'paid_profit'];
+    protected $appends = [
+        'sales_fee',
+        'referral_fee',
+        'total_fee',
+        'withdrawable',
+        'paid_profit',
+        'visitor_count'
+    ];
 
     public function referral()
     {
@@ -78,6 +91,12 @@ class User extends Authenticatable implements CanVisit
     {
         return $this->hasMany(Balance::class, 'user_id', 'id');
     }
+
+    // public function salesBalance()
+    // {
+    //     return $this->hasMany(Balance::class, 'user_id', 'id')
+    //     ->where('balanceable_type', 'App\Models\Order')->sum('amount');
+    // }
 
     public function payments()
     {
@@ -107,6 +126,11 @@ class User extends Authenticatable implements CanVisit
     public function getWithdrawableAttribute()
     {
         return $this->total_fee - $this->paid_profit;
+    }
+
+    public function getVisitorCountAttribute()
+    {
+        return $this->withTotalVisitCount();
     }
 
 }

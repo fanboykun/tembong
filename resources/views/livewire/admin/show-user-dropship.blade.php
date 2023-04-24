@@ -6,7 +6,7 @@
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <div class="flex">
                         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                            Detail Penjualan Reseller {{ $user->name }}
+                            Detail Penjualan {{ $user->name }}
                         </h2>
                     </div>
                 </div>
@@ -21,11 +21,11 @@
                 <dl class="max-w-xl">
                     <div class="bg-gray-50  py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Total Penjualan</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $user->dropshippings->count() }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">{{ $sales_count }}</dd>
                     </div>
                     <div class="bg-white  py-5 sm:grid sm:grid-cols-3 sm:gap-4 ">
                         <dt class="text-sm font-medium text-gray-500">Total Perolehan Saldo Dari Penjualan</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rp {{ number_format($user->sales_fee, 0, ",", ".") }}</dd>
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rp {{ number_format($sales_fee, 0, ",", ".") }}</dd>
                     </div>
                     <div class="overflow-x-auto">
                         <div class="overflow-hidden">

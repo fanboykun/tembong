@@ -31,6 +31,7 @@ class IndexProduct extends Component
         $this->categories = Category::all();
         $products = Product::where('name', 'like', '%'.$this->search.'%')
         ->where('type', 'like', '%'.$this->type_filter.'%')
+        ->with('category')
         ->whereHas('category', function($query){
             $query->where('name', 'like', '%'.$this->category_filter.'%');
         })

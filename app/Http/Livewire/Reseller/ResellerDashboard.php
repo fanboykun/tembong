@@ -26,7 +26,8 @@ class ResellerDashboard extends Component
         $this->total_sales = $user_data->dropshippings_count;
         $this->total_referral = $user_data->referrals_count;
         $this->total_catalog_visitor = $user_data->visit_count_total;
-        $this->total_balance = $user_data->balance_sum_amount;
+        // $this->total_balance = $user_data->balance_sum_amount;
+        $this->total_balance = $user_data->withdrawable;
         $this->referral_code = $user_data->referral_code;
         // dd($user_data);
     }

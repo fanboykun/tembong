@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Reseller;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use App\Models\Payment;
+use App\Models\Balance as BalanceModel;
 
 
 class Balance extends Component
@@ -13,22 +14,29 @@ class Balance extends Component
 
     // public $payments;
 
-    public $sales_balance;
-    public $referral_balance;
-    public $total_balance;
-    public $withdrawabe_balance;
+    public float $sales_balance;
+    public float $referral_balance;
+    public float $total_balance;
+    public float $withdrawabe_balance;
     public $perPage = 10;
 
     public $listeners = ['paymentCreated' => '$refresh'];
 
-    public function render()
+    public function mount()
     {
         $this->reseller = Auth::user();
-        $this->sales_balance = $this->reseller->sales_fee;
-        $this->referral_balance = $this->reseller->referral_fee;
-        $this->total_balance = $this->reseller->total_fee;
-        $this->withdrawabe_balance = $this->reseller->withdrawable;
+        $data = BalanceModel::where('user_id', auth()->user()->id)->get()->groupBy('balanceable_type');
+        $this->sales_balance = $data['App\Models\Order']->sum('amount');
+        $this->referral_balance = $data['App\Models\Referral']->sum('amount');
+        $this->total_balance = $this->sales_balance + $this->referral_balance;
+    }
+
+    public function render()
+    {
         $payments = Payment::where('user_id', auth()->user()->id)->latest()->paginate($this->perPage);
+        $payments_amount_sum = $payments->sum('amount');
+        $this->withdrawabe_balance = $this->total_balance - $payments_amount_sum;
+        // dd($this->withdrawabe_balance);
         return view('livewire.reseller.balance', compact('payments'));
     }
 

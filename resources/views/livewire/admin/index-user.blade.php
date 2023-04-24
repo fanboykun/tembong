@@ -7,7 +7,7 @@
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         <div class="flex">
                             <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                                {{ __('List dari Semua Reseller') }}
+                                {{ __('List dari Semua Dropshipper') }}
                             </h2>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                     </div>
                     <div class="w-full md:w-auto flex flex-col md:flex-row space-y-2 md:space-y-0 items-stretch md:items-center justify-end md:space-x-3 flex-shrink-0">
                         <a href="{{ route('users.unvalidate') }}" class="flex items-center justify-center text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-light rounded-lg text-sm px-4 py-2 focus:outline-none">
-                            Lihat Reseller Yang Belum Tervalidasi
+                            Lihat Dropshipper Yang Belum Tervalidasi
                         </a>
                     </div>
                 </div>

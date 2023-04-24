@@ -10,7 +10,7 @@
         <div class="mx-auto max-w-2xl lg:text-center">
             <h2 class="text-base font-semibold leading-7 text-indigo-600">Tentang</h2>
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Kenal Lebih Dalam Secara Personal Dengan Kami</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Kami di Mama Parfum bangga memiliki staf yang penuh semangat dan berkomitmen. Dengan kerja keras dan dedikasi mereka, kami telah tumbuh menjadi perusahaan yang diakui di dunia parfum.</p>
         </div>
         </div>
     </div>

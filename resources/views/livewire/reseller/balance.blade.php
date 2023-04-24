@@ -65,13 +65,17 @@
                                                 <span>{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $payment->created_at)->format('d M Y') }}</span>
                                             </td>
                                             <td class="py-3 px-6 text-center">
-                                                @if ($payment->is_paid)
+                                                @if ($payment->is_paid  == 'paid')
                                                 <span class="bg-green-100 text-green-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full border-green-400">
                                                     Telah Dibayar
                                                 </span>
+                                                @elseif ($payment->is_paid == 'pending')
+                                                <span class="bg-yellow-100 text-yellow-400 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full border-yellow-400">
+                                                    Belum Dibayar
+                                                </span>
                                                 @else
                                                 <span class="bg-red-100 text-red-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full border-red-400">
-                                                    Belum Dibayar
+                                                    Ditolak atau terjadi kesalahan
                                                 </span>
                                                 @endif
                                             </td>

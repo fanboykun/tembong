@@ -6,24 +6,24 @@
                 <div class="max-w-xl">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Informasi Reseller ') }}
+                            {{ __('Informasi Dropshipper ') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("berikut adalah informasi permintaan penarikan oleh reseller") }}
+                            {{ __("berikut adalah informasi permintaan penarikan oleh dropshipper") }}
                         </p>
                     </header>
                     <div class="mt-6 space-y-6">
                         <div>
-                            <x-input-label for="id" :value="__('Reseller ID')" />
+                            <x-input-label for="id" :value="__('Dropshipper ID')" />
                             <x-text-input disabled type="text" value="{{ $payment->user->id }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="name" :value="__('Nama Reseller')" />
+                            <x-input-label for="name" :value="__('Nama Dropshipper')" />
                             <x-text-input  disabled type="text" value="{{ $payment->user->name }}" class="mt-1 block w-full" />
                         </div>
                         <div>
-                            <x-input-label for="phone" :value="__('Nomor Telpon Reseller')" />
+                            <x-input-label for="phone" :value="__('Nomor Telpon Dropshipper')" />
                             <x-text-input  disabled type="text" value="{{ $payment->user->phone }}" class="mt-1 block w-full" />
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("Berikut adalah informasi tentang jumlah permintaan penarikan dan bank tujuan pengitiman") }}
+                            {{ __("Berikut adalah informasi tentang jumlah permintaan penarikan dan bank tujuan pengiriman") }}
                         </p>
                     </header>
                     <div class="mt-6 space-y-6">
@@ -71,7 +71,7 @@
                             <x-text-input  disabled type="text" value="{{ $payment->is_paid == 'paid' ? 'Paid' : 'Pending' }}" class="mt-1 block w-full" />
                         </div>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                        Jika ingin mengupdate status pembayaran, pastikan admin telah mentransfer uang yang diminta dengan jumlah dan tujuan yang benar. Minta reseller memastikan apakah uang sudah diterima atau belum.
+                        Jika ingin mengupdate status pembayaran, pastikan admin telah mentransfer uang yang diminta dengan jumlah dan tujuan yang benar. Minta Dropshipper memastikan apakah uang sudah diterima atau belum.
                         </p>
                         <div class="flex items-center gap-4 mt-2">
                             @if($payment->is_paid == 'paid')
@@ -96,7 +96,7 @@
                         </p>
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                            Jumlah Permintaan Penarikan : {{ number_format($payment->amount, 0, ',', '.') }}
-                           Saldo Reseller : {{ number_format($payment->user->withdrawable, 0, ',', '.') }}
+                           Saldo Dropshipper : {{ number_format($payment->user->withdrawable, 0, ',', '.') }}
                         </p>
                     </header>
                 </div>

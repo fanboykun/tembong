@@ -21,10 +21,10 @@
                             </h2>
 
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                {{ __('Status Akun menunjukan apakah user ini sudah tervalidasi atau belum. If the user have already payed for using the apps, update the users status') }}
+                                {{ __('Status Akun menunjukan apakah user ini sudah tervalidasi atau belum.') }}
                             </p>
                             <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                {{ __('Jika ingin memvalidasi status akun, pastikan akun tersebut sudah membayar untuk menggunakan seluruh fitur Reseller') }}
+                                {{ __('Jika ingin memvalidasi status akun, pastikan akun tersebut sudah membayar untuk menggunakan seluruh fitur Dropshipper') }}
                             </p>
                         </header>
                         <div>
@@ -51,11 +51,11 @@
                 <div class="max-w-xl">
                     <header>
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                            {{ __('Informasi Reseller') }}
+                            {{ __('Informasi Dropshipper') }}
                         </h2>
 
                         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                            {{ __("Informasi dari akun reseller") }}
+                            {{ __("Informasi dari akun dropshipper") }}
                         </p>
                     </header>
                     <div class="mt-6 space-y-6">

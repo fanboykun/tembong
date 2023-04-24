@@ -35,8 +35,8 @@ class IndexOrder extends Component
                 $query->when($this->search_filter == 'order_id' | $this->search_filter == '' , function($q){
                     $q->where('id', 'like', '%'.$this->search.'%');
                 })->where('status', 'like', '%'.$this->status_filter.'%');
-                $query->when($this->search_filter == 'reseller_id' , function($q){
-                    $q->whereHas('reseller', function ($query){
+                $query->when($this->search_filter == 'dropshipper_id' , function($q){
+                    $q->with('reseller', function ($query){
                         $query->where('id', 'like', '%'.$this->search.'%');
                     });
                 })->where('status', 'like', '%'.$this->status_filter.'%');

@@ -94,7 +94,7 @@
                                                     </a>
                                                     <a
                                                         class="flex w-full items-center py-2 font-semibold"
-                                                        href="{{ url('/join-reseller') }}">Reseller
+                                                        href="{{ url('/join-dropshipper') }}">Dropshipper
                                                     </a>
                                                     <a class="block w-full py-2 font-semibold"
                                                         href="{{ url('about-us') }}">About Us
@@ -158,7 +158,7 @@
         <div class="hidden lg:flex lg:gap-x-12">
             <a href="{{ url('/') }}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
             <a href="{{ url('/product') }}" class="text-sm font-semibold leading-6 text-gray-900">Produk</a>
-            <a href="{{ url('join-reseller') }}" class="text-sm font-semibold leading-6 text-gray-900">Reseller</a>
+            <a href="{{ url('join-dropshipper') }}" class="text-sm font-semibold leading-6 text-gray-900">Dropshipper</a>
             <a href="{{ url('/about-us') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
             <a href="{{ route('list-blog') }}" class="text-sm font-semibold leading-6 text-gray-900">Blog & Activity</a>
         </div>

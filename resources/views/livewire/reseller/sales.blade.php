@@ -10,12 +10,8 @@
                 </div>
                 <p class="mt-1 max-w-2xl text-sm text-gray-500">Informasi ini berisi tentang bagaimana anda mendapatkan keuntungan melalui penjualan per barang nya</p>
                 <dl>
-                    <div class="bg-gray-50  py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-                        <dt class="text-sm font-medium text-gray-500">Produk Top Seller</dt>
-                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rp 50.000</dd>
-                    </div>
                     <div class="bg-white  py-5 sm:grid sm:grid-cols-3 sm:gap-4 ">
-                        <dt class="text-sm font-medium text-gray-500">Produk Best Seller</dt>
+                        <dt class="text-sm font-medium text-gray-500">Penjualan Per Produk</dt>
                         <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">Rp 20.000</dd>
                     </div>
                 </dl>

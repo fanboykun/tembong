@@ -74,7 +74,7 @@ class AddOrder extends Component
         $this->users = User::role('reseller')->where('id',$this->search_user)->whereNotNull('validated_at')->get();
         $products = $this->products_mounted->toQuery()->where('name', 'like', '%'.$this->search_product.'%')
         ->where('type', 'like', '%'.$this->filter_product_type.'%')
-        ->whereHas('category', function($query){
+        ->with('category', function($query){
             $query->where('id', 'like', '%'.$this->filter_product_category.'%');
         })
         ->paginate($this->perPage);
@@ -196,6 +196,11 @@ class AddOrder extends Component
 
     public function saveOrder()
     {
+        $r_id = User::role('reseller')->where('id',$this->search_user)->whereNotNull('validated_at')->first();
+        if(empty($r_id)){
+            $this->addError('reseller_id', 'Reseller Tidak Valid');
+            return;
+        }
         $this->validate([
             'reseller_id' => 'required',
             'buyer_name' => 'required',
@@ -203,11 +208,11 @@ class AddOrder extends Component
             'ongkir' => 'required',
             'full_address' => 'required',
         ]);
-        $r_id = User::role('reseller')->where('id',$this->search_user)->whereNotNull('validated_at')->first();
+
         $this->content = AdminCart::content();
         if(!empty($this->content->all())){
-            if(!empty($r_id)){
                 $this->reseller_id = $r_id->id;
+                $this->total_qty = AdminCart::totalQuantity();
                 $order = new Order();
                 DB::transaction(function () use ($order) {
                     $this->saveOrderDetail($order);
@@ -218,11 +223,7 @@ class AddOrder extends Component
                 $this->reset();
                 $this->clearCart();
                 return redirect()->route('orders.index');
-            }else{
-                $this->addError('reseller_id', 'Reseller Tidak Valid');
-            }
         }else{
-
             $this->addError('content', 'Keranjang Belanja Kosong');
             $this->dispatchBrowserEvent('open-modal', 'empty-cart');
         }
@@ -266,7 +267,8 @@ class AddOrder extends Component
     {
         $balance = new Balance();
         $balance->user_id = $this->reseller_id;
-        $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
+        $balance->amount = $this->total_qty * 29000;
+        // $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
         $order->balance()->save($balance);
     }
 

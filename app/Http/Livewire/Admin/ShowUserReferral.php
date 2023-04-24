@@ -15,7 +15,7 @@ class ShowUserReferral extends Component
     public function render()
     {
         $this->count_referral_user = Referral::where('code', $this->user->referral_code)->count();
-        $this->total_referral_fee = $this->count_referral_user * 10000;
+        $this->total_referral_fee = $this->user->referral_fee;
         // dd($this->count_referral_user);
         return view('livewire.admin.show-user-referral');
     }

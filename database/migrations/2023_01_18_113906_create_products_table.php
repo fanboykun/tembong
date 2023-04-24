@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('type', ['best_seller', 'top_seller'])->required();
             $table->integer('price')->required();
             $table->integer('stock')->nullable();
+            $table->string('weight')->nullable();
             $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });

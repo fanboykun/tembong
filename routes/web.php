@@ -31,6 +31,7 @@ use App\Http\Livewire\Reseller\Balance;
 use App\Http\Livewire\Reseller\Referral;
 use App\Http\Livewire\Reseller\ResellerDashboard;
 use App\Http\Livewire\Reseller\Sales;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,11 +54,12 @@ Route::get('/list-blog', ListBlog::class)->name('list-blog');
 Route::get('/blog/{blog:slug}', ReadBlog::class)->name('read-blog');
 
 Route::get('/product', function () {
-    return view('product');
+    $rand = User::role('reseller')->whereNotNull('validated_at')->inRandomOrder()->first()->id;
+    return view('product', ['rand' => $rand]);
 });
 
-Route::get('/join-reseller', function () {
-    return view('join-reseller');
+Route::get('/join-dropshipper', function () {
+    return view('join-dropshipper');
 });
 
 Route::get('/about-us', function () {

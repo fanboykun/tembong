@@ -20,21 +20,21 @@ class ProductFactory extends Factory
         return [
             'name' => $this->faker->name,
             'description' => $this->faker->text,
-            // 'price' => $this->faker->numberBetween(1, 100),
+            'price' => 99000,
             'type' => $this->faker->randomElement(['best_seller', 'top_seller']),
-            'stock' => $this->faker->numberBetween(10, 100),
+            'stock' => 100,
             // 'image' => $this->faker->imageUrl(),
         ];
     }
 
-    public function suspended()
-{
-    return $this->state(function (array $attributes) {
-        return [
-            'price' => $attributes['type'] == 'best_seller' ? 65000 : 150000,
-        ];
-    });
-}
+    // public function suspended()
+    // {
+    //     return $this->state(function (array $attributes) {
+    //         return [
+    //             'price' => $attributes['type'] == 'best_seller' ? 65000 : 150000,
+    //         ];
+    //     });
+    // }
 
     // public function configure()
     // {

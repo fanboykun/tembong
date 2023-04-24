@@ -84,7 +84,7 @@
                                                             </a>
                                                             <a
                                                                 class="flex w-full items-center py-2 font-semibold"
-                                                                href="{{ url('/join-reseller') }}">Reseller
+                                                                href="{{ url('/join-dropshipper') }}">Dropshipper
                                                             </a>
                                                             <a class="block w-full py-2 font-semibold"
                                                                 href="{{ url('about-us') }}">About Us
@@ -147,7 +147,7 @@
                 <div class="hidden lg:flex lg:gap-x-12">
                 <a href="{{ url('/') }}" class="text-sm font-semibold leading-6 text-gray-900">Home</a>
                 <a href="{{ url('/product') }}" class="text-sm font-semibold leading-6 text-gray-900">Produk</a>
-                <a href="{{ url('join-reseller') }}" class="text-sm font-semibold leading-6 text-gray-900">Reseller</a>
+                <a href="{{ url('join-dropshipper') }}" class="text-sm font-semibold leading-6 text-gray-900">Dropshipper</a>
                 <a href="{{ url('/about-us') }}" class="text-sm font-semibold leading-6 text-gray-900">About Us</a>
                 <a href="{{ route('list-blog') }}" class="text-sm font-semibold leading-6 text-gray-900">Blog & Activity</a>
                 </div>
@@ -189,8 +189,10 @@
                 </div>
             </div> --}}
             <div class="text-center">
-            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Gabung Dengan Kami Menjadi Reseller</h1>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat fugiat aliqua.</p>
+            <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Gabung Dengan Kami Menjadi Droopshipper</h1>
+            <p class="mt-6 text-lg leading-8 text-gray-600">
+                Gabunglah menjadi bagian dari komunitas dropshipper Mama Parfum yang terus berkembang, dan jadilah bagian dari kesuksesan kami.
+            </p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
                 <a href="{{ route('register') }}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Join Sekarang</a>
                 <a href="#technical" class="text-sm font-semibold leading-6 text-gray-900">Lebih Lanjut <span aria-hidden="true">→</span></a>
@@ -208,8 +210,10 @@
             <div class="lg:pr-8 lg:pt-4">
               <div class="lg:max-w-lg">
                 <h2 class="text-base font-semibold leading-7 text-indigo-600">Teknis Menjadi</h2>
-                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Reseller Mama Parfum</p>
-                <p class="mt-6 text-lg leading-8 text-gray-600">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit eaque, iste dolor cupiditate blanditiis ratione.</p>
+                <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Dropshipper Mama Parfum</p>
+                <p class="mt-6 text-lg leading-8 text-gray-600">
+                    Anda dapat menjadi dropshipper dengan cara mendaftar, lalu lakukan validasi akun anda, dan mendapatkan link unik untuk produk-produk yang kami jual.
+                </p>
                 <dl class="grid max-w-xl grid-cols-1 gap-y-10 gap-x-8 lg:max-w-none lg:gap-y-8 mt-4">
                     <div class="relative pl-16">
                       <dt class="text-base font-semibold leading-7 text-gray-900">
@@ -218,9 +222,9 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 16.5V9.75m0 0l3 3m-3-3l-3 3M6.75 19.5a4.5 4.5 0 01-1.41-8.775 5.25 5.25 0 0110.233-2.33 3 3 0 013.758 3.848A3.752 3.752 0 0118 19.5H6.75z" />
                           </svg>
                         </div>
-                        Push to deploy
+                        Promosikan Produk
                       </dt>
-                      <dd class="mt-2 text-base leading-7 text-gray-600">Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi. Odio urna massa nunc massa.</dd>
+                      <dd class="mt-2 text-base leading-7 text-gray-600">Promosikan produk kami di situs web, media sosial, dan platform e-commerce lainnya. Setiap kali ada penjualan melalui link yang Anda bagikan, Anda akan mendapatkan komisi yang telah disepakati.</dd>
                     </div>
 
                     <div class="relative pl-16">
@@ -230,9 +234,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
                           </svg>
                         </div>
-                        SSL certificates
+                        Mudah & Praktis
                       </dt>
-                      <dd class="mt-2 text-base leading-7 text-gray-600">Sit quis amet rutrum tellus ullamcorper ultricies libero dolor eget. Sem sodales gravida quam turpis enim lacus amet.</dd>
+                      <dd class="mt-2 text-base leading-7 text-gray-600">
+                        Kami akan menangani semua proses pengiriman dan pemrosesan pesanan, sehingga Anda tidak perlu memikirkan stok atau pengiriman produk. Setelah pesanan diproses, kami akan mengirimkan produk langsung ke pelanggan Anda.
+                    </dd>
                     </div>
 
                     <div class="relative pl-16">
@@ -242,9 +248,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                           </svg>
                         </div>
-                        Simple queues
+                        Akses ke Dashboard Powerfull
                       </dt>
-                      <dd class="mt-2 text-base leading-7 text-gray-600">Quisque est vel vulputate cursus. Risus proin diam nunc commodo. Lobortis auctor congue commodo diam neque.</dd>
+                      <dd class="mt-2 text-base leading-7 text-gray-600">
+                       Dapatkan akses ke dashboard yang powerfull untuk melihat penjualan, komisi, dan laporan lainnya, sehingga Anda dapat mengawasi performa bisnis Anda dan melacak pendapatan Anda dengan mudah.
+                    </dd>
                     </div>
 
                     <div class="relative pl-16">
@@ -254,9 +262,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M7.864 4.243A7.5 7.5 0 0119.5 10.5c0 2.92-.556 5.709-1.568 8.268M5.742 6.364A7.465 7.465 0 004.5 10.5a7.464 7.464 0 01-1.15 3.993m1.989 3.559A11.209 11.209 0 008.25 10.5a3.75 3.75 0 117.5 0c0 .527-.021 1.049-.064 1.565M12 10.5a14.94 14.94 0 01-3.6 9.75m6.633-4.596a18.666 18.666 0 01-2.485 5.33" />
                           </svg>
                         </div>
-                        Advanced security
+                        Referral
                       </dt>
-                      <dd class="mt-2 text-base leading-7 text-gray-600">Arcu egestas dolor vel iaculis in ipsum mauris. Tincidunt mattis aliquet hac quis. Id hac maecenas ac donec pharetra eget.</dd>
+                      <dd class="mt-2 text-base leading-7 text-gray-600">
+                        Dapatkan bonus langsung dengan menjadi bagian dari program referral Mama Parfum. Ajak teman-teman Anda untuk bergabung dan semua akan mendapatkan bonus.
+                    </dd>
                     </div>
                 </dl>
                 {{-- <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
@@ -265,7 +275,7 @@
               </div>
             </div>
             <div class="grid lg:col-start-2 px-4 justify-start">
-                <img src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+                <img src="{{ asset('screenshot-dropshipper-dashboard.png') }}" alt="Product screenshot" class="w-[48rem] max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
                 <dl class="block gap-y-8 text-center pt-2 grid-cols-2 mt-8 mr-24 justify-start">
                     <div class="flex flex-col gap-y-2 items-start py-4">
                         <dt class="text-base leading-7 text-gray-600">Pilihan Berkualitas</dt>
@@ -288,13 +298,13 @@
     <div class="bg-white lg:py-16 sm:py-16">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
           <div class="mx-auto max-w-2xl sm:text-center">
-            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Membership Reseller</h2>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Membership Dropshipper</h2>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Bergabunglah menjadi Dropshipper Mama Parfum dan dapatkan keuntungan nyata per produk yang anda jual. Serta akses ke produk-produk terbaru dan penawaran eksklusif lainnya.</p>
           </div>
           <div class="mx-auto mt-12 max-w-2xl rounded-3xl ring-1 ring-gray-200 sm:mt-12 lg:mx-0 lg:flex lg:max-w-none">
             <div class="p-8 sm:p-10 lg:flex-auto">
               <h3 class="text-2xl font-bold tracking-tight text-gray-900">Sekali Bayar, Seumur Hidup, Terus Hasilkan Keuntungan</h3>
-              <p class="mt-6 text-base leading-7 text-gray-600">Lorem ipsum dolor sit amet consect etur adipisicing elit. Itaque amet indis perferendis blanditiis repellendus etur quidem assumenda.</p>
+              <p class="mt-6 text-base leading-7 text-gray-600">Dengan menjadi member Mama Parfum, Anda dapat menghemat lebih banyak uang dan memperkuat bisnis dropshipping Anda</p>
               <div class="mt-10 flex items-center gap-x-4">
                 <h4 class="flex-none text-sm font-semibold leading-6 text-indigo-600">Apa Yang Didapat?</h4>
                 <div class="h-px flex-auto bg-gray-100"></div>
@@ -304,28 +314,28 @@
                   <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                   </svg>
-                  Private forum access
+                  Link Katalog Anda
                 </li>
 
                 <li class="flex gap-x-3">
                   <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                   </svg>
-                  Member resources
+                  Akses Ke Dashboard Powerfull
                 </li>
 
                 <li class="flex gap-x-3">
                   <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                   </svg>
-                  Entry to annual conference
+                  Kode Referral
                 </li>
 
                 <li class="flex gap-x-3">
                   <svg class="h-6 w-5 flex-none text-indigo-600" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                     <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
                   </svg>
-                  Official member t-shirt
+                  Kemudahan Bantuan Pelayanan
                 </li>
               </ul>
             </div>
@@ -352,10 +362,10 @@
     <div class="bg-white py-18 sm:py-18">
         <div class="mx-auto max-w-7xl px-6 lg:px-8">
             <div class="mx-auto max-w-2xl lg:mx-0">
-                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Lihat Apa Kata Reseller Kami</h2>
-                <p class="mt-2 text-lg leading-8 text-gray-600">Belajar bagaimana mengembangkan bisnis anda dengan reseller berpengalaman kami.</p>
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Lihat Apa Kata Dropshipper Kami</h2>
+                <p class="mt-2 text-lg leading-8 text-gray-600">Belajar bagaimana mengembangkan bisnis anda dengan dropshipper berpengalaman kami.</p>
             </div>
-        <div class="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-y-2 gap-x-8 border-t border-gray-200 pt-18 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {{-- <div class="mx-auto mt-6 grid max-w-2xl grid-cols-1 gap-y-2 gap-x-8 border-t border-gray-200 pt-18 lg:mx-0 lg:max-w-none lg:grid-cols-3">
             <article class="flex max-w-xl flex-col items-start justify-between mb-8">
 
             <div class="group relative">
@@ -376,13 +386,13 @@
                     Michael Foster
                     </a>
                 </p>
-                <p class="text-gray-600">Reseller Mama Parfum</p>
+                <p class="text-gray-600">Dropshipper Mama Parfum</p>
                 </div>
             </div>
             </article>
 
             <!-- More posts... -->
-        </div>
+        </div> --}}
         </div>
     </div>
     {{-- End Testimonials --}}

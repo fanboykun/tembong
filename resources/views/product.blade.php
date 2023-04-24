@@ -11,10 +11,10 @@
           <div class="mx-auto max-w-2xl lg:text-center">
             <h2 class="text-base font-semibold leading-7 text-indigo-600">Produk</h2>
             <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Cari Tau Tentang Produk Kami</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600">Quis tellus eget adipiscing convallis sit sit eget aliquet quis. Suspendisse eget egestas a elementum pulvinar et feugiat blandit at. In mi viverra elit nunc.</p>
+            <p class="mt-6 text-lg leading-8 text-gray-600">Temukan parfum berkualitas terbaik Anda di Mama Parfum. Dari aroma yang lembut hingga aroma yang kuat, kami menawarkan berbagai pilihan parfum yang sesuai dengan selera Anda.</p>
             <div class="mt-10 flex items-center justify-center gap-x-6">
-                <a href="#" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get started</a>
-                <a href="#" class="text-sm font-semibold leading-6 text-gray-900">Learn more <span aria-hidden="true">→</span></a>
+                <a href="{{ route('catalog-channel', ['reseller' => $rand]) }}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Jelajahi Catalog Kami</a>
+                <a href="{{ url('about-us') }}" class="text-sm font-semibold leading-6 text-gray-900">Join Partnership <span aria-hidden="true">→</span></a>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@
         </svg>
         <div class="mx-auto max-w-2xl sm:text-center py-8">
             <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Pilihan Produk Untuk Semua Kalangan</h2>
-            <p class="mt-4 text-lg leading-8 text-gray-300">Distinctio et nulla eum soluta et neque labore quibusdam. Saepe et quasi iusto modi velit ut non voluptas in. Explicabo id ut laborum.</p>
+            <p class="mt-4 text-lg leading-8 text-gray-300">Apapun kebutuhan Anda, Mama Parfum selalu siap membantu. Dapatkan parfum terbaik dengan harga yang terjangkau, dan nikmati aroma yang menyenangkan sepanjang hari.</p>
         </div>
         <div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:max-w-none py-6 lg:grid-cols-3">
             <div class="flex flex-col items-start">
@@ -44,7 +44,7 @@
                 </svg>
                 </div>
                 <dt class="mt-4 font-semibold text-white">Man's Product</dt>
-                <dd class="mt-2 leading-7 text-gray-400">Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.</dd>
+                <dd class="mt-2 leading-7 text-gray-400">Dari aroma maskulin klasik hingga aroma modern, Mama Parfum menawarkan berbagai pilihan parfum pria yang sesuai dengan selera Anda. </dd>
             </div>
             <div class="flex flex-col items-start">
                 <div class="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
@@ -53,7 +53,7 @@
                 </svg>
                 </div>
                 <dt class="mt-4 font-semibold text-white">Woman's Product</dt>
-                <dd class="mt-2 leading-7 text-gray-400">Non laboris consequat cupidatat laborum magna. Eiusmod non irure cupidatat duis commodo amet.</dd>
+                <dd class="mt-2 leading-7 text-gray-400">Mama Parfum menawarkan koleksi parfum wanita yang cocok untuk setiap kepribadian dan kesempatan. Dari aroma yang segar hingga aroma yang lebih elegan dan mewah.</dd>
             </div>
             <div class="flex flex-col items-start">
                 <div class="rounded-md bg-white/5 p-2 ring-1 ring-white/10">
@@ -62,7 +62,7 @@
                 </svg>
                 </div>
                 <dt class="mt-4 font-semibold text-white">Man & Woman Product</dt>
-                <dd class="mt-2 leading-7 text-gray-400">Officia excepteur ullamco ut sint duis proident non adipisicing. Voluptate incididunt anim.</dd>
+                <dd class="mt-2 leading-7 text-gray-400">Dari aroma maskulin yang kuat hingga aroma feminin yang mewah, Mama Parfum menawarkan berbagai pilihan parfum pria dan wanita yang mencakup aroma klasik hingga modern.</dd>
             </div>
         </div>
     </div>
@@ -76,12 +76,15 @@
                     <div class="md:w-1/2 lg:w-2/3 w-full xl:pr-20 md:pr-6">
                         <div class="py-2 text-color">
                             <h1 role="heading" class="text-2xl  lg:text-4xl md:leading-snug tracking-tighter f-f-l font-black">Top Seller Produk</h1>
-                            <p role="contentinfo" class="text-lg lg:leading-7 md:leading-10 f-f-r py-4 md:py-8">Here at Globex we take special care of what your organization needs instead of selling you a mass market tool that takes a one size fits all approach. I personally review each and every client business and oversee the team that tailores a solution</p>
+                            <p role="contentinfo" class="text-lg lg:leading-7 md:leading-10 f-f-r py-4 md:py-8">
+                                Mama Parfum menawarkan koleksi top seller parfum yang cocok untuk setiap kesempatan dan suasana hati Anda. Dapatkan parfum terbaik yang sesuai dengan selera Anda dan buat diri Anda menjadi lebih percaya diri.
+                                Temukan parfum terbaik dan paling laris di Mama Parfum. Dapatkan pengalaman wangi yang luar biasa dengan koleksi top seller kami yang mencakup aroma klasik hingga modern.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/3 md:w-1/2 w-full relative h-96 flex items-end justify-center">
                         <img class="absolute w-full h-full inset-0 object-cover object-center rounded-md" src="https://cdn.tuk.dev/assets/templates/prodify/ProductAdoption.png" alt="A girl enjoying in sunlight" role="img" />
-                        <div class="relative z-10 bg-white rounded shadow p-6 w-10/12 -mb-20">
+                        {{-- <div class="relative z-10 bg-white rounded shadow p-6 w-10/12 -mb-20">
                             <div class="flex items-center justify-between w-full sm:w-full mb-8">
                                 <div class="flex items-center">
                                     <div class="p-4 bg-yellow-200 rounded-md">
@@ -105,7 +108,7 @@
                                 <hr class="absolute top-0 h-1 w-7/12 rounded-sm bg-indigo-700" />
                             </div>
                             <h2 class="text-base text-gray-600 font-normal tracking-normal leading-5">Yearly Goal</h2>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -116,12 +119,15 @@
                     <div class="md:w-1/2 lg:w-2/3 w-full lg:pl-20 md:pl-10 sm:pl-0 pl-0">
                         <div class="py-2 text-color">
                             <div><h1 role="heading" class="text-2xl lg:text-4xl tracking-tighter md:leading-snug f-f-l font-black">Best Seller Produk</h1></div>
-                            <p role="contentinfo" class="text-lg lg:leading-7 md:leading-10 f-f-r py-8">Here at Globex we take special care of what your organization needs instead of selling you a mass market tool that takes a one size fits all approach. I personally review each and every client business and oversee the team that tailores a solution</p>
+                            <p role="contentinfo" class="text-lg lg:leading-7 md:leading-10 f-f-r py-8">
+                                Mama Parfum menawarkan koleksi parfum best seller yang cocok untuk setiap kesempatan dan selera Anda. Dapatkan parfum terbaik yang meningkatkan daya tarik Anda dan memberikan kesan yang kuat.
+                                Temukan parfum best seller dengan aroma yang khas dan elegan di Mama Parfum. Kami menawarkan pilihan yang luas dari aroma klasik hingga modern, yang dapat menambah kepercayaan diri Anda.
+                            </p>
                         </div>
                     </div>
                     <div class="lg:w-1/3 md:w-1/2 w-full relative h-96 flex items-end justify-center">
                         <img class="absolute w-full h-full inset-0 object-cover object-center rounded-md" src="https://cdn.tuk.dev/assets/templates/prodify/invoicing-system.png" alt="A group of three having a meeting" role="img" />
-                        <div class="relative z-10 bg-white rounded shadow p-6 w-10/12 -mb-20">
+                        {{-- <div class="relative z-10 bg-white rounded shadow p-6 w-10/12 -mb-20">
                             <div class="flex items-center justify-between w-full sm:w-full mb-8">
                                 <div class="flex items-center">
                                     <div class="p-4 bg-yellow-200 rounded-md">
@@ -145,7 +151,7 @@
                                 <hr class="absolute top-0 h-1 w-7/12 rounded-sm bg-indigo-700" />
                             </div>
                             <h2 class="text-base text-gray-600 font-normal tracking-normal leading-5">Yearly Goal</h2>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

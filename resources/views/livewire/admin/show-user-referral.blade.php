@@ -17,7 +17,7 @@
                       </svg>
                     <span class="text-base font-semibold leading-6 text-gray-900 mx-2">Informasi Referral</span>
                 </div>
-                <p class="mt-1 max-w-2xl text-sm text-gray-500">Detail tentang referral dari reseller</p>
+                <p class="mt-1 max-w-2xl text-sm text-gray-500">Detail tentang referral dari dropshipper</p>
                 <dl>
                     <div class="bg-gray-50  py-5 sm:grid sm:grid-cols-3 sm:gap-4">
                         <dt class="text-sm font-medium text-gray-500">Kode Referral</dt>

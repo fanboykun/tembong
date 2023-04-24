@@ -34,8 +34,8 @@
                                     </button>
                                 </li>
                                 <li>
-                                    <button type="button" wire:click="$set('search_filter', 'reseller_id')" class="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Reseller Id
+                                    <button type="button" wire:click="$set('search_filter', 'dropshipper_id')" class="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Dropshipper Id
                                     </button>
                                 </li>
 
@@ -104,10 +104,10 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Order Id</th>
-                                <th scope="col" class="px-4 py-3">Reseller Id</th>
+                                <th scope="col" class="px-4 py-3">Dropshipper Id</th>
                                 <th scope="col" class="px-4 py-3">Dibuat Pada</th>
                                 <th scope="col" class="px-4 py-3">Diupdate Pada</th>
-                                <th scope="col" class="px-4 py-3">Diskon</th>
+                                {{-- <th scope="col" class="px-4 py-3">Diskon</th> --}}
                                 <th scope="col" class="px-4 py-3">Ongkir</th>
                                 <th scope="col" class="px-4 py-3">Total Harga</th>
                                 <th scope="col" class="px-4 py-3">Status</th>
@@ -133,9 +133,9 @@
                                         {{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $order->updated_at)->format('d M Y') }}
                                     </div>
                                 </td>
-                                <td class="px-4 py-2 font-medium text-right text-gray-900 whitespace-nowrap dark:text-white">
+                                {{-- <td class="px-4 py-2 font-medium text-right text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ $order->discount_type ?? '-' }}
-                                </td>
+                                </td> --}}
                                 <td class="px-4 py-2 font-medium text-right text-gray-900 whitespace-nowrap dark:text-white">
                                     {{ number_format($order->shipping_cost, 0, ',', '.') }}
                                 </td>

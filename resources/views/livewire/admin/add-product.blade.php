@@ -12,20 +12,20 @@
                     <form wire:submit.prevent="store" action="" class="mt-6 space-y-6">
                         <div>
                             <x-input-label for="name" :value="__('Nama')" />
-                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model="name" required autofocus />
+                            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" wire:model.defer="name" required autofocus />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
 
                         <div>
                             <x-input-label for="description" :value="__('Deskripsi')" />
-                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model="description" required />
+                            <textarea id="description" class="block mt-1 w-full" type="text" name="description" wire:model.defer="description" required />
                             </textarea>
                             <x-input-error class="mt-2" :messages="$errors->get('description')" />
                         </div>
 
                         <div>
                             <x-input-label for="type" :value="__('Tipe')" />
-                            <select wire:model="type" name="type" id="type">
+                            <select wire:model.defer="type" name="type" id="type">
                                 <option value="">Pilih Satu Tipe</option>
                                     <option value="best_seller">Best Seller</option>
                                     <option value="top_seller">Top Seller</option>
@@ -40,13 +40,13 @@
 
                         <div>
                             <x-input-label for="stock" :value="__('Stok')" />
-                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model="stock" required />
+                            <x-text-input id="stock" class="block mt-1 w-full" type="number" name="stock" wire:model.defer="stock" required />
                             <x-input-error class="mt-2" :messages="$errors->get('stock')" />
                         </div>
 
                         <div>
                             <x-input-label for="category" :value="__('Kategori')" />
-                            <select wire:model="category_id" name="category_id" id="category_id">
+                            <select wire:model.defer="category_id" name="category_id" id="category_id">
                                 <option value="">Pilih Satu Kategori</option>
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->name }}</option>

@@ -18,19 +18,26 @@ class OrderSummary extends Component
     public $showDropdown = false;
     public $users;
 
+    public $total_quantity;
+    public $price_with_discount_and_ongkir;
+    public $total_price;
+
 
     public function mount(Order $order)
     {
-        $this->order = $order->load('buyer', 'reseller', 'products');
+        $this->order = $order->load('buyer', 'products');
         $this->reseller_id = $this->order->reseller_id;
         $this->buyer_name = $this->order->buyer->buyer_name;
         $this->buyer_phone = $this->order->buyer->buyer_phone;
         $this->buyer_address = $this->order->buyer->full_address;
+        $this->total_quantity = $this->order->total_quantity;
+        $this->price_with_discount_and_ongkir = $this->order->price_with_discount_and_ongkir;
+        $this->total_price = $this->order->total_price;
     }
 
     public function render()
     {
-        $this->users = User::role('reseller')->where('id',$this->reseller_id)->whereNotNull('validated_at')->get();
+        $this->showDropdown ? $this->users = User::role('reseller')->where('id',$this->reseller_id)->whereNotNull('validated_at')->get() : $this->users;
         return view('livewire.admin.order-summary');
     }
 
@@ -129,7 +136,7 @@ class OrderSummary extends Component
     {
         $balance = new Balance();
         $balance->user_id = $user->id;
-        $balance->amount = ($order->top_seller_item * 50000) + ($order->best_seller_item * 20000);
+        $balance->amount = $order->quantity * 99000;
         $order->balance()->save($balance);
     }
 }

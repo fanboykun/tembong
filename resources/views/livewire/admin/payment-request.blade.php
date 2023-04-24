@@ -24,12 +24,12 @@
                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="actionsDropdownButton">
                                 <li>
                                     <button type="button" wire:click="$set('search_filter', '')" class="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Default (Res ID)
+                                        Default (Dro ID)
                                     </button>
                                 </li>
                                 <li>
-                                    <button type="button" wire:click="$set('search_filter', 'reseller_id')" class="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                        Reseller ID
+                                    <button type="button" wire:click="$set('search_filter', 'dropshipper_id')" class="inline-flex w-full py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                        Dropshipper ID
                                     </button>
                                 </li>
                                 <li>
@@ -95,7 +95,7 @@
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3">Payment Id</th>
-                                <th scope="col" class="px-4 py-3">Reseller Id</th>
+                                <th scope="col" class="px-4 py-3">Dropshipper Id</th>
                                 <th scope="col" class="px-4 py-3">Nama Res</th>
                                 <th scope="col" class="px-4 py-3 text-right">Jumlah Permintaan</th>
                                 <th scope="col" class="px-4 py-3">Diminta Pada</th>

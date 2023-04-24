@@ -77,7 +77,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         foreach($categories as $category) {
-            $category->products()->saveMany(Product::factory()->count(10)->suspended()->create());
+            $category->products()->saveMany(Product::factory()->count(10)->create());
         }
 
         Artisan::call('laravolt:indonesia:seed');

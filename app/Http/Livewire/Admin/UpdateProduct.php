@@ -60,13 +60,13 @@ class UpdateProduct extends Component
 
     }
 
-    public function updatedType()
-    {
-        $this->validate([
-            'type' => 'required|in:best_seller,top_seller',
-        ]);
-        $this->price = $this->type == 'best_seller' ? 65000 : 150000;
-    }
+    // public function updatedType()
+    // {
+    //     $this->validate([
+    //         'type' => 'required|in:best_seller,top_seller',
+    //     ]);
+    //     $this->price = $this->type == 'best_seller' ? 65000 : 150000;
+    // }
 
     public function update()
     {
